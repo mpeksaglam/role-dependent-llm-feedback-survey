@@ -4,8 +4,8 @@ export type UserRole =
   | "roboExp" 
   | null
 
-// A == generic, B == role-specific
-export type Condition = "A" | "B"
+
+export type Condition = "generic" | "roleSpecific"
 
 export type StepType =
   | "intro"

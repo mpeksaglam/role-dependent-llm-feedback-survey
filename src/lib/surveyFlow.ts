@@ -6,7 +6,7 @@ import type {
 
 
 export function assignConditionOrder(): [Condition, Condition] {
-  return Math.random() < 0.5 ? ["A", "B"] : ["B", "A"]
+  return Math.random() < 0.5 ? ["generic", "roleSpecific"] : ["roleSpecific", "generic"]
 }
 
 export function buildSurveyFlow(
@@ -30,7 +30,7 @@ export function buildSurveyFlow(
       type: "trainingTask",
     },
 
-    // Block 1 (A oder B)
+    // Block 1 (generic oder roleSpecific)
     {
       id: "task-block-1",
       type: "taskBlock",
@@ -45,7 +45,7 @@ export function buildSurveyFlow(
       instruments: ["SUS", "NASA_TLX", "ROLE_FIT"],
     },
 
-    // Block 2 (A oder B)
+    // Block 2 (complement zu Block 1)
     {
       id: "task-block-2",
       type: "taskBlock",
