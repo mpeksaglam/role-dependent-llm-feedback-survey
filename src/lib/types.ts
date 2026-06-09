@@ -1,11 +1,12 @@
+/* surveyFlow */
 export type UserRole = 
   | "generic" 
   | "procExp" 
   | "roboExp" 
-  | null
+  | null;
 
 
-export type Condition = "generic" | "roleSpecific"
+export type Condition = "generic" | "roleSpecific";
 
 export type StepType =
   | "intro"
@@ -55,3 +56,16 @@ export type SurveyStep =
   | TaskBlockStep
   | QuestionnaireStep
   | ComparisonStep;
+
+/* simulationConfig */
+export type SimulationTask =
+  | {
+      id: string;
+      type: "single";
+      videoUrl: string;
+    }
+  | {
+      id: string;
+      type: "comparison";
+      videoUrls: [string, string];
+    };
