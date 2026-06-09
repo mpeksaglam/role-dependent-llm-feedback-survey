@@ -2,6 +2,11 @@
 
 import Image from "next/image"
 
+
+
+{/* TO DO : STUDY : Intro, Rollenklärung, Training, Aufgaben, Fragebogen, Abschluss */}
+
+
 export default function SurveyPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8">
