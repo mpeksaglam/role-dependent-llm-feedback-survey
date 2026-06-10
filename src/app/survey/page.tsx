@@ -4,7 +4,7 @@ import Image from "next/image"
 
 
 
-{/* TO DO : STUDY : Intro, Rollenklärung, Training, Aufgaben, Fragebogen, Abschluss */}
+{/* TODO : STUDY : Intro, Rollenklärung, Training, Aufgaben, Fragebogen, Abschluss */}
 
 
 export default function SurveyPage() {

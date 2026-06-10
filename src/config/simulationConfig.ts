@@ -1,5 +1,9 @@
 import { SimulationTask } from "@/lib/types"
 
+
+// make sure to employ unique descriptive IDs i.e. sim_task1...
+
+
 export const simulationTasks: SimulationTask[] = [
   {
     id: "task1",

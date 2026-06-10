@@ -1,8 +1,5 @@
 
-import type {
-    Condition, 
-    SurveyStep,
-} from "@/lib/types"
+import type { Condition, SurveyStep } from "@/lib/types"
 
 
 export function assignConditionOrder(): [Condition, Condition] {
