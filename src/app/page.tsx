@@ -49,7 +49,7 @@ export default function Home() {
         />
         Ich lehne ab
       </label>
-      <div className="flex mt-auto justify-end">
+      <div className="mt-auto flex justify-end">
         <NextButton
           onClick={handleNext}
           disabled={!canContinue}
