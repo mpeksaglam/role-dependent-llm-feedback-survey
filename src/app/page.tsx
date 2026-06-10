@@ -19,7 +19,7 @@ export default function Home() {
   {/* TODO: PRE-SURVEY : Welcome, DSGVO, Einwilligung */}
 
   return (
-    <div className="p-10">
+    <div className="min-h-screen p-10 flex flex-col">
       <h1 className="text-2xl font-bold mb-4">
         Willkommen zur KIRo4LeMi Feedback Survey
       </h1>
@@ -49,11 +49,12 @@ export default function Home() {
         />
         Ich lehne ab
       </label>
-
-      <NextButton
-        onClick={handleNext}
-        disabled={!canContinue}
-      />      
+      <div className="flex mt-auto justify-end">
+        <NextButton
+          onClick={handleNext}
+          disabled={!canContinue}
+        />
+      </div>      
     </div>
   )
 
