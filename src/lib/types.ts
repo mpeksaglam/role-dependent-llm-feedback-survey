@@ -1,4 +1,4 @@
-/* surveyFlow */
+// surveyFlow 
 export type UserRole = 
   | "generic" 
   | "procExp" 
@@ -42,7 +42,7 @@ export interface TaskBlockStep extends SurveyStepBase {
 export interface QuestionnaireStep extends SurveyStepBase {
   type: "questionnaire";
   condition: Condition;
-  instruments: ("SUS" | "NASA_TLX" | "ROLE_FIT")[];   //TODO remove probably
+  instruments: ("SUS" | "NASA_TLX" | "ROLE_FIT")[];   // TODO remove probably
 }
 
 export interface ComparisonStep extends SurveyStepBase {
@@ -57,20 +57,22 @@ export type SurveyStep =
   | QuestionnaireStep
   | ComparisonStep;
 
-/* simulationConfig */
-export type SimulationTask =
+// simulationConfig  
+export type SimulationVideo =
   | {
       id: string;
+      title: string;
       type: "single";
       videoUrl: string;
     }
   | {
       id: string;
+      title: string;
       type: "comparison";
       videoUrls: [string, string];
     };
 
-/* questionConfig */
+// questionConfig 
 export type ResponseType =
   | "likert5"
   | "likert7"

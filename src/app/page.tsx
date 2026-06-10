@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { NextButton } from "@/components/NextButton"
+import { NextButton } from "@/components/buttons/NextButton"
 
 export default function Home() {
   const [choice, setChoice] = useState("")

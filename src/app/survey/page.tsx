@@ -1,5 +1,7 @@
 "use client"
 
+import { simulationVideos } from "@/config/simulationConfig"
+import { SimulationModule } from "@/modules/simulation/SimulationModule"
 import Image from "next/image"
 
 
@@ -12,14 +14,7 @@ export default function SurveyPage() {
     <main className="flex min-h-screen flex-col items-center justify-center p-8">
 
       <div className="mb-8">
-        <Image
-          src="/cat.png"
-          alt="Survey Scenario"
-          width={800}
-          height={450}
-          className="rounded-lg shadow-lg"
-          priority
-        />
+        <SimulationModule simVid={simulationVideos[1]}/>
       </div>
 
       <div className="flex gap-4">
