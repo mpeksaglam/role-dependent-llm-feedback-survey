@@ -82,6 +82,8 @@ export interface Question {
   id: string;
   text: string;
   responseType: ResponseType;
+  leftLabel: string;         // for LikertScale Stimme voll zu etc.
+  rightLabel: string;
   required?: boolean;         // Does user have to answer? Standard YES for everything
   reverseScored?: boolean;    // Potentially for scale items? 
 }

@@ -3,7 +3,10 @@
 import { ActionButton } from "@/components/buttons/ActionButton"
 import { NavigationButton } from "@/components/buttons/NavigationButton"
 import { simulationVideos } from "@/config/simulationConfig"
-import { SimulationModule } from "@/modules/simulation/SimulationModule"
+import { scen3GenericQuestions} from "@/config/questionConfig"
+import { SimulationModule } from "@/modules/SimulationModule"
+import { QuestionModule } from "@/modules/QuestionModule"
+
 import Image from "next/image"
 
 
@@ -24,6 +27,7 @@ export default function SurveyPage() {
         <SimulationModule simVid={simulationVideos[1]}/>
       </div>
 
+      {/* 
       <div className="flex gap-6 justify-center">
         <ActionButton
           label="Annehmen"
@@ -35,8 +39,17 @@ export default function SurveyPage() {
           onClick={() => {} }
         />
       </div>
+      */}
 
-      {/* NavigationButtons Div */}
+
+      <QuestionModule group={scen3GenericQuestions} />
+
+
+
+
+
+
+      {/* Navigation */}
 
       {/* TODO bottom right of screen max? */}
       <div className="mt-auto flex justify-between"> 
