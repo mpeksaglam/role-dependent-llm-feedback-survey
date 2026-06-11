@@ -1,14 +1,13 @@
 
-
-type AcceptButtonProps = {
-    onClick: () => void
-    text?: string
+type ActionButtonProps = {
+  label: string
+  onClick: () => void
 }
 
-export function AcceptButton({
-    onClick,
-    text = "Annehmen",
-}: AcceptButtonProps) {
+export function ActionButton({
+  label,  
+  onClick,
+}: ActionButtonProps) {
     return(
         <button
           className="
@@ -17,8 +16,9 @@ export function AcceptButton({
             text-black font-medium
             cursor-pointer
           "
+          onClick = {onClick}
         >
-          {text}
+          {label}
         </button>
     )
 }

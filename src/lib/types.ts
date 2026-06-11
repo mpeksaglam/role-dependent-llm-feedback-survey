@@ -91,3 +91,8 @@ export interface QuestionGroup {
   title: string;
   questions: Question[];
 }
+
+// Buttons
+export type NavigationType =
+  | "forward"
+  | "back"

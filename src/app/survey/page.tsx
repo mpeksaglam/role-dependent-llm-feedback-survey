@@ -1,8 +1,7 @@
 "use client"
 
-import { AcceptButton } from "@/components/buttons/AcceptButton"
-import { NextButton } from "@/components/buttons/NextButton"
-import { RejectButton } from "@/components/buttons/RejectButton"
+import { ActionButton } from "@/components/buttons/ActionButton"
+import { NavigationButton } from "@/components/buttons/NavigationButton"
 import { simulationVideos } from "@/config/simulationConfig"
 import { SimulationModule } from "@/modules/simulation/SimulationModule"
 import Image from "next/image"
@@ -26,17 +25,32 @@ export default function SurveyPage() {
       </div>
 
       <div className="flex gap-6 justify-center">
-        <AcceptButton
+        <ActionButton
+          label="Annehmen"
           onClick={() => {} } // TODO HANDLE
         />
 
-        <RejectButton
+        <ActionButton
+          label="Reject"
           onClick={() => {} }
         />
       </div>
-      {/* TODO bottom right of screen max */}
-      <div className="flex mt-auto justify-end"> 
-        <NextButton
+
+      {/* NavigationButtons Div */}
+
+      {/* TODO bottom right of screen max? */}
+      <div className="mt-auto flex justify-between"> 
+        
+        <NavigationButton
+          action="back"
+          label="Zurück"
+          onClick={() => {} }
+          disabled={false}
+        />        
+        
+        <NavigationButton
+          action="forward"
+          label="Weiter"
           onClick={() => {} }   // TODO HANDLE!!!
           disabled={false}     // HANDLE
         />

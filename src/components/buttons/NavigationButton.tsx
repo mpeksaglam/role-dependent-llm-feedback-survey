@@ -1,18 +1,22 @@
 import { MoveRight } from "lucide-react"
+import { MoveLeft } from "lucide-react"
+import { NavigationType } from "@/lib/types"
 
-type NextButtonProps = {
+type NavigationButtonProps = {
+  action: NavigationType
+  label: string
   onClick: () => void
   disabled: boolean
-  text?: string
 }
 
-// TODO roter Text handleDisableClick ?
+// TODO roter Text handleDisabledClick ?
 
-export function NextButton({
+export function NavigationButton({
+  action,
+  label,
   onClick,
   disabled,
-  text = "Weiter",
-}: NextButtonProps) {
+}: NavigationButtonProps) {
   return (
       <button
         className="
@@ -27,9 +31,9 @@ export function NextButton({
         onClick={onClick}
         disabled={disabled}
       >
-        {text}
-        {/* arrow icon */}
-        <MoveRight size={15} /> 
+        {action === "back" && <MoveLeft size={15} />}
+        {label}
+        {action === "forward" && <MoveRight size={15} />}
       </button>
   )
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { NextButton } from "@/components/buttons/NextButton"
+import { NavigationButton } from "@/components/buttons/NavigationButton"
 
 export default function Home() {
   const [choice, setChoice] = useState("")
@@ -50,7 +50,9 @@ export default function Home() {
         Ich lehne ab
       </label>
       <div className="mt-auto flex justify-end">
-        <NextButton
+        <NavigationButton
+          action="forward"
+          label="Weiter"
           onClick={handleNext}
           disabled={!canContinue}
         />
