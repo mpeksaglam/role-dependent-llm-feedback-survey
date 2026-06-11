@@ -1,6 +1,8 @@
 "use client"
 
+import { AcceptButton } from "@/components/buttons/AcceptButton"
 import { NextButton } from "@/components/buttons/NextButton"
+import { RejectButton } from "@/components/buttons/RejectButton"
 import { simulationVideos } from "@/config/simulationConfig"
 import { SimulationModule } from "@/modules/simulation/SimulationModule"
 import Image from "next/image"
@@ -23,33 +25,17 @@ export default function SurveyPage() {
         <SimulationModule simVid={simulationVideos[1]}/>
       </div>
 
-      <div className="flex gap-2 justify-center">
-        <button
-          className="
-            rounded-lg
-            px-6
-            py-3
-            text-black
-            font-semibold
-          "
-        >
-          Annehmen
-        </button>
+      <div className="flex gap-6 justify-center">
+        <AcceptButton
+          onClick={() => {} } // TODO HANDLE
+        />
 
-        <button
-          className="
-            rounded-lg
-            px-6
-            py-3
-            text-black
-            font-semibold
-          "
-        >
-          Ablehnen
-        </button>       
+        <RejectButton
+          onClick={() => {} }
+        />
       </div>
-
-      <div className="flex mt-auto justify-end">
+      {/* TODO bottom right of screen max */}
+      <div className="flex mt-auto justify-end"> 
         <NextButton
           onClick={() => {} }   // TODO HANDLE!!!
           disabled={false}     // HANDLE
