@@ -1,3 +1,5 @@
+import { FreeTextInput } from "@/components/responses/FreeTextInput";
+
 // surveyFlow 
 export type UserRole = 
   | "generic" 
@@ -72,21 +74,44 @@ export type SimulationVideo =
       videoUrls: [string, string];
     };
 
-// questionConfig 
-export type ResponseType =
+// Question Types
+export type LikertResponseType =
   | "likert5"
-  | "likert7"
-  | "freeText";
+  | "likert7";
 
-export interface Question {
+export type FreeTextResponseType =
+  "freeTextInput";
+
+export type ResponseType =
+  | LikertResponseType
+  | FreeTextResponseType;
+
+export type AnswerValue =
+  | number
+  | string;
+
+export type SurveyAnswer = 
+  Record<string, AnswerValue>;
+
+interface BaseQuestion {
   id: string;
   text: string;
-  responseType: ResponseType;
-  leftLabel: string;         // for LikertScale Stimme voll zu etc.
-  rightLabel: string;
-  required?: boolean;         // Does user have to answer? Standard YES for everything
-  reverseScored?: boolean;    // Potentially for scale items? 
+  required?: boolean;
+  reverseScored?: boolean;
 }
+
+export interface FreeTextQuestion extends BaseQuestion {
+  responseType: "freeTextInput";
+}
+
+export interface ScaleQuestion extends BaseQuestion {
+  responseType: "likert5" | "likert7";
+  leftLabel: string;
+  rightLabel: string;
+}
+
+export type Question = FreeTextQuestion | ScaleQuestion;
+
 
 export interface QuestionGroup {
   id: string;

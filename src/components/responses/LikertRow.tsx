@@ -1,6 +1,6 @@
 import { LikertScale } from "@/components/responses/LikertScale";
 
-interface QuestionRowProps {
+interface LikertRowProps {
   text: string;
 
   scale: number;
@@ -12,14 +12,14 @@ interface QuestionRowProps {
   onSelect?: (value: number) => void;
 }
 
-export function QuestionRow({
+export function LikertRow({
   text,
   scale,
   leftLabel,
   rightLabel,
   selected,
   onSelect,
-}: QuestionRowProps) {
+}: LikertRowProps) {
   return (
     <div className="flex items-center justify-between py-5 gap-6">
 

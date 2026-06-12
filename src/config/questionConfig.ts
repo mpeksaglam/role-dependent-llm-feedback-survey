@@ -1,3 +1,4 @@
+import { FreeTextInput } from "@/components/responses/FreeTextInput"
 import { Question, QuestionGroup } from "@/lib/types"
 
 
@@ -5,8 +6,8 @@ export const scen1GenericQuestions: QuestionGroup = {
     id: "scen1_gen_qs",
     title: "Scenario 1 Generic Questions",
     questions: [
-        {id: "scen1_gen_q1_aufgabenerfolg", text: "Wie erfolgreich wurde die Aufgabe ausgeführt?", responseType: "likert5", leftLabel: "Kein Erfolg", rightLabel: "Voller Erfolg"},
-        {id: "scen1_gen_q2_sicherheit", text: "Wie sicher wurde die Aufgabe ausgeführt?", responseType: "likert5",leftLabel: "Sehr unsicher", rightLabel: "Sehr sicher"},
+        {id: "scen1_gen_q1_task_success", text: "Wie erfolgreich wurde die Aufgabe ausgeführt?", responseType: "likert5", leftLabel: "Kein Erfolg", rightLabel: "Voller Erfolg"},
+        {id: "scen1_gen_q2_safety", text: "Wie sicher wurde die Aufgabe ausgeführt?", responseType: "likert5",leftLabel: "Sehr unsicher", rightLabel: "Sehr sicher"},
     ],
 }
 
@@ -22,10 +23,11 @@ export const scen3GenericQuestions: QuestionGroup = {
     id: "scen3_gen_qs",
     title: "Scenario 3 Generic Questions",
     questions: [
-        {id: "scen3_gen_q1_aufgabenerfolg_varA", text: "Wie erfolgreich wurde die Aufgabe ausgeführt?", responseType: "likert5", leftLabel: "Kein Erfolg", rightLabel: "Voller Erfolg"},
-        {id: "scen3_gen_q2_sicherheit_varA", text: "Wie sicher wurde die Aufgabe ausgeführt?", responseType: "likert5", leftLabel: "Kein Erfolg", rightLabel: "Voller Erfolg"},
-        {id: "scen3_gen_q1_aufgabenerfolg_varB", text: "Aufgabenerfolg", responseType: "likert5", leftLabel: "Kein Erfolg", rightLabel: "Voller Erfolg"},
-        {id: "scen3_gen_q2_sicherheit_varB", text: "Wie sicher wurde die Aufgabe ausgeführt?", responseType: "likert5", leftLabel: "Kein Erfolg", rightLabel: "Voller Erfolg"},
+        {id: "scen3_gen_q1_reason_pref", text: "Bitte begründen Sie Ihre Auswahl kurz:", responseType: "freeTextInput"},
+        {id: "scen3_gen_q2_task_success_varA", text: "Wie erfolgreich wurde die Aufgabe im linken Video ausgeführt?", responseType: "likert7", leftLabel: "Kein Erfolg", rightLabel: "Voller Erfolg"},
+        {id: "scen3_gen_q3_safety_varA", text: "Wie sicher wurde die Aufgabe im linken Video ausgeführt?", responseType: "likert5", leftLabel: "Sehr unsicher", rightLabel: "Sehr sicher"},
+        {id: "scen3_gen_q4_task_success_varB", text: "Wie erfolgreich wurde die Aufgabe im rechten Video ausgeführt?", responseType: "likert5", leftLabel: "Kein Erfolg", rightLabel: "Voller Erfolg"},
+        {id: "scen3_gen_q5_safety_varB", text: "Wie sicher wurde die Aufgabe im rechten Video ausgeführt?", responseType: "likert7", leftLabel: "Sehr unsicher", rightLabel: "Sehr sicher"},
     ],
 }
 

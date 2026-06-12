@@ -11,7 +11,7 @@ export function LikertScale({
   onSelect,
 }: LikertScaleProps) {
   return (
-    <div className="flex gap-3 items-center">
+    <div className="flex gap-3 items-center cursor-pointer">
       {Array.from({ length: scale }, (_, i) => {
         const value = i + 1;
 
