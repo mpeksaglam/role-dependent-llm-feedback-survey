@@ -1,6 +1,3 @@
-import { Option } from "lucide-react";
-
-
 // simulationConfig  
 export type SimulationVideo =
   | {
@@ -78,7 +75,16 @@ export type NavigationType =
   | "forward"
   | "back"
 
-// Question State
+
+// Participants
+export type UserRole =  
+  | "proc_exp" 
+  | "robo_exp"
+
+export type Condition = "gen" | "role_spec";
+
+
+// Survey Engine
 export type AnswerValue =
   | number
   | string;
@@ -87,62 +93,79 @@ export type SurveyAnswers =
   Record<string, AnswerValue>;
 
 
-// surveyFlow 
-export type UserRole = 
-  | "generic" 
-  | "procExp" 
-  | "roboExp" 
-  | null;
+export const SURVEY_STEPS = {
+  INTRO: "intro",
+  PRE_SURVEY: "pre_survey",
 
+  TRAINING_TASK: "training_task",
 
-export type Condition = "generic" | "roleSpecific";
+  GEN_SCEN_1: "gen_scen_1",
+  GEN_SCEN_2: "gen_scen_2",
+  GEN_SCEN_3: "gen_scen_3",
+
+  ROLE_SPEC_SCEN_1: "role_spec_scen_1",
+  ROLE_SPEC_SCEN_2: "role_spec_scen_2",
+  ROLE_SPEC_SCEN_3: "role_spec_scen_3",
+
+  OUTRO: "outro",
+} as const;
 
 export type StepType =
-  | "intro"
-  | "roleSelection"
-  | "trainingTask"
-  | "taskBlock"
-  | "questionnaire"
-  | "comparison";
+ (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
+  
 
-export interface SurveyStepBase {
-  id: string;
-  type: StepType;
+export interface SurveyState {
+    currentStepId: StepType;
+    answers: SurveyAnswers;
+    userRole?: UserRole;
+    conditionOrder?: [Condition, Condition];
+    participantFlow?: StepType[];
 }
 
-export interface IntroStep extends SurveyStepBase {
-  type: "intro";
-}
 
-export interface RoleSelectionStep extends SurveyStepBase {
-  type: "roleSelection";
-}
+// // Survey Flow ?
 
-export interface TrainingTaskStep extends SurveyStepBase {
-  type: "trainingTask";
-}
 
-export interface TaskBlockStep extends SurveyStepBase {
-  type: "taskBlock";
-  condition: Condition;
-  taskCount: number; // hier: 3
-}
 
-export interface QuestionnaireStep extends SurveyStepBase {
-  type: "questionnaire";
-  condition: Condition;
-}
 
-export interface ComparisonStep extends SurveyStepBase {
-  type: "comparison";
-}
+// export interface SurveyStepBase {
+//   id: string;
+//   type: StepType;
+// }
 
-export type SurveyStep =
-  | IntroStep
-  | RoleSelectionStep
-  | TrainingTaskStep
-  | TaskBlockStep
-  | QuestionnaireStep
-  | ComparisonStep;
+// export interface IntroStep extends SurveyStepBase {
+//   type: "intro";
+// }
+
+// export interface RoleSelectionStep extends SurveyStepBase {
+//   type: "roleSelection";
+// }
+
+// export interface TrainingTaskStep extends SurveyStepBase {
+//   type: "trainingTask";
+// }
+
+// export interface TaskBlockStep extends SurveyStepBase {
+//   type: "taskBlock";
+//   condition: Condition;
+//   taskCount: number; // hier: 3
+// }
+
+// export interface QuestionnaireStep extends SurveyStepBase {
+//   type: "questionnaire";
+//   condition: Condition;
+// }
+
+// export interface ComparisonStep extends SurveyStepBase {
+//   type: "comparison";
+// }
+
+// export type SurveyStep =
+//   | IntroStep
+//   | RoleSelectionStep
+//   | TrainingTaskStep
+//   | TaskBlockStep
+//   | QuestionnaireStep
+//   | ComparisonStep;
 
 
