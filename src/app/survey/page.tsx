@@ -3,7 +3,7 @@
 import { ActionButton } from "@/components/buttons/ActionButton"
 import { NavigationButton } from "@/components/buttons/NavigationButton"
 import { simulationVideos } from "@/config/simulationConfig"
-import { scen3GenericQuestions} from "@/config/questionConfig"
+import { scen1GenericQuestions, scen3GenericQuestions} from "@/config/questionConfig"
 import { SimulationModule } from "@/modules/SimulationModule"
 import { QuestionModule } from "@/modules/QuestionModule"
 
@@ -21,10 +21,10 @@ export default function SurveyPage() {
       ">
 
       <div className="flex items-center justify-center mb-6">
-        <SimulationModule simVid={simulationVideos[1]}/>
+        <SimulationModule simVid={simulationVideos[0]}/>
       </div>
 
-      <QuestionModule group={scen3GenericQuestions} />
+      <QuestionModule group={scen1GenericQuestions} />
 
 
       {/* Navigation, TODO modularize into Module */}

@@ -1,64 +1,5 @@
-import { FreeTextInput } from "@/components/responses/FreeTextInput";
 import { Option } from "lucide-react";
 
-// surveyFlow 
-export type UserRole = 
-  | "generic" 
-  | "procExp" 
-  | "roboExp" 
-  | null;
-
-
-export type Condition = "generic" | "roleSpecific";
-
-export type StepType =
-  | "intro"
-  | "roleSelection"
-  | "trainingTask"
-  | "taskBlock"
-  | "questionnaire"
-  | "comparison";
-
-export interface SurveyStepBase {
-  id: string;
-  type: StepType;
-}
-
-export interface IntroStep extends SurveyStepBase {
-  type: "intro";
-}
-
-export interface RoleSelectionStep extends SurveyStepBase {
-  type: "roleSelection";
-}
-
-export interface TrainingTaskStep extends SurveyStepBase {
-  type: "trainingTask";
-}
-
-export interface TaskBlockStep extends SurveyStepBase {
-  type: "taskBlock";
-  condition: Condition;
-  taskCount: number; // hier: 3
-}
-
-export interface QuestionnaireStep extends SurveyStepBase {
-  type: "questionnaire";
-  condition: Condition;
-  instruments: ("SUS" | "NASA_TLX" | "ROLE_FIT")[];   // TODO remove probably
-}
-
-export interface ComparisonStep extends SurveyStepBase {
-  type: "comparison";
-}
-
-export type SurveyStep =
-  | IntroStep
-  | RoleSelectionStep
-  | TrainingTaskStep
-  | TaskBlockStep
-  | QuestionnaireStep
-  | ComparisonStep;
 
 // simulationConfig  
 export type SimulationVideo =
@@ -86,7 +27,7 @@ export type FreeTextResponseType =
 export type SelectionResponseType =
   "singleChoice";
 
-// Options for Selection Choice
+// Options for SelectionResponseType
 export type SelectionOption = {
   label: string;
   value: string;
@@ -132,6 +73,11 @@ export interface QuestionGroup {
   questions: Question[];
 }
 
+// NavigationButtons
+export type NavigationType =
+  | "forward"
+  | "back"
+
 // Question State
 export type AnswerValue =
   | number
@@ -140,7 +86,63 @@ export type AnswerValue =
 export type SurveyAnswers = 
   Record<string, AnswerValue>;
 
-// Buttons
-export type NavigationType =
-  | "forward"
-  | "back"
+
+// surveyFlow 
+export type UserRole = 
+  | "generic" 
+  | "procExp" 
+  | "roboExp" 
+  | null;
+
+
+export type Condition = "generic" | "roleSpecific";
+
+export type StepType =
+  | "intro"
+  | "roleSelection"
+  | "trainingTask"
+  | "taskBlock"
+  | "questionnaire"
+  | "comparison";
+
+export interface SurveyStepBase {
+  id: string;
+  type: StepType;
+}
+
+export interface IntroStep extends SurveyStepBase {
+  type: "intro";
+}
+
+export interface RoleSelectionStep extends SurveyStepBase {
+  type: "roleSelection";
+}
+
+export interface TrainingTaskStep extends SurveyStepBase {
+  type: "trainingTask";
+}
+
+export interface TaskBlockStep extends SurveyStepBase {
+  type: "taskBlock";
+  condition: Condition;
+  taskCount: number; // hier: 3
+}
+
+export interface QuestionnaireStep extends SurveyStepBase {
+  type: "questionnaire";
+  condition: Condition;
+}
+
+export interface ComparisonStep extends SurveyStepBase {
+  type: "comparison";
+}
+
+export type SurveyStep =
+  | IntroStep
+  | RoleSelectionStep
+  | TrainingTaskStep
+  | TaskBlockStep
+  | QuestionnaireStep
+  | ComparisonStep;
+
+
