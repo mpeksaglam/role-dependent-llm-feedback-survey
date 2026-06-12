@@ -51,7 +51,6 @@ export default function SurveyPage() {
 
       {/* Navigation */}
 
-      {/* TODO bottom right of screen max? */}
       <div className="mt-auto flex justify-between"> 
         
         <NavigationButton

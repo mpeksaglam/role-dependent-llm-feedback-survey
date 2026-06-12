@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { NavigationButton } from "@/components/buttons/NavigationButton"
+import { RadioGroup } from "@/components/responses/RadioGroup"
 
 export default function Home() {
   const [choice, setChoice] = useState("")
@@ -28,27 +29,16 @@ export default function Home() {
         Bitte akzeptiere die DSGVO
       </p>
 
-      <label className="flex items-center gap-2 mb-1.5 cursor-pointer">
-        <input
-          type="radio"
-          name="consent"
-          value="accept"
-          checked={choice === "accept"}
-          onChange={(e) => setChoice(e.target.value)}
-        />
-        Ich akzeptiere
-      </label>
-
-      <label className="flex items-center gap-2 mb-1.5 cursor-pointer">
-        <input
-          type="radio"
-          name="consent"
-          value="reject"
-          checked={choice === "reject"}
-          onChange={(e) => setChoice(e.target.value)}
-        />
-        Ich lehne ab
-      </label>
+      <RadioGroup 
+        name="consent"
+        value={choice}
+        onChange={setChoice}
+        options={[
+          {label: "Ich akzeptiere", value: "accept" },
+          {label: "Ich lehne ab", value: "reject" },
+        ]}
+      />
+      
       <div className="mt-auto flex justify-end">
         <NavigationButton
           action="forward"
