@@ -1,29 +1,20 @@
 "use client";
 
-import {
-    ReactNode,
-    useState,
-} from "react";
+import { ReactNode, useState } from "react";
 
 import { AnswerValue, StepType } from "@/lib/types";
 import { SurveyContext } from "@/survey_engine/SurveyContext";
 import { initialSurveyState } from "./initialSurveyState";
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode;
 }
 
-export function SurveyProvider({
-  children,
-}: Props) {
-  const [state, setState] =
-    useState(initialSurveyState);
+export function SurveyProvider({ children }: Props) {
+  const [state, setState] = useState(initialSurveyState);
 
-  const setAnswer = (
-    questionId: string,
-    value: AnswerValue
-  ) => {
-    setState(prev => ({
+  const setAnswer = (questionId: string, value: AnswerValue) => {
+    setState((prev) => ({
       ...prev,
       answers: {
         ...prev.answers,
@@ -32,10 +23,8 @@ export function SurveyProvider({
     }));
   };
 
-  const setCurrentStep = (
-    stepId: StepType
-  ) => {
-    setState(prev => ({
+  const setCurrentStep = (stepId: StepType) => {
+    setState((prev) => ({
       ...prev,
       currentStepId: stepId,
     }));

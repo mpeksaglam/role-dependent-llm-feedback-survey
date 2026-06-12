@@ -1,13 +1,13 @@
-import { MoveRight } from "lucide-react"
-import { MoveLeft } from "lucide-react"
-import { NavigationType } from "@/lib/types"
+import { MoveRight } from "lucide-react";
+import { MoveLeft } from "lucide-react";
+import { NavigationType } from "@/lib/types";
 
 type NavigationButtonProps = {
-  action: NavigationType
-  label: string
-  onClick: () => void
-  disabled: boolean
-}
+  action: NavigationType;
+  label: string;
+  onClick: () => void;
+  disabled: boolean;
+};
 
 // TODO roter Text handleDisabledClick ?
 
@@ -18,8 +18,8 @@ export function NavigationButton({
   disabled,
 }: NavigationButtonProps) {
   return (
-      <button
-        className="
+    <button
+      className="
           flex items-center gap-2
           px-4 py-2
           text-sm font-medium text-black
@@ -27,13 +27,12 @@ export function NavigationButton({
           transition-all
           disabled:opacity-70 font-normal
         "
-
-        onClick={onClick}
-        disabled={disabled}
-      >
-        {action === "back" && <MoveLeft size={15} />}
-        {label}
-        {action === "forward" && <MoveRight size={15} />}
-      </button>
-  )
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {action === "back" && <MoveLeft size={15} />}
+      {label}
+      {action === "forward" && <MoveRight size={15} />}
+    </button>
+  );
 }

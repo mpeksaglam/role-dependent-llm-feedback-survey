@@ -1,4 +1,4 @@
-// simulationConfig  
+// simulationConfig
 export type SimulationVideo =
   | {
       id: string;
@@ -14,15 +14,11 @@ export type SimulationVideo =
     };
 
 // Question Types
-export type LikertResponseType =
-  | "likert5"
-  | "likert7";
+export type LikertResponseType = "likert5" | "likert7";
 
-export type FreeTextResponseType =
-  "freeTextInput";
-  
-export type SelectionResponseType =
-  "singleChoice";
+export type FreeTextResponseType = "freeTextInput";
+
+export type SelectionResponseType = "singleChoice";
 
 // Options for SelectionResponseType
 export type SelectionOption = {
@@ -34,7 +30,6 @@ export type ResponseType =
   | LikertResponseType
   | FreeTextResponseType
   | SelectionResponseType;
-
 
 interface BaseQuestion {
   id: string;
@@ -58,11 +53,7 @@ export interface SelectionQuestion extends BaseQuestion {
   options: SelectionOption[];
 }
 
-export type Question =
-  | LikertQuestion 
-  | FreeTextQuestion 
-  | SelectionQuestion;
-
+export type Question = LikertQuestion | FreeTextQuestion | SelectionQuestion;
 
 export interface QuestionGroup {
   id: string;
@@ -71,27 +62,17 @@ export interface QuestionGroup {
 }
 
 // NavigationButtons
-export type NavigationType =
-  | "forward"
-  | "back"
-
+export type NavigationType = "forward" | "back";
 
 // Participants
-export type UserRole =  
-  | "proc_exp" 
-  | "robo_exp"
+export type UserRole = "proc_exp" | "robo_exp";
 
 export type Condition = "gen" | "role_spec";
 
-
 // Survey Engine
-export type AnswerValue =
-  | number
-  | string;
+export type AnswerValue = number | string;
 
-export type SurveyAnswers = 
-  Record<string, AnswerValue>;
-
+export type SurveyAnswers = Record<string, AnswerValue>;
 
 export const SURVEY_STEPS = {
   INTRO: "intro",
@@ -110,23 +91,17 @@ export const SURVEY_STEPS = {
   OUTRO: "outro",
 } as const;
 
-export type StepType =
- (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
-  
+export type StepType = (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
 
 export interface SurveyState {
-    currentStepId: StepType;
-    answers: SurveyAnswers;
-    userRole?: UserRole;
-    conditionOrder?: [Condition, Condition];
-    participantFlow?: StepType[];
+  currentStepId: StepType;
+  answers: SurveyAnswers;
+  userRole?: UserRole;
+  conditionOrder?: [Condition, Condition];
+  participantFlow?: StepType[];
 }
 
-
 // // Survey Flow ?
-
-
-
 
 // export interface SurveyStepBase {
 //   id: string;
@@ -167,5 +142,3 @@ export interface SurveyState {
 //   | TaskBlockStep
 //   | QuestionnaireStep
 //   | ComparisonStep;
-
-

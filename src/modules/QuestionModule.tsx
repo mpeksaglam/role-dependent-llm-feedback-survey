@@ -1,33 +1,31 @@
 import { useState } from "react";
-import { LikertResponseType, QuestionGroup, SurveyAnswers, SelectionOption } from "@/lib/types";
+import {
+  LikertResponseType,
+  QuestionGroup,
+  SurveyAnswers,
+  SelectionOption,
+} from "@/lib/types";
 import { LikertRow } from "@/components/responses/LikertRow";
 import { RadioGroup } from "@/components/responses/RadioGroup";
-
 
 interface QuestionModuleProps {
   group: QuestionGroup;
 }
 
-function getScaleLength(
-  type: LikertResponseType
-) {
+function getScaleLength(type: LikertResponseType) {
   return type === "likert5" ? 5 : 7;
 }
 
-export function QuestionModule({
-  group,
-}: QuestionModuleProps) {
-
+export function QuestionModule({ group }: QuestionModuleProps) {
   const [answers, setAnswers] = useState<SurveyAnswers>({});
 
   return (
     <div className="space-y-6">
-
       {group.questions.map((q) => {
         switch (q.responseType) {
-          case "likert5": case "likert7":
-
-            return(
+          case "likert5":
+          case "likert7":
+            return (
               <LikertRow
                 key={q.id}
                 text={q.text}
@@ -43,20 +41,16 @@ export function QuestionModule({
                 }
               />
             );
-          
+
           case "freeTextInput":
             return (
               <div key={q.id} className="space-y-2">
-                <p className="text-sm">
-                  {q.text}
-                </p>
+                <p className="text-sm">{q.text}</p>
                 {/* TODO replace by FreeTextInput module ?? */}
                 <textarea
                   className="w-sm rounded-sm border p-2 text-sm"
                   rows={4}
-                  value={
-                    (answers[q.id] as string) ?? ""
-                  }
+                  value={(answers[q.id] as string) ?? ""}
                   onChange={(e) =>
                     setAnswers((prev) => ({
                       ...prev,
@@ -69,27 +63,24 @@ export function QuestionModule({
 
           case "singleChoice":
             return (
-                <div key={q.id} className="space-y-2">
-                  
-                  {/* Frage */}
-                  <p className="text-sm">
-                    {q.text}
-                  </p>
+              <div key={q.id} className="space-y-2">
+                {/* Frage */}
+                <p className="text-sm">{q.text}</p>
 
-                  {/* Radio Selection */}
-                  <RadioGroup
-                    name={q.id}
-                    value={answers[q.id] as string ?? ""}
-                    onChange={(value) =>
-                      setAnswers((prev) => ({
-                        ...prev,
-                        [q.id]: value,
-                      }))
-                    }
-                    options={q.options as SelectionOption[]}
-                  />
-                </div>
-              );
+                {/* Radio Selection */}
+                <RadioGroup
+                  name={q.id}
+                  value={(answers[q.id] as string) ?? ""}
+                  onChange={(value) =>
+                    setAnswers((prev) => ({
+                      ...prev,
+                      [q.id]: value,
+                    }))
+                  }
+                  options={q.options as SelectionOption[]}
+                />
+              </div>
+            );
         }
       })}
     </div>

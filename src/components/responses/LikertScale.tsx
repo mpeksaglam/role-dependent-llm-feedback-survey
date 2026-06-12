@@ -1,15 +1,10 @@
-
 interface LikertScaleProps {
   scale: number;
   selected?: number;
   onSelect?: (value: number) => void;
 }
 
-export function LikertScale({
-  scale,
-  selected,
-  onSelect,
-}: LikertScaleProps) {
+export function LikertScale({ scale, selected, onSelect }: LikertScaleProps) {
   return (
     <div className="flex gap-3 items-center cursor-pointer">
       {Array.from({ length: scale }, (_, i) => {
@@ -39,9 +34,7 @@ export function LikertScale({
             />
 
             {/* Zahlen */}
-            <span className="text-[10px] mt-2 leading-none">
-              {value}
-            </span>
+            <span className="text-[10px] mt-2 leading-none">{value}</span>
           </label>
         );
       })}

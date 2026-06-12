@@ -1,9 +1,9 @@
-import { SelectionOption } from "@/lib/types"
+import { SelectionOption } from "@/lib/types";
 
 interface RadioGroupProps {
   name: string;
-  options: SelectionOption[];   // Answer options
-  value: string;      // selected Answer
+  options: SelectionOption[]; // Answer options
+  value: string; // selected Answer
   onChange: (value: string) => void;
 }
 
@@ -25,9 +25,7 @@ export function RadioGroup({
             name={name}
             value={opt.value}
             checked={value === opt.value}
-            onChange={(e) =>
-              onChange(e.target.value)
-            }
+            onChange={(e) => onChange(e.target.value)}
           />
           {opt.label}
         </label>

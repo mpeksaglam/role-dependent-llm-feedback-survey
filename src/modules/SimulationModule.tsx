@@ -1,11 +1,7 @@
 import { SimulationVideo } from "@/lib/types";
 
 // Render simulationVideo
-export function SimulationModule({
-  simVid,
-}: {
-  simVid: SimulationVideo;
-}) {
+export function SimulationModule({ simVid }: { simVid: SimulationVideo }) {
   if (simVid.type === "single") {
     return (
       <video controls>
