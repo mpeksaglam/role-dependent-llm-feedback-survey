@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { NavigationButton } from "@/components/buttons/NavigationButton"
 import { RadioGroup } from "@/components/responses/RadioGroup"
+import { dsgvoConsent } from "@/config/questionConfig"
+import { QuestionModule } from "@/modules/QuestionModule"
 
 export default function Home() {
   const [choice, setChoice] = useState("")
@@ -25,20 +27,9 @@ export default function Home() {
         Willkommen zur KIRo4LeMi Feedback Survey
       </h1>
 
-      <p className="mb-6">
-        Bitte akzeptiere die DSGVO
-      </p>
+      <QuestionModule group={dsgvoConsent}/>
 
-      <RadioGroup 
-        name="consent"
-        value={choice}
-        onChange={setChoice}
-        options={[
-          {label: "Ich akzeptiere", value: "accept" },
-          {label: "Ich lehne ab", value: "reject" },
-        ]}
-      />
-      
+      {/* NAVIGATION  */}
       <div className="mt-auto flex justify-end">
         <NavigationButton
           action="forward"

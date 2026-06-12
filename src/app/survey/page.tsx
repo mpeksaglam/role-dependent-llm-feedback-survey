@@ -7,9 +7,6 @@ import { scen3GenericQuestions} from "@/config/questionConfig"
 import { SimulationModule } from "@/modules/SimulationModule"
 import { QuestionModule } from "@/modules/QuestionModule"
 
-import Image from "next/image"
-
-
 
 {/* TODO : STUDY : Intro, Rollenklärung, Training, Aufgaben, Fragebogen, Abschluss */}
 
@@ -27,29 +24,10 @@ export default function SurveyPage() {
         <SimulationModule simVid={simulationVideos[1]}/>
       </div>
 
-      {/* 
-      <div className="flex gap-6 justify-center">
-        <ActionButton
-          label="Annehmen"
-          onClick={() => {} } // TODO HANDLE
-        />
-
-        <ActionButton
-          label="Reject"
-          onClick={() => {} }
-        />
-      </div>
-      */}
-
-
       <QuestionModule group={scen3GenericQuestions} />
 
 
-
-
-
-
-      {/* Navigation */}
+      {/* Navigation, TODO modularize into Module */}
 
       <div className="mt-auto flex justify-between"> 
         

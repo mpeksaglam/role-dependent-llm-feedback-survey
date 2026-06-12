@@ -1,4 +1,5 @@
 import { FreeTextInput } from "@/components/responses/FreeTextInput";
+import { Option } from "lucide-react";
 
 // surveyFlow 
 export type UserRole = 
@@ -81,36 +82,48 @@ export type LikertResponseType =
 
 export type FreeTextResponseType =
   "freeTextInput";
+  
+export type SelectionResponseType =
+  "singleChoice";
+
+// Options for Selection Choice
+export type SelectionOption = {
+  label: string;
+  value: string;
+};
 
 export type ResponseType =
   | LikertResponseType
-  | FreeTextResponseType;
+  | FreeTextResponseType
+  | SelectionResponseType;
 
-export type AnswerValue =
-  | number
-  | string;
-
-export type SurveyAnswer = 
-  Record<string, AnswerValue>;
 
 interface BaseQuestion {
   id: string;
   text: string;
   required?: boolean;
+}
+
+export interface LikertQuestion extends BaseQuestion {
+  responseType: LikertResponseType;
+  leftLabel: string;
+  rightLabel: string;
   reverseScored?: boolean;
 }
 
 export interface FreeTextQuestion extends BaseQuestion {
-  responseType: "freeTextInput";
+  responseType: FreeTextResponseType;
 }
 
-export interface ScaleQuestion extends BaseQuestion {
-  responseType: "likert5" | "likert7";
-  leftLabel: string;
-  rightLabel: string;
+export interface SelectionQuestion extends BaseQuestion {
+  responseType: SelectionResponseType;
+  options: SelectionOption[];
 }
 
-export type Question = FreeTextQuestion | ScaleQuestion;
+export type Question =
+  | LikertQuestion 
+  | FreeTextQuestion 
+  | SelectionQuestion;
 
 
 export interface QuestionGroup {
@@ -118,6 +131,14 @@ export interface QuestionGroup {
   title: string;
   questions: Question[];
 }
+
+// Question State
+export type AnswerValue =
+  | number
+  | string;
+
+export type SurveyAnswers = 
+  Record<string, AnswerValue>;
 
 // Buttons
 export type NavigationType =

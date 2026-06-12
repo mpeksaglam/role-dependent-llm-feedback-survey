@@ -2,6 +2,19 @@ import { FreeTextInput } from "@/components/responses/FreeTextInput"
 import { Question, QuestionGroup } from "@/lib/types"
 
 
+export const dsgvoConsent: QuestionGroup = {
+    id: "dsgvo_consent_qs",
+    title: "DSGVO consent",
+    questions: [
+        {id: "dsgvo_consent", text: "Bitte stimmen Sie der DSGVO zu.", responseType: "singleChoice", 
+            options: [
+                {label: "Ich stimme zu", value: "accept" },
+                {label: "Ich lehne ab", value: "reject"},
+        ]}
+    ]
+}
+
+
 export const scen1GenericQuestions: QuestionGroup = {
     id: "scen1_gen_qs",
     title: "Scenario 1 Generic Questions",

@@ -1,11 +1,8 @@
-type Option = {
-  label: string;
-  value: string;
-};
+import { SelectionOption } from "@/lib/types"
 
 interface RadioGroupProps {
   name: string;
-  options: Option[];   // Answer options
+  options: SelectionOption[];   // Answer options
   value: string;      // selected Answer
   onChange: (value: string) => void;
 }
