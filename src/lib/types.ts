@@ -91,12 +91,13 @@ export const SURVEY_STEPS = {
   OUTRO: "outro",
 } as const;
 
-export type StepType = (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
+export type StepId = (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
 
 export interface SurveyState {
-  currentStepId: StepType;
+  currentStepId: StepId;
+  prevStepIds: StepId[];
   answers: SurveyAnswers;
-  userRole?: UserRole;
-  conditionOrder?: [Condition, Condition];
-  participantFlow?: StepType[];
+  userRole: UserRole | null;
+  conditionOrder?: [Condition, Condition]; // A, B || B , A
+  participantFlow: StepId[];
 }

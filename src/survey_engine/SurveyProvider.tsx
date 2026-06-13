@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect, useState } from "react";
 
-import { AnswerValue, StepType } from "@/lib/types";
+import { AnswerValue, StepId } from "@/lib/types";
 import { SurveyContext } from "@/survey_engine/SurveyContext";
 import { initialSurveyState } from "./initialSurveyState";
 
@@ -12,10 +12,6 @@ interface Props {
 
 export function SurveyProvider({ children }: Props) {
   const [state, setState] = useState(initialSurveyState);
-  // logging
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   const setAnswer = (questionId: string, value: AnswerValue) => {
     setState((prev) => ({
@@ -27,11 +23,22 @@ export function SurveyProvider({ children }: Props) {
     }));
   };
 
-  const setCurrentStep = (stepId: StepType) => {
+  const goNext = () => {
+    const currentIndex = state.participantFlow.indexOf(state.currentStepId);
+    const nextStep = state.participantFlow[currentIndex + 1];
+
     setState((prev) => ({
       ...prev,
-      currentStepId: stepId,
+      prevStepIds: [...prev.prevStepIds, prev.currentStepId],
+
+      currentStepId: nextStep,
     }));
+  };
+
+  const goBack = () => {
+    if (state.prevStepIds.length === 0)
+      // TODO wirklich so handlen?
+      return;
   };
 
   return (
@@ -39,7 +46,8 @@ export function SurveyProvider({ children }: Props) {
       value={{
         state,
         setAnswer,
-        setCurrentStep,
+        goNext,
+        goBack,
       }}
     >
       {children}
