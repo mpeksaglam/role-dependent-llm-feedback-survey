@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import { AnswerValue, StepType } from "@/lib/types";
 import { SurveyContext } from "@/survey_engine/SurveyContext";
@@ -12,6 +12,10 @@ interface Props {
 
 export function SurveyProvider({ children }: Props) {
   const [state, setState] = useState(initialSurveyState);
+  // logging
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   const setAnswer = (questionId: string, value: AnswerValue) => {
     setState((prev) => ({

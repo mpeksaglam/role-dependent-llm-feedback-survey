@@ -7,6 +7,7 @@ import {
 } from "@/lib/types";
 import { LikertRow } from "@/components/responses/LikertRow";
 import { RadioGroup } from "@/components/responses/RadioGroup";
+import { useSurvey } from "@/survey_engine/useSurvey";
 
 interface QuestionModuleProps {
   group: QuestionGroup;
@@ -17,8 +18,7 @@ function getScaleLength(type: LikertResponseType) {
 }
 
 export function QuestionModule({ group }: QuestionModuleProps) {
-  const [answers, setAnswers] = useState<SurveyAnswers>({});
-
+  const { state, setAnswer } = useSurvey();
   return (
     <div className="space-y-6">
       {group.questions.map((q) => {
@@ -32,13 +32,8 @@ export function QuestionModule({ group }: QuestionModuleProps) {
                 scale={getScaleLength(q.responseType)}
                 leftLabel={q.leftLabel}
                 rightLabel={q.rightLabel}
-                selected={answers[q.id] as number | undefined}
-                onSelect={(value) =>
-                  setAnswers((prev) => ({
-                    ...prev,
-                    [q.id]: value,
-                  }))
-                }
+                selected={state.answers[q.id] as number | undefined}
+                onSelect={(value) => setAnswer(q.id, value)}
               />
             );
 
@@ -50,13 +45,8 @@ export function QuestionModule({ group }: QuestionModuleProps) {
                 <textarea
                   className="w-sm rounded-sm border p-2 text-sm"
                   rows={4}
-                  value={(answers[q.id] as string) ?? ""}
-                  onChange={(e) =>
-                    setAnswers((prev) => ({
-                      ...prev,
-                      [q.id]: e.target.value,
-                    }))
-                  }
+                  value={(state.answers[q.id] as string) ?? ""}
+                  onChange={(e) => setAnswer(q.id, e.target.value)}
                 />
               </div>
             );
@@ -70,13 +60,8 @@ export function QuestionModule({ group }: QuestionModuleProps) {
                 {/* Radio Selection */}
                 <RadioGroup
                   name={q.id}
-                  value={(answers[q.id] as string) ?? ""}
-                  onChange={(value) =>
-                    setAnswers((prev) => ({
-                      ...prev,
-                      [q.id]: value,
-                    }))
-                  }
+                  value={(state.answers[q.id] as string) ?? ""}
+                  onChange={(value) => setAnswer(q.id, value)}
                   options={q.options as SelectionOption[]}
                 />
               </div>

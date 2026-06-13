@@ -9,12 +9,15 @@ import {
 } from "@/config/questionConfig";
 import { SimulationModule } from "@/modules/SimulationModule";
 import { QuestionModule } from "@/modules/QuestionModule";
+import { useSurvey } from "@/survey_engine/useSurvey";
 
 {
   /* TODO : STUDY : Intro, Rollenklärung, Training, Aufgaben, Fragebogen, Abschluss */
 }
 
 export default function SurveyPage() {
+  const { state, setAnswer } = useSurvey();
+
   return (
     <main
       className=" 
