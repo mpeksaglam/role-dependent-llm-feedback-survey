@@ -2,17 +2,31 @@
 
 import { ReactNode, useEffect, useState } from "react";
 
-import { AnswerValue, StepId } from "@/lib/types";
+import { AnswerValue, Condition, StepId } from "@/lib/types";
 import { SurveyContext } from "@/survey_engine/SurveyContext";
 import { initialSurveyState } from "./initialSurveyState";
+import { buildParticipantFlow, randomize } from "./buildParticipantFlow";
 
 interface Props {
   children: ReactNode;
 }
 
 export function SurveyProvider({ children }: Props) {
-  const [state, setState] = useState(initialSurveyState);
+  // Initialization with lambda function
+  const [state, setState] = useState(() => {
+    // Randomize order and build participantFlow
+    const conditionOrder = randomize();
 
+    return {
+      ...initialSurveyState,
+
+      conditionOrder,
+
+      participantFlow: buildParticipantFlow(conditionOrder),
+    };
+  });
+
+  // keep track of answers in current survey state
   const setAnswer = (questionId: string, value: AnswerValue) => {
     setState((prev) => ({
       ...prev,
@@ -22,23 +36,37 @@ export function SurveyProvider({ children }: Props) {
       },
     }));
   };
-
+  // navigate to next step
   const goNext = () => {
     const currentIndex = state.participantFlow.indexOf(state.currentStepId);
     const nextStep = state.participantFlow[currentIndex + 1];
 
+    // End reached
+    if (!nextStep) {
+      return;
+    }
+
     setState((prev) => ({
       ...prev,
       prevStepIds: [...prev.prevStepIds, prev.currentStepId],
-
       currentStepId: nextStep,
     }));
   };
-
+  // navigate to previous step
   const goBack = () => {
-    if (state.prevStepIds.length === 0)
-      // TODO wirklich so handlen?
+    const currentIndex = state.participantFlow.indexOf(state.currentStepId);
+    const previousStep = state.participantFlow[currentIndex - 1];
+
+    // No previousStep available
+    if (!previousStep) {
       return;
+    }
+
+    setState((prev) => ({
+      ...prev,
+      currentStepId: previousStep,
+      prevStepIds: prev.prevStepIds.slice(0, -1),
+    }));
   };
 
   return (

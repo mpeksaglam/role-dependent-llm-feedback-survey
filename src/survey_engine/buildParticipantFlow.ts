@@ -1,7 +1,14 @@
 import { Condition, StepId, SURVEY_STEPS } from "@/lib/types";
 
-export function buildParticipantFlow(): StepId[] {
-  return Math.random() < 0.5 // random allocation
+// Set condition order for participant
+export function randomize(): [Condition, Condition] {
+  return Math.random() < 0.5 ? ["gen", "role_spec"] : ["role_spec", "gen"];
+}
+
+export function buildParticipantFlow(
+  conditionOrder: [Condition, Condition],
+): StepId[] {
+  return conditionOrder[0] === "gen" // generic scenarios first
     ? [
         SURVEY_STEPS.INTRO,
         SURVEY_STEPS.PRE_SURVEY,

@@ -98,6 +98,16 @@ export interface SurveyState {
   prevStepIds: StepId[];
   answers: SurveyAnswers;
   userRole: UserRole | null;
-  conditionOrder?: [Condition, Condition]; // A, B || B , A
+  conditionOrder?: [Condition, Condition]; // A, B || B , A ;; is set right after initialization
   participantFlow: StepId[];
 }
+
+// TODO logging
+export type SurveyEventType =
+  | "condition_assigned"
+  | "answer"
+  | "next"
+  | "back"
+  | "role_selected"
+  | "training_completed"
+  | "scenario_started";

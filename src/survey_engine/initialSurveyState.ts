@@ -7,5 +7,5 @@ export const initialSurveyState: SurveyState = {
   answers: {},
   userRole: null,
   conditionOrder: undefined,
-  participantFlow: buildParticipantFlow(),
+  participantFlow: [],
 };
