@@ -48,7 +48,6 @@ export function SurveyProvider({ children }: Props) {
 
     setState((prev) => ({
       ...prev,
-      prevStepIds: [...prev.prevStepIds, prev.currentStepId],
       currentStepId: nextStep,
     }));
   };
@@ -65,7 +64,6 @@ export function SurveyProvider({ children }: Props) {
     setState((prev) => ({
       ...prev,
       currentStepId: previousStep,
-      prevStepIds: prev.prevStepIds.slice(0, -1),
     }));
   };
 

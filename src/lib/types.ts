@@ -95,7 +95,6 @@ export type StepId = (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
 
 export interface SurveyState {
   currentStepId: StepId;
-  prevStepIds: StepId[];
   answers: SurveyAnswers;
   userRole: UserRole | null;
   conditionOrder?: [Condition, Condition]; // A, B || B , A ;; is set right after initialization
