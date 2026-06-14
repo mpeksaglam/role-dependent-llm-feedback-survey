@@ -5,7 +5,7 @@ import { SimulationVideo } from "@/lib/types";
    leicht zu steuern ist */
 // umbenennen in simulationBank / videoBank ? Speicherung hier?
 
-export const simulationVideos: SimulationVideo[] = [
+export const simulationConfig: SimulationVideo[] = [
   {
     id: "sim_vid1",
     title: "falscheLaufbahn",
