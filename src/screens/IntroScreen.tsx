@@ -1,4 +1,4 @@
-import { dsgvoConsent } from "@/config/questionConfig";
+import { questionConfig } from "@/config/questionConfig";
 import { QuestionModule } from "@/modules/QuestionModule";
 
 export function IntroScreen() {
@@ -8,7 +8,7 @@ export function IntroScreen() {
         Willkommen zur KIRo4LeMi Feedback Survey
       </h1>
 
-      <QuestionModule group={dsgvoConsent} />
+      <QuestionModule group={questionConfig.dsgvoConsent} />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useSurvey } from "./useSurvey";
 import { SimulationModule } from "@/modules/SimulationModule";
 import { SurveyNavigation } from "./SurveyNavigation";
 import { IntroScreen } from "@/screens/IntroScreen";
+import { PreSurveyScreen } from "@/screens/PreSurveyScreen";
 
 export function SurveyRenderer() {
   const { state } = useSurvey();
@@ -27,6 +28,8 @@ function renderCurrentStep(stepId: StepId) {
   switch (stepId) {
     case SURVEY_STEPS.INTRO:
       return <IntroScreen />;
+    case SURVEY_STEPS.PRE_SURVEY:
+      return <PreSurveyScreen />;
     case SURVEY_STEPS.GEN_SCEN_1:
     case SURVEY_STEPS.GEN_SCEN_2:
     case SURVEY_STEPS.GEN_SCEN_3:

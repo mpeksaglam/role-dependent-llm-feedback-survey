@@ -10,7 +10,7 @@ export type SimulationVideo =
       id: string;
       title: string;
       type: "comparison";
-      videoUrls: [string, string];
+      videoUrls: readonly [string, string];
     };
 
 // Question Types
@@ -92,6 +92,14 @@ export const SURVEY_STEPS = {
 } as const;
 
 export type StepId = (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
+
+export type ScenarioStepId =
+  | typeof SURVEY_STEPS.GEN_SCEN_1
+  | typeof SURVEY_STEPS.GEN_SCEN_2
+  | typeof SURVEY_STEPS.GEN_SCEN_3
+  | typeof SURVEY_STEPS.ROLE_SPEC_SCEN_1
+  | typeof SURVEY_STEPS.ROLE_SPEC_SCEN_2
+  | typeof SURVEY_STEPS.ROLE_SPEC_SCEN_3;
 
 export interface SurveyState {
   currentStepId: StepId;

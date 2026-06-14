@@ -1,47 +1,33 @@
-// import { scenarioConfig } from "@/config/scenarioConfig";
-// import { simulationConfig } from "@/config/simulationConfig";
-// import { questionConfig } from "@/config/questionConfig";
+import { ScenarioStepId, StepId } from "@/lib/types";
 
-// import { SimulationModule } from "@/modules/SimulationModule";
-// import { QuestionModule } from "@/modules/QuestionModule";
+import { scenarioConfig } from "@/config/scenarioConfig";
 
-// import { StepId } from "@/lib/types";
+import { SimulationModule } from "@/modules/SimulationModule";
+import { QuestionModule } from "@/modules/QuestionModule";
+import { useSurvey } from "@/survey_engine/useSurvey";
 
-// interface ScenarioScreenProps {
-//   stepId: StepId;
-// }
+interface ScenarioScreenProps {
+  stepId: ScenarioStepId;
+}
 
-// export function ScenarioScreen({
-//   stepId,
-// }: ScenarioScreenProps) {
+export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
+  // get UserRole for rendering correct role-specific UI
+  const { state } = useSurvey();
+  const role = state.userRole!; // is not null at this point
+  // get questions and video URLs
+  const config = scenarioConfig[stepId];
+  const questions = config.questions[role];
 
-//   const config =
-//     scenarioConfig[stepId];
+  return (
+    <div className="space-y-8">
+      <h1 className="text-2xl font-bold">{config.title}</h1>
 
-//   const simulation =
-//     simulationConfig[
-//       config.simulationId
-//     ];
+      <SimulationModule simVid={config.simulation} />
 
-//   const questions =
-//     questionConfig[
-//       config.questionGroupId
-//     ];
-
-//   return (
-//     <>
-//       <h1>{config.title}</h1>
-
-//       <SimulationModule
-//         simulation={simulation}
-//       />
-
-//       <QuestionModule
-//         group={questions}
-//       />
-//     </>
-//   );
-// }
+      <QuestionModule group={questions} />
+    </div>
+  );
+}
 
 /*  Taken from survey/page.tsx previous styling
 
