@@ -1,0 +1,40 @@
+import { StepId, SURVEY_STEPS } from "@/lib/types";
+import { useSurvey } from "./useSurvey";
+import { SimulationModule } from "@/modules/SimulationModule";
+import { SurveyNavigation } from "./SurveyNavigation";
+import { IntroScreen } from "@/screens/IntroScreen";
+
+export function SurveyRenderer() {
+  const { state } = useSurvey();
+
+  return (
+    <main
+      className=" 
+      min-h-screen 
+      p-8 
+      flex flex-col
+      w-full max-w-5xl mx-auto
+      "
+    >
+      {renderCurrentStep(state.currentStepId)}
+
+      <SurveyNavigation />
+    </main>
+  );
+}
+
+function renderCurrentStep(stepId: StepId) {
+  switch (stepId) {
+    case SURVEY_STEPS.INTRO:
+      return <IntroScreen />;
+    case SURVEY_STEPS.GEN_SCEN_1:
+    case SURVEY_STEPS.GEN_SCEN_2:
+    case SURVEY_STEPS.GEN_SCEN_3:
+    case SURVEY_STEPS.ROLE_SPEC_SCEN_1:
+    case SURVEY_STEPS.ROLE_SPEC_SCEN_2:
+    case SURVEY_STEPS.ROLE_SPEC_SCEN_3:
+    //   return <ScenarioScreen stepId={stepId} />;
+    default:
+      return null;
+  }
+}
