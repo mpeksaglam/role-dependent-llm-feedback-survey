@@ -2,10 +2,12 @@
 
 import { ReactNode, useEffect, useState } from "react";
 
-import { AnswerValue, Condition, StepId } from "@/lib/types";
+import { AnswerValue, Condition, StepId, SURVEY_STEPS } from "@/lib/types";
 import { SurveyContext } from "@/survey_engine/SurveyContext";
 import { initialSurveyState } from "./initialSurveyState";
 import { buildParticipantFlow, randomize } from "./buildParticipantFlow";
+import { deriveUserRole } from "./deriveUserRole";
+import { useRouter } from "next/router";
 
 interface Props {
   children: ReactNode;
@@ -45,11 +47,22 @@ export function SurveyProvider({ children }: Props) {
     if (!nextStep) {
       return;
     }
-
-    setState((prev) => ({
-      ...prev,
-      currentStepId: nextStep,
-    }));
+    /* Special case:
+         route from pre-survey to survey part and assign userRole  */
+    if (state.currentStepId === SURVEY_STEPS.PRE_SURVEY) {
+      const role = deriveUserRole(state.answers);
+      setState((prev) => ({
+        ...prev,
+        userRole: role,
+        currentStepId: nextStep,
+      }));
+    } else {
+      // Standard case goNext()
+      setState((prev) => ({
+        ...prev,
+        currentStepId: nextStep,
+      }));
+    }
   };
   // navigate to previous step
   const goBack = () => {

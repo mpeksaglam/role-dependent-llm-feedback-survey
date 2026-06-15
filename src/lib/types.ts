@@ -62,7 +62,7 @@ export interface QuestionGroup {
 }
 
 // NavigationButtons
-export type NavigationType = "forward" | "back";
+export type NavigationType = "forward" | "back" | "send_survey";
 
 // Participants
 export type UserRole = "proc_exp" | "robo_exp";
@@ -104,8 +104,8 @@ export type ScenarioStepId =
 export interface SurveyState {
   currentStepId: StepId;
   answers: SurveyAnswers;
-  userRole: UserRole | null;
-  conditionOrder?: [Condition, Condition]; // A, B || B , A ;; is set right after initialization
+  userRole: UserRole | null; // allocated after presurvey
+  conditionOrder?: [Condition, Condition]; // gen, role_spec || role_spec , gen ;; is set right after initialization
   participantFlow: StepId[];
 }
 

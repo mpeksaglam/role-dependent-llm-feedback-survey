@@ -1,14 +1,37 @@
 import { NavigationButton } from "@/components/buttons/NavigationButton";
 import { useSurvey } from "./useSurvey";
+import { SURVEY_STEPS } from "@/lib/types";
+import { canProceed } from "./canProceed";
 
 export function SurveyNavigation() {
   const { state, goBack, goNext } = useSurvey();
 
-  const currentIndex = state.participantFlow.indexOf(state.currentStepId);
+  const currentStep = state.currentStepId;
+  const conditionOrder = state.conditionOrder;
+  if (!conditionOrder) return null; // should not be the case, assigned right at start
 
-  const isFirstStep = currentIndex === 0;
+  /* special cases (no way back):
+      -beginning of survey
+      -pre-survey to survey step (user Role assigned) 
+      -between scenarios (enforce within-subjects design)    */
 
-  const isLastStep = currentIndex === state.participantFlow.length - 1;
+  const firstCondDone =
+    conditionOrder[0] === "gen"
+      ? currentStep === SURVEY_STEPS.ROLE_SPEC_SCEN_1
+      : currentStep === SURVEY_STEPS.GEN_SCEN_1;
+
+  const noWayBack =
+    currentStep === SURVEY_STEPS.INTRO ||
+    currentStep === SURVEY_STEPS.TRAINING_TASK ||
+    firstCondDone;
+
+  const isLastStep = currentStep === SURVEY_STEPS.OUTRO;
+
+  const canGoNext = canProceed(
+    state.currentStepId,
+    state.answers,
+    state.userRole,
+  );
 
   return (
     <div
@@ -22,14 +45,14 @@ export function SurveyNavigation() {
         action="back"
         label="Zurück"
         onClick={goBack}
-        disabled={isFirstStep}
+        disabled={noWayBack}
       />
 
       <NavigationButton
-        action="forward"
-        label="Weiter"
+        action={isLastStep ? "send_survey" : "forward"} // on last page send
+        label={isLastStep ? "Absenden" : "Weiter"}
         onClick={goNext}
-        disabled={isLastStep} // TODO add noch nicht alle fragen beantwortet
+        disabled={!canGoNext} // TODO add noch nicht alle fragen beantwortet
       />
     </div>
   );
