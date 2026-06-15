@@ -105,7 +105,7 @@ export interface SurveyState {
   currentStepId: StepId;
   answers: SurveyAnswers;
   userRole: UserRole | null; // allocated after presurvey
-  conditionOrder?: [Condition, Condition]; // gen, role_spec || role_spec , gen ;; is set right after initialization
+  conditionOrder: [Condition, Condition] | null; // [gen, role_spec || role_spec , gen]
   participantFlow: StepId[];
 }
 

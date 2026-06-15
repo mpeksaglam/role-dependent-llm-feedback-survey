@@ -1,7 +1,7 @@
 import { NavigationButton } from "@/components/buttons/NavigationButton";
-import { useSurvey } from "./useSurvey";
+import { useSurvey } from "./helpers/useSurvey";
 import { SURVEY_STEPS } from "@/lib/types";
-import { canProceed } from "./canProceed";
+import { canProceed } from "./helpers/canProceed";
 
 export function SurveyNavigation() {
   const { state, goBack, goNext } = useSurvey();

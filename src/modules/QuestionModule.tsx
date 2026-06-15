@@ -7,7 +7,7 @@ import {
 } from "@/lib/types";
 import { LikertRow } from "@/components/responses/LikertRow";
 import { RadioGroup } from "@/components/responses/RadioGroup";
-import { useSurvey } from "@/survey_engine/useSurvey";
+import { useSurvey } from "@/survey_engine/helpers/useSurvey";
 
 interface QuestionModuleProps {
   group: QuestionGroup;

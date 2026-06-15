@@ -4,7 +4,7 @@ import { scenarioConfig } from "@/config/scenarioConfig";
 
 import { SimulationModule } from "@/modules/SimulationModule";
 import { QuestionModule } from "@/modules/QuestionModule";
-import { useSurvey } from "@/survey_engine/useSurvey";
+import { useSurvey } from "@/survey_engine/helpers/useSurvey";
 
 interface ScenarioScreenProps {
   stepId: ScenarioStepId;

@@ -1,5 +1,5 @@
 import { StepId, SURVEY_STEPS } from "@/lib/types";
-import { useSurvey } from "./useSurvey";
+import { useSurvey } from "./helpers/useSurvey";
 import { SimulationModule } from "@/modules/SimulationModule";
 import { SurveyNavigation } from "./SurveyNavigation";
 import { IntroScreen } from "@/screens/IntroScreen";
@@ -40,7 +40,7 @@ function renderCurrentStep(stepId: StepId) {
     case SURVEY_STEPS.ROLE_SPEC_SCEN_2:
     case SURVEY_STEPS.ROLE_SPEC_SCEN_3:
       return <ScenarioScreen stepId={stepId} />;
-    
+
     default:
       return null;
   }
