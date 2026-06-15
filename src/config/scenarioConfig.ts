@@ -6,7 +6,7 @@ import { questionConfig } from "./questionConfig";
 
 export const scenarioConfig = {
   [SURVEY_STEPS.GEN_SCEN_1]: {
-    title: "Generic Scenario 1", // TODO change to Aufgabenuberschrift/anweisung?
+    title: "xz", // TODO change to Aufgabenuberschrift/anweisung?
     simulation: simulationConfig.sim_vid1,
     questions: {
       proc_exp: questionConfig.scen1GenericQuestions,
@@ -16,7 +16,7 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.GEN_SCEN_2]: {
-    title: "Generic Scenario 2",
+    title: "xz",
     simulation: simulationConfig.sim_vid1, // sim_vid2 later
     questions: {
       proc_exp: questionConfig.scen2GenericQuestions,
@@ -26,7 +26,7 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.GEN_SCEN_3]: {
-    title: "Generic Scenario 3",
+    title: "xz",
     simulation: simulationConfig.sim_vids23, // change later
     questions: {
       proc_exp: questionConfig.scen3GenericQuestions,

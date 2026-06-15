@@ -24,13 +24,41 @@ export const questionConfig = {
     title: "Pre-Survey Questions",
     questions: [
       {
-        id: "pre_survey_q1",
-        text: "Welche Rolle haben Sie?",
+        id: "prof_background",
+        text: "Was ist Ihr beruflicher Hintergrund?",
         responseType: "singleChoice",
         options: [
           { label: "Prozessexperte", value: "proc_exp" },
           { label: "Roboterexperte", value: "robo_exp" },
         ],
+      },
+      {
+        id: "prev_assembly_experience",
+        text: "Wie viel Erfahrung haben Sie mit Montageprozessen?",
+        responseType: "likert5",
+        leftLabel: "Keine Erfahrung",
+        rightLabel: "Tägliche Beschäftigung",
+      },
+      {
+        id: "prev_robo_experience",
+        text: "Wie viel Erfahrung haben Sie mit Robotik/Cobots?",
+        responseType: "likert5",
+        leftLabel: "Keine Erfahrung",
+        rightLabel: "Tägliche Beschäftigung",
+      },
+      {
+        id: "prev_sim_experience",
+        text: "Wie viel Erfahrung haben Sie mit Simulationen?",
+        responseType: "likert5",
+        leftLabel: "Keine Erfahrung",
+        rightLabel: "Tägliche Beschäftigung",
+      },
+      {
+        id: "prev_ai_experience",
+        text: "Wie viel Erfahrung haben Sie mit KI- und Chat-Systemen?",
+        responseType: "likert5",
+        leftLabel: "Keine Erfahrung",
+        rightLabel: "Tägliche Beschäftigung",
       },
     ],
   },
