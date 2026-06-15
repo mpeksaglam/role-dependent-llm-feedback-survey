@@ -3,7 +3,7 @@ import { QuestionModule } from "@/modules/QuestionModule";
 
 export function IntroScreen() {
   return (
-    <div className="min-h-screen p-10 flex flex-col">
+    <div className="min-h-screen flex flex-col w-full max-w-3xl p-10">
       <h1 className="text-2xl font-bold mb-4">
         Willkommen zur KIRo4LeMi Feedback Survey
       </h1>
