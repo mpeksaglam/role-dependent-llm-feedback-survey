@@ -5,7 +5,7 @@ export function PreSurveyScreen() {
   return (
     <div className="min-h-screen p-10 flex flex-col">
       <h1 className="text-2xl font-bold mb-4">
-        Bitte beantworten Sie einige Fragen.
+        Bitte beantworten Sie folgende Fragen.
       </h1>
 
       <QuestionModule group={questionConfig.preSurveyQuestions} />

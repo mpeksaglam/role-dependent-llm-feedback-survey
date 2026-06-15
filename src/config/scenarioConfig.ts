@@ -5,10 +5,20 @@ import { questionConfig } from "./questionConfig";
 // References simulationConfig and questionConfig
 
 export const scenarioConfig = {
+  [SURVEY_STEPS.TRAINING_TASK]: {
+    title: "Training Task",
+    simulation: simulationConfig.sim_vid1,
+    questions: {
+      proc_exp: questionConfig.trainingQuestions,
+      robo_exp: questionConfig.trainingQuestions,
+    },
+  },
+
   [SURVEY_STEPS.GEN_SCEN_1]: {
     title: "xz", // TODO change to Aufgabenuberschrift/anweisung?
     simulation: simulationConfig.sim_vid1,
     questions: {
+      // Always same in generic condition
       proc_exp: questionConfig.scen1GenericQuestions,
       robo_exp: questionConfig.scen1GenericQuestions,
     },
@@ -36,7 +46,7 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.ROLE_SPEC_SCEN_1]: {
-    title: "xz",
+    title: "Rollenspezifisches Interface",
     simulation: simulationConfig.sim_vid1,
     questions: {
       proc_exp: questionConfig.scen1ProcExQuestions,

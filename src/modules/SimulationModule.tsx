@@ -4,7 +4,7 @@ import { SimulationVideo } from "@/lib/types";
 export function SimulationModule({ simVid }: { simVid: SimulationVideo }) {
   if (simVid.type === "single") {
     return (
-      <video controls>
+      <video controls className="rounded-md">
         <source src={simVid.videoUrl} />
       </video>
     );

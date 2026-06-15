@@ -62,6 +62,28 @@ export const questionConfig = {
       },
     ],
   },
+  trainingQuestions: {
+    /*       Die folgende Aufgabe dient als Übung und wird keinen Einfluss auf die Studienergebnisse
+        haben. Bitte machen Sie sich vertraut mit den Videos und dem Antwortformat. */
+    id: "training_qs",
+    title: "Training Questions",
+    questions: [
+      {
+        id: "training_q1_task_success",
+        text: "Wie erfolgreich wurde die Aufgabe ausgeführt?",
+        responseType: "likert5",
+        leftLabel: "Kein Erfolg",
+        rightLabel: "Voller Erfolg",
+      },
+      {
+        id: "training_q2_safety",
+        text: "Wie sicher wurde die Aufgabe ausgeführt?",
+        responseType: "likert5",
+        leftLabel: "Sehr unsicher",
+        rightLabel: "Sehr sicher",
+      },
+    ],
+  },
 
   scen1GenericQuestions: {
     id: "scen1_gen_qs",

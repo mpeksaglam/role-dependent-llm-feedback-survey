@@ -13,7 +13,8 @@ interface ScenarioScreenProps {
 export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   // get UserRole for rendering correct role-specific UI
   const { state } = useSurvey();
-  const role = state.userRole!; // is not null at this point TODO prerendering happening?
+  const role = state.userRole;
+  if (!role) return null; // should not be null at this point
   // get questions and video URLs
   const config = scenarioConfig[stepId];
   const questions = config.questions[role];
