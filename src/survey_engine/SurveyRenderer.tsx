@@ -5,9 +5,12 @@ import { SurveyNavigation } from "./SurveyNavigation";
 import { IntroScreen } from "@/screens/IntroScreen";
 import { PreSurveyScreen } from "@/screens/PreSurveyScreen";
 import { ScenarioScreen } from "@/screens/ScenarioScreen";
+import { OutroScreen } from "@/screens/OutroScreen";
 
 export function SurveyRenderer() {
   const { state } = useSurvey();
+  const currentStep = state.currentStepId;
+  const hideNavigation = currentStep === SURVEY_STEPS.OUTRO;
 
   return (
     <main
@@ -18,9 +21,9 @@ export function SurveyRenderer() {
       w-full max-w-5xl mx-auto
       "
     >
-      {renderCurrentStep(state.currentStepId)}
-
-      <SurveyNavigation />
+      {/* Show current screen + Navigation buttons most of the time */}
+      {renderCurrentStep(currentStep)}
+      {!hideNavigation && <SurveyNavigation />}
     </main>
   );
 }
@@ -40,7 +43,8 @@ function renderCurrentStep(stepId: StepId) {
     case SURVEY_STEPS.ROLE_SPEC_SCEN_2:
     case SURVEY_STEPS.ROLE_SPEC_SCEN_3:
       return <ScenarioScreen stepId={stepId} />;
-
+    case SURVEY_STEPS.OUTRO:
+      return <OutroScreen />;
     default:
       return null;
   }

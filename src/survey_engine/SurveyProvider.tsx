@@ -50,16 +50,27 @@ export function SurveyProvider({ children }: Props) {
     if (!nextStep) {
       return;
     }
-    // Special case: assign userRole after presurvey
-    if (state.currentStepId === SURVEY_STEPS.PRE_SURVEY) {
+
+    // Special case 1: User declined consent
+    if (
+      state.currentStepId === SURVEY_STEPS.INTRO &&
+      state.answers["dsgvo_consent"] === "reject"
+    ) {
+      setState((prev) => ({
+        ...prev,
+        currentStepId: SURVEY_STEPS.OUTRO,
+      }));
+    }
+    // Special case 2: assign userRole after presurvey
+    else if (state.currentStepId === SURVEY_STEPS.PRE_SURVEY) {
       const role = deriveUserRole(state.answers);
       setState((prev) => ({
         ...prev,
         userRole: role,
         currentStepId: nextStep,
       }));
-    } else {
-      // Standard case goNext()
+    } // Standard case goNext()
+    else {
       setState((prev) => ({
         ...prev,
         currentStepId: nextStep,
