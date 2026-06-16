@@ -11,12 +11,12 @@ export function SimulationModule({ simVid }: { simVid: SimulationVideo }) {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 w-full">
       <video controls className="rounded-md">
         <source src={simVid.videoUrls[0]} />
       </video>
 
-      <video controls>
+      <video controls className="rounded-md">
         <source src={simVid.videoUrls[1]} />
       </video>
     </div>

@@ -126,9 +126,10 @@ export function DsgvoInfo() {
           8. Einwilligung zur Datenverarbeitung
         </h2>
         <p>
-          Ich willige ein, dass meine in dieser Online-Umfrage erhobenen Daten
-          im Rahmen dieser Studie anonymisiert verarbeitet und für
-          wissenschaftliche Zwecke gespeichert und ausgewertet werden. Diese
+          Ich habe die Informationen zur Datenerhebung und Verarbeitung
+          verstanden. Ich willige ein, dass meine in dieser Online-Umfrage
+          erhobenen Daten im Rahmen dieser Studie anonymisiert verarbeitet und
+          für wissenschaftliche Zwecke gespeichert und ausgewertet werden. Diese
           Einwilligung ist freiwillig. Ich kann sie jederzeit ohne Angabe von
           Gründen widerrufen, ohne dass mir daraus Nachteile entstehen (ein
           Widerruf ist jedoch nur so lange möglich, wie die Daten noch nicht

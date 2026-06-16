@@ -21,7 +21,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-bold">{config.title}</h1>
+      <h1 className="text-lg font-bold">{config.title}</h1>
 
       <SimulationModule simVid={config.simulation} />
 

@@ -3,10 +3,10 @@ import { QuestionModule } from "@/modules/QuestionModule";
 
 export function PreSurveyScreen() {
   return (
-    <div className="min-h-screen p-10 flex flex-col">
-      <h1 className="text-2xl font-bold mb-4">
+    <div className="p-10 flex flex-col">
+      <h3 className="text-lg font-bold mb-4">
         Bitte beantworten Sie folgende Fragen.
-      </h1>
+      </h3>
 
       <QuestionModule group={questionConfig.preSurveyQuestions} />
     </div>

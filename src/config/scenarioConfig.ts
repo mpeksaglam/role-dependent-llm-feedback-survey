@@ -15,7 +15,7 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.GEN_SCEN_1]: {
-    title: "xz", // TODO change to Aufgabenuberschrift/anweisung?
+    title: "Szenario 1", // TODO change to Aufgabenuberschrift/anweisung?
     simulation: simulationConfig.sim_vid1,
     questions: {
       // Always same in generic condition
@@ -26,7 +26,7 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.GEN_SCEN_2]: {
-    title: "xz",
+    title: "Szenario 2",
     simulation: simulationConfig.sim_vid1, // sim_vid2 later
     questions: {
       proc_exp: questionConfig.scen2GenericQuestions,
@@ -36,7 +36,7 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.GEN_SCEN_3]: {
-    title: "xz",
+    title: "Szenario 3",
     simulation: simulationConfig.sim_vids23, // change later
     questions: {
       proc_exp: questionConfig.scen3GenericQuestions,
@@ -55,7 +55,7 @@ export const scenarioConfig = {
     condition: "role_spec",
   },
   [SURVEY_STEPS.ROLE_SPEC_SCEN_2]: {
-    title: "xz",
+    title: "Rollenspez szen 2",
     simulation: simulationConfig.sim_vid1,
     questions: {
       proc_exp: questionConfig.scen2ProcExQuestions,
@@ -64,7 +64,7 @@ export const scenarioConfig = {
     condition: "role_spec",
   },
   [SURVEY_STEPS.ROLE_SPEC_SCEN_3]: {
-    title: "xz",
+    title: "Rollenspezifisch szen 3",
     simulation: simulationConfig.sim_vids23,
     questions: {
       proc_exp: questionConfig.scen3ProcExQuestions,
