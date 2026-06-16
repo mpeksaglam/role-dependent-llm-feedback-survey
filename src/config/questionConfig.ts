@@ -70,8 +70,6 @@ export const questionConfig = {
     ],
   },
   trainingQuestions: {
-    /*       Die folgende Aufgabe dient als Übung und wird keinen Einfluss auf die Studienergebnisse
-        haben. Bitte machen Sie sich vertraut mit den Videos und dem Antwortformat. */
     id: "training_qs",
     title: "Training Questions",
     questions: [

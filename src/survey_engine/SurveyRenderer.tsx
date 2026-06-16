@@ -6,6 +6,7 @@ import { IntroScreen } from "@/screens/IntroScreen";
 import { PreSurveyScreen } from "@/screens/PreSurveyScreen";
 import { ScenarioScreen } from "@/screens/ScenarioScreen";
 import { OutroScreen } from "@/screens/OutroScreen";
+import { TrainingInfoScreen } from "@/screens/TrainingInfoScreen";
 
 export function SurveyRenderer() {
   const { state } = useSurvey();
@@ -34,8 +35,8 @@ function renderCurrentStep(stepId: StepId) {
       return <IntroScreen />;
     case SURVEY_STEPS.PRE_SURVEY:
       return <PreSurveyScreen />;
-    // case SURVEY_STEPS.TRAINING_TASK:
-    //   return; //TODO TRAININGSCREEN
+    case SURVEY_STEPS.TRAINING_TASK:
+      return <TrainingInfoScreen />;
     case SURVEY_STEPS.GEN_SCEN_1:
     case SURVEY_STEPS.GEN_SCEN_2:
     case SURVEY_STEPS.GEN_SCEN_3:
