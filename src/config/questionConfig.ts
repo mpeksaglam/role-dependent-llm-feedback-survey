@@ -9,11 +9,18 @@ export const questionConfig = {
     questions: [
       {
         id: "dsgvo_consent",
-        text: "Bitte stimmen Sie der DSGVO zu.",
+        text: "Erklärung zur Teilnahme und zum Datenschutz:",
         responseType: "singleChoice",
         options: [
-          { label: "Ich stimme zu", value: "accept" },
-          { label: "Ich lehne ab", value: "reject" },
+          {
+            label:
+              "Ich stimme der Einwilligungserklärung zu und möchte an der Studie teilnehmen",
+            value: "accept",
+          },
+          {
+            label: "Ich stimme nicht zu und lehne die Teilnahme ab",
+            value: "reject",
+          },
         ],
       },
     ],

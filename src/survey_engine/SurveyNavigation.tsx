@@ -52,7 +52,7 @@ export function SurveyNavigation() {
         action={isLastStep ? "send_survey" : "forward"} // on last page send
         label={isLastStep ? "Absenden" : "Weiter"}
         onClick={goNext}
-        disabled={!canGoNext} // TODO add noch nicht alle fragen beantwortet
+        disabled={!canGoNext}
       />
     </div>
   );

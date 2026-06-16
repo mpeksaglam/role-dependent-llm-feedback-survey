@@ -55,7 +55,7 @@ export function QuestionModule({ group }: QuestionModuleProps) {
             return (
               <div key={q.id} className="space-y-2">
                 {/* Frage */}
-                <p className="text-sm">{q.text}</p>
+                <p className="text-md">{q.text}</p>
 
                 {/* Radio Selection */}
                 <RadioGroup
