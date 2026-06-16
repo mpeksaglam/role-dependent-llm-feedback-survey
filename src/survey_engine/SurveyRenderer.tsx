@@ -35,8 +35,9 @@ function renderCurrentStep(stepId: StepId) {
       return <IntroScreen />;
     case SURVEY_STEPS.PRE_SURVEY:
       return <PreSurveyScreen />;
-    case SURVEY_STEPS.TRAINING_TASK:
+    case SURVEY_STEPS.TRAINING_INFO:
       return <TrainingInfoScreen />;
+    case SURVEY_STEPS.TRAINING_TASK:
     case SURVEY_STEPS.GEN_SCEN_1:
     case SURVEY_STEPS.GEN_SCEN_2:
     case SURVEY_STEPS.GEN_SCEN_3:
@@ -44,6 +45,11 @@ function renderCurrentStep(stepId: StepId) {
     case SURVEY_STEPS.ROLE_SPEC_SCEN_2:
     case SURVEY_STEPS.ROLE_SPEC_SCEN_3:
       return <ScenarioScreen stepId={stepId} />;
+    case SURVEY_STEPS.QUESTIONNAIRES_A:
+    case SURVEY_STEPS.QUESTIONNAIRES_B:
+      return <QuestionnaireScreen stepId={stepId} />;
+    case SURVEY_STEPS.COMPARISON_QUESTIONS:
+      return <ComparisonQuestionScreen />;
     case SURVEY_STEPS.OUTRO:
       return <OutroScreen />;
     default:

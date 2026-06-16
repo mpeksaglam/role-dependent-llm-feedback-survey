@@ -22,7 +22,7 @@ export function SurveyNavigation() {
 
   const noWayBack =
     currentStep === SURVEY_STEPS.INTRO ||
-    currentStep === SURVEY_STEPS.TRAINING_TASK ||
+    currentStep === SURVEY_STEPS.TRAINING_INFO ||
     firstCondDone;
 
   const isLastStep = currentStep === SURVEY_STEPS.OUTRO;

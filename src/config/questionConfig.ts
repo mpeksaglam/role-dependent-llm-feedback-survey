@@ -1,8 +1,7 @@
 import { QuestionGroup } from "@/lib/types";
 
 export const questionConfig = {
-  // ! Make sure to reference scenario changes in scenarioConfig
-
+  // ! Make sure to adjust scenarioConfig if making changes for scenarios !
   dsgvoConsent: {
     id: "dsgvo_consent_qs",
     title: "DSGVO consent",
@@ -69,6 +68,7 @@ export const questionConfig = {
       },
     ],
   },
+  // ! Make sure to adjust scenarioConfig if making changes for scenarios !
   trainingQuestions: {
     id: "training_qs",
     title: "Training Questions",

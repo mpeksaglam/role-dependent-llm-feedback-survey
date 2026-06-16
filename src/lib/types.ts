@@ -74,26 +74,31 @@ export type AnswerValue = number | string;
 
 export type SurveyAnswers = Record<string, AnswerValue>;
 
+// ! adjust buildParticipantFlow if changed !
 export const SURVEY_STEPS = {
   INTRO: "intro",
   PRE_SURVEY: "pre_survey",
+  TRAINING_INFO: "training_info",
 
   TRAINING_TASK: "training_task",
-
   GEN_SCEN_1: "gen_scen_1",
   GEN_SCEN_2: "gen_scen_2",
   GEN_SCEN_3: "gen_scen_3",
-
   ROLE_SPEC_SCEN_1: "role_spec_scen_1",
   ROLE_SPEC_SCEN_2: "role_spec_scen_2",
   ROLE_SPEC_SCEN_3: "role_spec_scen_3",
 
+  QUESTIONNAIRES_A: "questionnaire_A", // after condition A and B respectively
+  QUESTIONNAIRES_B: "questionnaire_B",
+
+  COMPARISON_QUESTIONS: "comparison_questions",
   OUTRO: "outro",
 } as const;
 
 export type StepId = (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
 
 export type ScenarioStepId =
+  | typeof SURVEY_STEPS.TRAINING_TASK
   | typeof SURVEY_STEPS.GEN_SCEN_1
   | typeof SURVEY_STEPS.GEN_SCEN_2
   | typeof SURVEY_STEPS.GEN_SCEN_3
