@@ -20,8 +20,11 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   const questions = config.questions[role];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-10">
+      {/* Titel */}
       <h1 className="text-lg font-bold">{config.title}</h1>
+
+      {/* TODO add kurze Aufgabenbeschreibung */}
 
       <SimulationModule simVid={config.simulation} />
 

@@ -4,7 +4,7 @@ export const questionConfig = {
   // ! Make sure to adjust scenarioConfig if making changes for scenarios !
   dsgvoConsent: {
     id: "dsgvo_consent_qs",
-    title: "DSGVO consent",
+    title: "DSGVO Zustimmung",
     questions: [
       {
         id: "dsgvo_consent",
@@ -27,7 +27,7 @@ export const questionConfig = {
 
   preSurveyQuestions: {
     id: "pre_survey_qs",
-    title: "Pre-Survey Questions",
+    title: "Vorerhebung und Rollenklärung",
     questions: [
       {
         id: "prof_background",
@@ -71,7 +71,7 @@ export const questionConfig = {
   // ! Make sure to adjust scenarioConfig if making changes for scenarios !
   trainingQuestions: {
     id: "training_qs",
-    title: "Training Questions",
+    title: "Trainingsfragen",
     questions: [
       {
         id: "training_q1_task_success",
@@ -92,7 +92,7 @@ export const questionConfig = {
 
   scen1GenericQuestions: {
     id: "scen1_gen_qs",
-    title: "Scenario 1 Generic Questions",
+    title: "Szenario 1 Generische Fragen",
     questions: [
       {
         id: "scen1_gen_q1_task_success",
@@ -113,7 +113,7 @@ export const questionConfig = {
 
   scen2GenericQuestions: {
     id: "scen2_gen_qs",
-    title: "Scenario 2 Generic Questions",
+    title: "Szenario 2 Generische Fragen",
     questions: [
       {
         id: "scen2_gen_q1_task_success",
@@ -134,7 +134,7 @@ export const questionConfig = {
 
   scen3GenericQuestions: {
     id: "scen3_gen_qs",
-    title: "Scenario 3 Generic Questions",
+    title: "Szenario 3 Generische Fragen",
     questions: [
       {
         id: "scen3_gen_q1_reason_pref",
@@ -174,34 +174,34 @@ export const questionConfig = {
 
   scen1ProcExQuestions: {
     id: "scen1_procex_qs",
-    title: "Scenario 1 Process Expert Questions",
+    title: "Szenario 1 Prozessexperte Fragen",
     questions: [],
   },
   scen2ProcExQuestions: {
     id: "scen2_procex_qs",
-    title: "Scenario 2 Process Expert Questions",
+    title: "Szenario 2 Prozessexperte Fragen",
     questions: [],
   },
   scen3ProcExQuestions: {
     id: "scen3_procex_qs",
-    title: "Scenario 3 Process Expert Questions",
+    title: "Szenario 3 Prozessexperte Fragen",
     questions: [],
   },
 
   scen1RobExQuestions: {
     id: "scen1_robex_qs",
-    title: "Scenario 1 Robot Expert Questions",
+    title: "Szenario 1 Robotikexperte Fragen",
     questions: [],
   },
   scen2RobExQuestions: {
     id: "scen2_robex_qs",
-    title: "Scenario 2 Robot Expert Questions",
+    title: "Szenario 2 Robotikexperte Fragen",
     questions: [],
   },
 
   scen3RobExQuestions: {
     id: "scen3_robex_qs",
-    title: "Scenario 3 Robot Expert Questions",
+    title: "Szenario 3 Robotikexperte Fragen",
     questions: [],
   },
 

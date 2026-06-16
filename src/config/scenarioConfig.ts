@@ -3,10 +3,11 @@ import { simulationConfig } from "@/config/simulationConfig";
 import { questionConfig } from "./questionConfig";
 
 // References simulationConfig and questionConfig
-
+// Title is rendered into UI
+// TODO add aufgabenbeschreibung
 export const scenarioConfig = {
   [SURVEY_STEPS.TRAINING_TASK]: {
-    title: "Training Task",
+    title: "Trainingsaufgabe",
     simulation: simulationConfig.sim_vid1,
     questions: {
       proc_exp: questionConfig.trainingQuestions,

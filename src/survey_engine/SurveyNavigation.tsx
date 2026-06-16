@@ -21,7 +21,7 @@ export function SurveyNavigation() {
       : currentStep === SURVEY_STEPS.GEN_SCEN_1;
 
   const noWayBack =
-    currentStep === SURVEY_STEPS.INTRO ||
+    currentStep === SURVEY_STEPS.INTRO || // TODO change forward button , put on IntroScreen and hideNavigation in surveyRenderer
     currentStep === SURVEY_STEPS.TRAINING_INFO ||
     firstCondDone;
 
