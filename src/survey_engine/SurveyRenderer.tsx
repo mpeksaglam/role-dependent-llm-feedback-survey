@@ -53,6 +53,6 @@ function renderCurrentStep(stepId: StepId) {
     case SURVEY_STEPS.OUTRO:
       return <OutroScreen />;
     default:
-      return null;
+      throw new Error("Unknown survey step"); // add new survey Steps
   }
 }

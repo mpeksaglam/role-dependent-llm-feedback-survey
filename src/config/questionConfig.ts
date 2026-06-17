@@ -204,6 +204,16 @@ export const questionConfig = {
     title: "Szenario 3 Robotikexperte Fragen",
     questions: [],
   },
+  questionnairesAQuestions: {
+    id: "quest_a_qs",
+    title: "Fragebögen A Fragen",
+    questions: [],
+  },
+  questionnairesBQuestions: {
+    id: "quest_b_qs",
+    title: "Fragebögen B Fragen",
+    questions: [],
+  },
 
   susQuestions: {
     id: "sus_qs",
@@ -214,6 +224,11 @@ export const questionConfig = {
   nasaQuestions: {
     id: "nasa_tlx_qs",
     title: "NASA TLX",
+    questions: [],
+  },
+  comparisonQuestions: {
+    id: "comparison_qs",
+    title: "Vergleichsfragen",
     questions: [],
   },
 } as const satisfies Record<string, QuestionGroup>;
