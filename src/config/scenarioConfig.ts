@@ -50,8 +50,8 @@ export const scenarioConfig = {
     title: "Rollenspezifisches Interface",
     simulation: simulationConfig.sim_vid1,
     questions: {
-      proc_exp: questionConfig.scen1ProcExQuestions,
-      robo_exp: questionConfig.scen1RobExQuestions,
+      proc_exp: questionConfig.scen1ProcExpQuestions,
+      robo_exp: questionConfig.scen1RoboExpQuestions,
     },
     condition: "role_spec",
   },
@@ -59,8 +59,8 @@ export const scenarioConfig = {
     title: "Rollenspez szen 2",
     simulation: simulationConfig.sim_vid1,
     questions: {
-      proc_exp: questionConfig.scen2ProcExQuestions,
-      robo_exp: questionConfig.scen2RobExQuestions,
+      proc_exp: questionConfig.scen2ProcExpQuestions,
+      robo_exp: questionConfig.scen2RoboExpQuestions,
     },
     condition: "role_spec",
   },
@@ -68,8 +68,8 @@ export const scenarioConfig = {
     title: "Rollenspezifisch szen 3",
     simulation: simulationConfig.sim_vids23,
     questions: {
-      proc_exp: questionConfig.scen3ProcExQuestions,
-      robo_exp: questionConfig.scen3RobExQuestions,
+      proc_exp: questionConfig.scen3ProcExpQuestions,
+      robo_exp: questionConfig.scen3RoboExpQuestions,
     },
     condition: "role_spec",
   },
