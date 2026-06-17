@@ -2,10 +2,10 @@ import { buildQuestionnaire } from "./buildQuestionnaire";
 
 const ROLE_FIT_ITEMS = [
   "Das Interface passte zu meiner Rolle.",
-  "Die Begriffe passten zu meiner Arbeitsweise.",
-  "Ich konnte mein Fachwissen einbringen.",
-  "Das Interface setzte unnötiges Fachwissen voraus.",
-  "Die Bewertungskriterien waren sinnvoll.",
+  "Die Begriffe im Interface passten zu meiner Arbeitsweise.",
+  "Ich konnte mein Fachwissen angemessen einbringen.",
+  "Das Interface hat unnötiges Fachwissen vorausgesetzt.",
+  "Die vorgeschlagenen Bewertungskriterien waren für meine Rolle sinnvoll.",
 ] as const;
 
 function createRoleFit(id: "role_fit_a" | "role_fit_b") {
