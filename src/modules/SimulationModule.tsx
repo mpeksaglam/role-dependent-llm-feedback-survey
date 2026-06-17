@@ -1,7 +1,11 @@
 import { SimulationVideo } from "@/lib/types";
 
+interface SimulationModuleProps {
+  simVid: SimulationVideo;
+}
+
 // Render simulationVideo
-export function SimulationModule({ simVid }: { simVid: SimulationVideo }) {
+export function SimulationModule({ simVid }: SimulationModuleProps) {
   if (simVid.type === "single") {
     return (
       <video controls className="rounded-md">

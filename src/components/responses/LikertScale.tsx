@@ -1,12 +1,12 @@
 interface LikertScaleProps {
-  name: string;
+  questionId: string;
   scale: number;
   selected?: number;
   onSelect?: (value: number) => void;
 }
 
 export function LikertScale({
-  name,
+  questionId,
   scale,
   selected,
   onSelect,
@@ -24,7 +24,7 @@ export function LikertScale({
             {/* RADIO */}
             <input
               type="radio"
-              name={name} // QuestionID
+              name={questionId}
               value={value}
               checked={selected === value}
               onChange={() => onSelect?.(value)}

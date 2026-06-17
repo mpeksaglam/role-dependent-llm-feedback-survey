@@ -37,7 +37,7 @@ export function LikertRow({
 
         {/* SCALE */}
         <LikertScale
-          name={questionId}
+          questionId={questionId}
           scale={scale}
           selected={selected}
           onSelect={onSelect}
