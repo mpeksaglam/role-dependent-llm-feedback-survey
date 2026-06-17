@@ -15,7 +15,7 @@ interface QuestionModuleProps {
 }
 
 function getScaleLength(type: LikertResponseType) {
-  return type === "likert5" ? 5 : 7;
+  return type === "likert5" ? 5 : 11;
 }
 
 export function QuestionModule({ group }: QuestionModuleProps) {
@@ -25,7 +25,7 @@ export function QuestionModule({ group }: QuestionModuleProps) {
       {group.questions.map((q) => {
         switch (q.responseType) {
           case "likert5":
-          case "likert7":
+          case "likert11":
             return (
               <LikertRow
                 key={q.id}

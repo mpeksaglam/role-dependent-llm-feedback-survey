@@ -14,17 +14,11 @@ export type SimulationVideo =
     };
 
 // Question Types
-export type LikertResponseType = "likert5" | "likert7";
+export type LikertResponseType = "likert5" | "likert11";
 
 export type FreeTextResponseType = "freeTextInput";
 
 export type SelectionResponseType = "singleChoice";
-
-// Options for SelectionResponseType
-export type SelectionOption = {
-  label: string;
-  value: string;
-};
 
 export type ResponseType =
   | LikertResponseType
@@ -34,7 +28,6 @@ export type ResponseType =
 interface BaseQuestion {
   id: string;
   text: string;
-  required?: boolean;
 }
 
 export interface LikertQuestion extends BaseQuestion {
@@ -47,6 +40,11 @@ export interface LikertQuestion extends BaseQuestion {
 export interface FreeTextQuestion extends BaseQuestion {
   responseType: FreeTextResponseType;
 }
+// Options for SelectionQuestion
+export type SelectionOption = {
+  label: string;
+  value: string;
+};
 
 export interface SelectionQuestion extends BaseQuestion {
   responseType: SelectionResponseType;

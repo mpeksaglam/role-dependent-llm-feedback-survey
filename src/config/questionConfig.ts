@@ -1,4 +1,7 @@
 import { QuestionGroup } from "@/lib/types";
+import { susQuestionsA, susQuestionsB } from "./questionnaires/sus";
+import { nasaQuestionsA, nasaQuestionsB } from "./questionnaires/nasa";
+import { roleFitQuestionsA, roleFitQuestionsB } from "./questionnaires/roleFit";
 
 export const questionConfig = {
   // ! Make sure to adjust scenarioConfig if making changes for scenarios !
@@ -140,7 +143,7 @@ export const questionConfig = {
       {
         id: "scen3_gen_q2_task_success_varA",
         text: "Wie erfolgreich wurde die Aufgabe im linken Video ausgeführt?",
-        responseType: "likert7",
+        responseType: "likert5",
         leftLabel: "Kein Erfolg",
         rightLabel: "Voller Erfolg",
       },
@@ -161,7 +164,7 @@ export const questionConfig = {
       {
         id: "scen3_gen_q5_safety_varB",
         text: "Wie sicher wurde die Aufgabe im rechten Video ausgeführt?",
-        responseType: "likert7",
+        responseType: "likert5",
         leftLabel: "Sehr unsicher",
         rightLabel: "Sehr sicher",
       },
@@ -203,28 +206,73 @@ export const questionConfig = {
   questionnairesAQuestions: {
     id: "quest_a_qs",
     title: "Fragebögen A Fragen",
-    questions: [],
+    questions: [
+      ...susQuestionsA.questions,
+      ...nasaQuestionsA.questions,
+      ...roleFitQuestionsA.questions,
+    ],
   },
   questionnairesBQuestions: {
     id: "quest_b_qs",
     title: "Fragebögen B Fragen",
-    questions: [],
+    questions: [
+      ...susQuestionsB.questions,
+      ...nasaQuestionsB.questions,
+      ...roleFitQuestionsB.questions,
+    ],
   },
 
-  susQuestions: {
-    id: "sus_qs",
-    title: "System Usability Scale",
-    questions: [],
-  },
+  susQuestionsA: susQuestionsA,
+  susQuestionsB: susQuestionsB,
+  nasaQuestionsA: nasaQuestionsA,
+  nasaQuestionsB: nasaQuestionsB,
+  roleFitQuestionsA: roleFitQuestionsA,
+  roleFitQuestionsB: roleFitQuestionsB,
 
-  nasaQuestions: {
-    id: "nasa_tlx_qs",
-    title: "NASA TLX",
-    questions: [],
-  },
   comparisonQuestions: {
     id: "comparison_qs",
     title: "Vergleichsfragen",
-    questions: [],
+    questions: [
+      {
+        id: "comp_1",
+        text: "Welches Interface war insgesamt hilfreicher?",
+        responseType: "singleChoice",
+        options: [
+          { label: "Generisches Interface", value: "gen_int" },
+          { label: "Rollenbasiertes Interface", value: "role_int" },
+          { label: "Kein Unterschied", value: "none" },
+        ],
+      },
+      {
+        id: "comp_2",
+        text: "Mit welchem Interface konnten Sie Feedback schneller geben?",
+        responseType: "singleChoice",
+        options: [
+          { label: "Generisch", value: "gen_int" },
+          { label: "Rollenbasiert", value: "role_int" },
+          { label: "Kein Unterschied", value: "none" },
+        ],
+      },
+      {
+        id: "comp_3",
+        text: "Welches Interface passte besser zu Ihrer Rolle?",
+        responseType: "singleChoice",
+        options: [
+          { label: "Generisch", value: "gen_int" },
+          { label: "Rollenbasiert", value: "role_int" },
+          { label: "Kein Unterschied", value: "none" },
+        ],
+      },
+      {
+        id: "comp_4",
+        text: "Welches Interface würden Sie in der Praxis bevorzugen?",
+        responseType: "singleChoice",
+        options: [
+          { label: "Generisch", value: "gen_int" },
+          { label: "Rollenbasiert", value: "role_int" },
+          { label: "Kein Unterschied", value: "none" },
+        ],
+      },
+    ],
   },
 } as const satisfies Record<string, QuestionGroup>;
