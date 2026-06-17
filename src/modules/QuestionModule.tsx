@@ -12,19 +12,13 @@ import { FreeTextInput } from "@/components/responses/FreeTextInput";
 
 interface QuestionModuleProps {
   group: QuestionGroup;
-  width?: string; // for FreeTextInput
-  height?: string;
 }
 
 function getScaleLength(type: LikertResponseType) {
   return type === "likert5" ? 5 : 7;
 }
 
-export function QuestionModule({
-  group,
-  width = "",
-  height = "",
-}: QuestionModuleProps) {
+export function QuestionModule({ group }: QuestionModuleProps) {
   const { state, setAnswer } = useSurvey();
   return (
     <div className="space-y-6">
@@ -49,8 +43,6 @@ export function QuestionModule({
             return (
               <FreeTextInput
                 key={q.id}
-                width={width}
-                height={height}
                 value={(state.answers[q.id] as string) ?? ""}
                 onChange={(value) => setAnswer(q.id, value)}
               />

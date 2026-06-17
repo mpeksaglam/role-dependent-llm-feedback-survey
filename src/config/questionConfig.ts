@@ -32,11 +32,7 @@ export const questionConfig = {
       {
         id: "prof_background",
         text: "Was ist Ihr beruflicher Hintergrund?",
-        responseType: "singleChoice",
-        options: [
-          { label: "Prozessexperte", value: "proc_exp" },
-          { label: "Roboterexperte", value: "robo_exp" },
-        ],
+        responseType: "freeTextInput",
       },
       {
         id: "prev_assembly_experience",

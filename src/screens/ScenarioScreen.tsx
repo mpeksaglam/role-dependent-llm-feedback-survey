@@ -37,7 +37,6 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
 
     <main
       className=" 
-      min-h-screen 
       p-8 
       flex flex-col
       w-full max-w-5xl mx-auto

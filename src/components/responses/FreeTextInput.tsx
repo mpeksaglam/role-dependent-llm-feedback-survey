@@ -5,24 +5,16 @@ interface FreeTextInputProps {
   onChange: (value: string) => void;
 }
 
-export function FreeTextInput({
-  width,
-  height,
-  value,
-  onChange,
-}: FreeTextInputProps) {
-  // in case width/height are undefined or "", fallback:
-  const finalWidth = width || "w-full";
-  const finalHeight = height || "h-auto";
+export function FreeTextInput({ value, onChange }: FreeTextInputProps) {
   return (
     <textarea
-      className={`
-        ${finalWidth} ${finalHeight}
+      className="
+        w-sm h-24
         rounded-sm
         border
         p-2
         text-sm
-        `}
+        "
       value={value}
       onChange={(e) => onChange(e.target.value)}
     />
