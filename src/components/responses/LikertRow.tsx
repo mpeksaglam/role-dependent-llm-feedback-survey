@@ -1,18 +1,17 @@
 import { LikertScale } from "@/components/responses/LikertScale";
 
 interface LikertRowProps {
+  questionId: string;
   text: string;
-
   scale: number;
-
   leftLabel: string;
   rightLabel: string;
-
   selected?: number;
   onSelect?: (value: number) => void;
 }
 
 export function LikertRow({
+  questionId,
   text,
   scale,
   leftLabel,
@@ -37,7 +36,12 @@ export function LikertRow({
         )}
 
         {/* SCALE */}
-        <LikertScale scale={scale} selected={selected} onSelect={onSelect} />
+        <LikertScale
+          name={questionId}
+          scale={scale}
+          selected={selected}
+          onSelect={onSelect}
+        />
 
         {/* RIGHT LABEL */}
         {rightLabel && (

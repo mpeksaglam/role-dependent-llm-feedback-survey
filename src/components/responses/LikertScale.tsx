@@ -1,10 +1,16 @@
 interface LikertScaleProps {
+  name: string;
   scale: number;
   selected?: number;
   onSelect?: (value: number) => void;
 }
 
-export function LikertScale({ scale, selected, onSelect }: LikertScaleProps) {
+export function LikertScale({
+  name,
+  scale,
+  selected,
+  onSelect,
+}: LikertScaleProps) {
   return (
     <div className="flex gap-3 items-center cursor-pointer">
       {Array.from({ length: scale }, (_, i) => {
@@ -18,7 +24,7 @@ export function LikertScale({ scale, selected, onSelect }: LikertScaleProps) {
             {/* RADIO */}
             <input
               type="radio"
-              name="likert"
+              name={name} // QuestionID
               value={value}
               checked={selected === value}
               onChange={() => onSelect?.(value)}

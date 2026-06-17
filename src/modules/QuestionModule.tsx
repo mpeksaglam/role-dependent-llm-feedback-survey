@@ -28,6 +28,7 @@ export function QuestionModule({ group }: QuestionModuleProps) {
             return (
               <LikertRow
                 key={q.id}
+                questionId={q.id}
                 text={q.text}
                 scale={getScaleLength(q.responseType)}
                 leftLabel={q.leftLabel}
@@ -66,6 +67,8 @@ export function QuestionModule({ group }: QuestionModuleProps) {
                 />
               </div>
             );
+          default:
+            throw new Error("Unknown responseType"); // new types have to be added
         }
       })}
     </div>
