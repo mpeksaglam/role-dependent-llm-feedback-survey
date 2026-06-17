@@ -8,16 +8,23 @@ import {
 import { LikertRow } from "@/components/responses/LikertRow";
 import { RadioGroup } from "@/components/responses/RadioGroup";
 import { useSurvey } from "@/survey_engine/helpers/useSurvey";
+import { FreeTextInput } from "@/components/responses/FreeTextInput";
 
 interface QuestionModuleProps {
   group: QuestionGroup;
+  width?: string; // for FreeTextInput
+  height?: string;
 }
 
 function getScaleLength(type: LikertResponseType) {
   return type === "likert5" ? 5 : 7;
 }
 
-export function QuestionModule({ group }: QuestionModuleProps) {
+export function QuestionModule({
+  group,
+  width = "",
+  height = "",
+}: QuestionModuleProps) {
   const { state, setAnswer } = useSurvey();
   return (
     <div className="space-y-6">
@@ -40,16 +47,13 @@ export function QuestionModule({ group }: QuestionModuleProps) {
 
           case "freeTextInput":
             return (
-              <div key={q.id} className="space-y-2">
-                <p className="text-sm">{q.text}</p>
-                {/* TODO replace by FreeTextInput module ?? */}
-                <textarea
-                  className="w-sm rounded-sm border p-2 text-sm"
-                  rows={4}
-                  value={(state.answers[q.id] as string) ?? ""}
-                  onChange={(e) => setAnswer(q.id, e.target.value)}
-                />
-              </div>
+              <FreeTextInput
+                key={q.id}
+                width={width}
+                height={height}
+                value={(state.answers[q.id] as string) ?? ""}
+                onChange={(value) => setAnswer(q.id, value)}
+              />
             );
 
           case "singleChoice":
