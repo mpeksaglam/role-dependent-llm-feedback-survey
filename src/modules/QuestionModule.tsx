@@ -41,6 +41,7 @@ export function QuestionModule({ group }: QuestionModuleProps) {
 
           case "freeTextInput":
             return (
+              // TODO add question above textInput box
               <FreeTextInput
                 key={q.id}
                 value={(state.answers[q.id] as string) ?? ""}

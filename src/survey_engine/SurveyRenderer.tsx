@@ -19,7 +19,7 @@ export function SurveyRenderer() {
       min-h-screen 
       p-8 
       flex flex-col
-      w-full max-w-5xl mx-auto
+      w-full
       "
     >
       {/* Show current screen + Navigation buttons most of the time */}

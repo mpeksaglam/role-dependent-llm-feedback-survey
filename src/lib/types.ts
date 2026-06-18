@@ -112,6 +112,12 @@ export interface SurveyState {
   participantFlow: StepId[];
 }
 
+// Chat
+export interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
 // TODO logging
 export type SurveyEventType =
   | "condition_assigned"

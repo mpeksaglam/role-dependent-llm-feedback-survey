@@ -5,6 +5,7 @@ import { scenarioConfig } from "@/config/scenarioConfig";
 import { SimulationModule } from "@/modules/SimulationModule";
 import { QuestionModule } from "@/modules/QuestionModule";
 import { useSurvey } from "@/survey_engine/helpers/useSurvey";
+import { ChatModule } from "@/modules/ChatModule";
 
 interface ScenarioScreenProps {
   stepId: ScenarioStepId;
@@ -26,7 +27,14 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
 
       {/* TODO add kurze Aufgabenbeschreibung */}
 
-      <SimulationModule simVid={config.simulation} />
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex-1">
+          <SimulationModule simVid={config.simulation} />
+        </div>
+        <div className="flex-1">
+          <ChatModule />
+        </div>
+      </div>
 
       <QuestionModule group={questions} />
     </div>

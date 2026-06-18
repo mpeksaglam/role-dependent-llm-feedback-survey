@@ -1,21 +1,50 @@
-export default function ChatModule() {
+"use client";
+
+import { useState } from "react";
+
+import { ChatMessage } from "@/lib/types";
+
+import { ChatInput } from "@/components/chat/ChatInput";
+import { ChatMessage as ChatBubble } from "@/components/chat/ChatMessage";
+
+export function ChatModule() {
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      role: "assistant",
+      content: "Hallo, wie kann ich helfen?",
+    },
+  ]);
+
+  const handleSend = (text: string) => {
+    setMessages((prev) => [
+      ...prev,
+
+      {
+        role: "user",
+        content: text,
+      },
+    ]);
+  };
+
   return (
-    <div className="border rounded-lg p-4 h-full">
-      <h2 className="font-semibold mb-4">Chat Assistant</h2>
+    <div
+      className="
+        border
+        rounded-md
+        p-4
 
-      <div className="border rounded p-3 h-96 overflow-y-auto mb-4">
-        <p>Hello! How can I help you?</p>
+        flex
+        flex-col
+        gap-4
+      "
+    >
+      <div className="space-y-2">
+        {messages.map((message, index) => (
+          <ChatBubble key={index} message={message} />
+        ))}
       </div>
 
-      <div className="flex gap-2">
-        <input
-          type="text"
-          placeholder="Type a message..."
-          className="flex-1 border rounded px-3 py-2"
-        />
-
-        <button className="border rounded px-4 py-2">Send</button>
-      </div>
+      <ChatInput onSend={handleSend} />
     </div>
   );
 }

@@ -10,7 +10,6 @@ import {
   randomize,
 } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
-import { useRouter } from "next/router";
 
 interface Props {
   children: ReactNode;

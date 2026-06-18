@@ -12,6 +12,8 @@ export function getQuestionsForStep(
       return questionConfig.dsgvoConsent;
     case SURVEY_STEPS.PRE_SURVEY:
       return questionConfig.preSurveyQuestions;
+    case SURVEY_STEPS.TRAINING_INFO:
+      return null;
     case SURVEY_STEPS.TRAINING_TASK:
       return questionConfig.trainingQuestions;
     case SURVEY_STEPS.GEN_SCEN_1:
@@ -30,6 +32,8 @@ export function getQuestionsForStep(
       return questionConfig.questionnairesBQuestions;
     case SURVEY_STEPS.COMPARISON_QUESTIONS:
       return questionConfig.comparisonQuestions;
+    case SURVEY_STEPS.OUTRO:
+      return null;
     default:
       throw new Error("Unknown survey step"); // new survey steps have to be added
   }
