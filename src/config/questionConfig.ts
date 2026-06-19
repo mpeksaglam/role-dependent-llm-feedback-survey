@@ -229,8 +229,8 @@ export const questionConfig = {
         text: "Passt dieser Montageschritt zum Prozess?",
         responseType: "singleChoice",
         options: [
-          { label: "Prozessschritt passt", value: "process_match" },
-          { label: "Prozessschritt anpassen", value: "process_no_match" },
+          { label: "Prozessschritt passt", value: "action_accepted" },
+          { label: "Prozessschritt anpassen", value: "action_rejected" },
         ],
       },
     ],
@@ -334,8 +334,8 @@ export const questionConfig = {
         text: "Ist die gezeigte Bewegung technisch akzeptabel?",
         responseType: "singleChoice",
         options: [
-          { label: "Bewegung akzeptieren", value: "movement_accepted" },
-          { label: "Bewegung anpassen", value: "movement_rejected" },
+          { label: "Bewegung akzeptieren", value: "action_accepted" },
+          { label: "Bewegung anpassen", value: "action_rejected" },
         ],
       },
     ],

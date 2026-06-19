@@ -114,9 +114,12 @@ export interface SurveyState {
 
 // Chat
 export interface ChatMessage {
+  id: string;
   role: "user" | "assistant";
   content: string;
 }
+
+export type ChatMode = "none" | "always" | "onReject";
 
 // TODO logging
 export type SurveyEventType =

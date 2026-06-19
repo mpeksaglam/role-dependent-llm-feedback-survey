@@ -23,7 +23,7 @@ export function SurveyNavigation() {
   const noWayBack =
     currentStep === SURVEY_STEPS.INTRO || // TODO change forward button , put on IntroScreen and hideNavigation in surveyRenderer
     currentStep === SURVEY_STEPS.TRAINING_INFO ||
-    firstCondDone;
+    firstCondDone; // TODO maybe only back when not in senario screen at all (timer)
 
   const isLastStep = currentStep === SURVEY_STEPS.OUTRO;
 

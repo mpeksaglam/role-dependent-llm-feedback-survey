@@ -15,10 +15,20 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   // get UserRole for rendering correct role-specific UI
   const { state } = useSurvey();
   const role = state.userRole;
-  if (!role) return null; // should not be null at this point
+  if (!role) throw new Error("userRole missing in ScenarioScreen"); // should not be null at this point
   // get questions and video URLs
   const config = scenarioConfig[stepId];
   const questions = config.questions[role];
+  // get scenario1 questions where chat could be necessary
+  const rejectQuestionId = config.rejectQuestionIds[role];
+
+  const rejectAnswer = rejectQuestionId
+    ? state.answers[rejectQuestionId]
+    : undefined;
+
+  const showChat =
+    config.chatMode === "always" ||
+    (config.chatMode === "onReject" && rejectAnswer === "action_rejected");
 
   return (
     <div className="space-y-8 p-10">
@@ -27,13 +37,20 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
 
       {/* TODO add kurze Aufgabenbeschreibung */}
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="flex-1">
+      <div
+        className={`
+        flex gap-6 h-[500px] 
+        ${showChat ? "lg:flex-row" : "justify-center"}
+        `}
+      >
+        <div className={showChat ? "flex-1" : "w-full max-w-3xl"}>
           <SimulationModule simVid={config.simulation} />
         </div>
-        <div className="flex-1">
-          <ChatModule />
-        </div>
+        {showChat && (
+          <div className="flex-1">
+            <ChatModule scenarioId={stepId} />
+          </div>
+        )}
       </div>
 
       <QuestionModule group={questions} />

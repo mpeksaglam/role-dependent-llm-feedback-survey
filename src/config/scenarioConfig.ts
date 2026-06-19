@@ -13,6 +13,12 @@ export const scenarioConfig = {
       proc_exp: questionConfig.trainingQuestions,
       robo_exp: questionConfig.trainingQuestions,
     },
+    condition: "gen",
+    chatMode: "always",
+    rejectQuestionIds: {
+      proc_exp: undefined,
+      robo_exp: undefined,
+    },
   },
 
   [SURVEY_STEPS.GEN_SCEN_1]: {
@@ -24,6 +30,11 @@ export const scenarioConfig = {
       robo_exp: questionConfig.scen1GenericQuestions,
     },
     condition: "gen",
+    chatMode: "onReject",
+    rejectQuestionIds: {
+      proc_exp: "scen1_gen_q3_action_acceptable",
+      robo_exp: "scen1_gen_q3_action_acceptable",
+    },
   },
 
   [SURVEY_STEPS.GEN_SCEN_2]: {
@@ -34,6 +45,11 @@ export const scenarioConfig = {
       robo_exp: questionConfig.scen2GenericQuestions,
     },
     condition: "gen",
+    chatMode: "always",
+    rejectQuestionIds: {
+      proc_exp: undefined,
+      robo_exp: undefined,
+    },
   },
 
   [SURVEY_STEPS.GEN_SCEN_3]: {
@@ -44,6 +60,11 @@ export const scenarioConfig = {
       robo_exp: questionConfig.scen3GenericQuestions,
     },
     condition: "gen",
+    chatMode: "none",
+    rejectQuestionIds: {
+      proc_exp: undefined,
+      robo_exp: undefined,
+    },
   },
 
   [SURVEY_STEPS.ROLE_SPEC_SCEN_1]: {
@@ -54,6 +75,11 @@ export const scenarioConfig = {
       robo_exp: questionConfig.scen1RoboExpQuestions,
     },
     condition: "role_spec",
+    chatMode: "onReject",
+    rejectQuestionIds: {
+      proc_exp: "scen1_procexp_q4_match_with_process",
+      robo_exp: "scen1_roboexp_q4_movement_acceptable",
+    },
   },
   [SURVEY_STEPS.ROLE_SPEC_SCEN_2]: {
     title: "Rollenspez szen 2",
@@ -63,6 +89,11 @@ export const scenarioConfig = {
       robo_exp: questionConfig.scen2RoboExpQuestions,
     },
     condition: "role_spec",
+    chatMode: "always",
+    rejectQuestionIds: {
+      proc_exp: undefined,
+      robo_exp: undefined,
+    },
   },
   [SURVEY_STEPS.ROLE_SPEC_SCEN_3]: {
     title: "Rollenspezifisch szen 3",
@@ -72,5 +103,10 @@ export const scenarioConfig = {
       robo_exp: questionConfig.scen3RoboExpQuestions,
     },
     condition: "role_spec",
+    chatMode: "none",
+    rejectQuestionIds: {
+      proc_exp: undefined,
+      robo_exp: undefined,
+    },
   },
 };
