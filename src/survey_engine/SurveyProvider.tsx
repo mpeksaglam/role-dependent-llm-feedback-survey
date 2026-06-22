@@ -16,19 +16,19 @@ interface Props {
 }
 
 export function SurveyProvider({ children }: Props) {
-  // Initialization with lambda function
-  const [state, setState] = useState(() => {
-    // Randomize order and build participantFlow
+  // Initialization of static state
+  const [state, setState] = useState(initialSurveyState);
+  // TODO maybe use % 2 instead of randomize
+  useEffect(() => {
+    // client side
     const conditionOrder = randomize();
 
-    return {
-      ...initialSurveyState,
-
+    setState((prev) => ({
+      ...prev,
       conditionOrder,
-
       participantFlow: buildParticipantFlow(conditionOrder),
-    };
-  });
+    }));
+  }, []); // runs once at client start / mount
 
   // keep track of answers in current survey state
   const setAnswer = (questionId: string, value: AnswerValue) => {
