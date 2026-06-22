@@ -19,7 +19,8 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   // get questions and video URLs
   const config = scenarioConfig[stepId];
   const questions = config.questions[role];
-  // get scenario1 questions where chat could be necessary
+  // get scenario questions where chat could be necessary
+  // (user rejected acceptability of robot action)
   const rejectQuestionId = config.rejectQuestionIds[role];
 
   const rejectAnswer = rejectQuestionId
@@ -47,7 +48,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
           <SimulationModule simVid={config.simulation} />
         </div>
         {showChat && (
-          <div className="flex-1">
+          <div className="flex-1 min-h-0">
             <ChatModule scenarioId={stepId} />
           </div>
         )}

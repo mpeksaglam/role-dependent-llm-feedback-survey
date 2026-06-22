@@ -11,7 +11,14 @@ interface ChatPanelProps {
 }
 
 export function ChatPanel({ messages, onSend }: ChatPanelProps) {
-  const bottomRef = useRef<HTMLDivElement>(null);
+  // auto scroll to bottom
+  const messagesRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const container = messagesRef.current;
+    if (!container) return;
+
+    container.scrollTop = container.scrollHeight;
+  }, [messages]);
 
   return (
     <div
@@ -29,18 +36,17 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
     >
       {/* Messages */}
       <div
+        ref={messagesRef}
         className="
           flex-1
           overflow-y-auto
-          px-4
-          py-4
+          p-4
           space-y-4
         "
       >
         {messages.map((msg) => (
           <ChatMessageBubble key={msg.id} message={msg} />
         ))}
-        <div ref={bottomRef} />
       </div>
 
       {/* Input */}

@@ -38,6 +38,7 @@ export function ChatInput({ onSend }: ChatInputProps) {
         placeholder="Feedback eingeben"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        // press enter to send
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();

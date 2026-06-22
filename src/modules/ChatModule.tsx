@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { ChatMessage } from "@/lib/types";
+import { ChatMessage, SURVEY_STEPS } from "@/lib/types";
 import { ChatPanel } from "@/components/chat/ChatPanel";
 
 interface ChatModuleProps {
@@ -28,7 +28,7 @@ export function ChatModule({ scenarioId }: ChatModuleProps) {
       content: text,
     };
 
-    if (scenarioId === "training") {
+    if (scenarioId === SURVEY_STEPS.TRAINING_TASK) {
       setMessages((prev) => [
         ...prev,
         userMessage,
