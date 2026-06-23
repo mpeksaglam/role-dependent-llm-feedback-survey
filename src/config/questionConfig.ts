@@ -409,6 +409,7 @@ export const questionConfig = {
       },
     ],
   },
+  // organized here for the canProceed function to determine all are answered
   questionnairesAQuestions: {
     id: "quest_a_qs",
     title: "Fragebögen A Fragen",

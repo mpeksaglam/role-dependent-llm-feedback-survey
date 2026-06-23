@@ -1,23 +1,23 @@
 import { LikertScale } from "@/components/responses/LikertScale";
 
 interface LikertRowProps {
-  questionId: string;
+  name: string;
   text: string;
   scale: number;
   leftLabel: string;
   rightLabel: string;
-  selected?: number;
-  onSelect?: (value: number) => void;
+  value?: number;
+  onChange?: (value: number) => void;
 }
 
 export function LikertRow({
-  questionId,
+  name,
   text,
   scale,
   leftLabel,
   rightLabel,
-  selected,
-  onSelect,
+  value,
+  onChange,
 }: LikertRowProps) {
   return (
     <div className="flex items-center justify-between py-5 gap-6">
@@ -37,10 +37,10 @@ export function LikertRow({
 
         {/* SCALE */}
         <LikertScale
-          questionId={questionId}
+          name={name}
           scale={scale}
-          selected={selected}
-          onSelect={onSelect}
+          value={value}
+          onChange={onChange}
         />
 
         {/* RIGHT LABEL */}

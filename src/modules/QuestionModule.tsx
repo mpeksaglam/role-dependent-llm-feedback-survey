@@ -14,6 +14,7 @@ interface QuestionModuleProps {
   group: QuestionGroup;
 }
 
+// quite hardcoded, has to be changed for other LikertScales
 function getScaleLength(type: LikertResponseType) {
   return type === "likert5" ? 5 : 11;
 }
@@ -29,13 +30,13 @@ export function QuestionModule({ group }: QuestionModuleProps) {
             return (
               <LikertRow
                 key={q.id}
-                questionId={q.id}
+                name={q.id}
                 text={q.text}
                 scale={getScaleLength(q.responseType)}
                 leftLabel={q.leftLabel}
                 rightLabel={q.rightLabel}
-                selected={state.answers[q.id] as number | undefined}
-                onSelect={(value) => setAnswer(q.id, value)}
+                value={state.answers[q.id] as number | undefined}
+                onChange={(value) => setAnswer(q.id, value)}
               />
             );
 
