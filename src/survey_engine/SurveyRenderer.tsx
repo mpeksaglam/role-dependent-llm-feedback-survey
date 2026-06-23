@@ -7,6 +7,8 @@ import { PreSurveyScreen } from "@/screens/PreSurveyScreen";
 import { ScenarioScreen } from "@/screens/ScenarioScreen";
 import { OutroScreen } from "@/screens/OutroScreen";
 import { TrainingInfoScreen } from "@/screens/TrainingInfoScreen";
+import { QuestionnaireScreen } from "@/screens/QuestionnaireScreen";
+import { ComparisonQuestionsScreen } from "@/screens/ComparisonQuestionsScreen";
 
 export function SurveyRenderer() {
   const { state } = useSurvey();
@@ -49,7 +51,7 @@ function renderCurrentStep(stepId: StepId) {
     case SURVEY_STEPS.QUESTIONNAIRES_B:
       return <QuestionnaireScreen stepId={stepId} />;
     case SURVEY_STEPS.COMPARISON_QUESTIONS:
-      return <ComparisonQuestionScreen />;
+      return <ComparisonQuestionsScreen />;
     case SURVEY_STEPS.OUTRO:
       return <OutroScreen />;
     default:

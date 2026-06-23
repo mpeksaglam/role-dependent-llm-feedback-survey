@@ -440,7 +440,7 @@ export const questionConfig = {
     title: "Vergleichsfragen",
     questions: [
       {
-        id: "comp_1",
+        id: "helpful_int",
         text: "Welches Interface war insgesamt hilfreicher?",
         responseType: "singleChoice",
         options: [
@@ -450,7 +450,7 @@ export const questionConfig = {
         ],
       },
       {
-        id: "comp_2",
+        id: "fast_feedback_int",
         text: "Mit welchem Interface konnten Sie Feedback schneller geben?",
         responseType: "singleChoice",
         options: [
@@ -460,7 +460,7 @@ export const questionConfig = {
         ],
       },
       {
-        id: "comp_3",
+        id: "role_fit_int",
         text: "Welches Interface passte besser zu Ihrer Rolle?",
         responseType: "singleChoice",
         options: [
@@ -470,7 +470,7 @@ export const questionConfig = {
         ],
       },
       {
-        id: "comp_4",
+        id: "practice_pref_int",
         text: "Welches Interface würden Sie in der Praxis bevorzugen?",
         responseType: "singleChoice",
         options: [
@@ -480,12 +480,12 @@ export const questionConfig = {
         ],
       },
       {
-        id: "comp_5",
+        id: "unclear_feedback",
         text: "Was war unklar oder störend?",
         responseType: "freeTextInput",
       },
       {
-        id: "comp_6",
+        id: "input_choice_feedback",
         text: "Würden Sie eher Buttons, Ratings oder Freitext nutzen?",
         responseType: "freeTextInput",
       },
