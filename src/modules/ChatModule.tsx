@@ -8,26 +8,21 @@ import { ChatPanel } from "@/components/chat/ChatPanel";
 interface ChatModuleProps {
   scenarioId: string;
 }
-
+// TODO add limit for 2 messages
 export function ChatModule({ scenarioId }: ChatModuleProps) {
   const TRAINING_RESPONSE = "Dies ist eine Testantwort.";
 
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: "welcome", // to prevent hydration error / SSR safe
-      role: "assistant",
-      content: "Hallo, wie kann ich helfen?",
-    },
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
 
-  const handleSend = (text: string) => {
-    // immer zuerst User Message hinzufügen
+  const handleSend = async (text: string) => {
+    // create userMessage from input text
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
       role: "user",
       content: text,
     };
 
+    // Test answer in training
     if (scenarioId === SURVEY_STEPS.TRAINING_TASK) {
       setMessages((prev) => [
         ...prev,
@@ -41,9 +36,43 @@ export function ChatModule({ scenarioId }: ChatModuleProps) {
 
       return;
     }
-
-    // später OpenAI API Call in HandleSend
+    // add user messages to messages
     setMessages((prev) => [...prev, userMessage]);
+
+    // get response
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          scenarioId,
+          messages: [...messages, userMessage],
+        }),
+      });
+
+      const data = await response.json();
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: data.message,
+        },
+      ]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: "Fehler bei der Anfrage",
+        },
+      ]);
+    }
   };
 
   return <ChatPanel messages={messages} onSend={handleSend} />;
