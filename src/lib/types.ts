@@ -110,6 +110,7 @@ export interface SurveyState {
   userRole: UserRole | null; // allocated after presurvey
   conditionOrder: [Condition, Condition] | null; // [gen, role_spec || role_spec , gen]
   participantFlow: StepId[];
+  chatHistory: Partial<Record<ScenarioStepId, ChatMessage[]>>;
 }
 
 // Chat

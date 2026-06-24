@@ -7,4 +7,5 @@ export const initialSurveyState: SurveyState = {
   userRole: null,
   conditionOrder: null,
   participantFlow: [],
+  chatHistory: {},
 };

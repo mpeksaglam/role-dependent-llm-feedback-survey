@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { FreeTextInput } from "@/components/responses/FreeTextInput";
+import { LikertRow } from "@/components/responses/LikertRow";
+import { RadioGroup } from "@/components/responses/RadioGroup";
 import {
   LikertResponseType,
   QuestionGroup,
-  SurveyAnswers,
   SelectionOption,
 } from "@/lib/types";
-import { LikertRow } from "@/components/responses/LikertRow";
-import { RadioGroup } from "@/components/responses/RadioGroup";
 import { useSurvey } from "@/survey_engine/helpers/useSurvey";
-import { FreeTextInput } from "@/components/responses/FreeTextInput";
 
 interface QuestionModuleProps {
   group: QuestionGroup;

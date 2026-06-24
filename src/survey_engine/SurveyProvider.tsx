@@ -2,7 +2,15 @@
 
 import { ReactNode, useEffect, useState } from "react";
 
-import { AnswerValue, Condition, StepId, SURVEY_STEPS } from "@/lib/types";
+import {
+  AnswerValue,
+  ChatMessage,
+  Condition,
+  ScenarioStepId,
+  StepId,
+  SURVEY_STEPS,
+  SurveyState,
+} from "@/lib/types";
 import { SurveyContext } from "@/survey_engine/SurveyContext";
 import { initialSurveyState } from "./initialSurveyState";
 import {
@@ -17,7 +25,7 @@ interface Props {
 
 export function SurveyProvider({ children }: Props) {
   // Initialization of static state
-  const [state, setState] = useState(initialSurveyState);
+  const [state, setState] = useState<SurveyState>(initialSurveyState);
   // TODO maybe use % 2 instead of randomize
   useEffect(() => {
     // client side
@@ -92,6 +100,19 @@ export function SurveyProvider({ children }: Props) {
     }));
   };
 
+  const setChatHistory = (
+    scenarioId: ScenarioStepId,
+    messages: ChatMessage[],
+  ) => {
+    setState((prev) => ({
+      ...prev,
+      chatHistory: {
+        ...prev.chatHistory,
+        [scenarioId]: messages,
+      },
+    }));
+  };
+
   return (
     <SurveyContext.Provider
       value={{
@@ -99,6 +120,7 @@ export function SurveyProvider({ children }: Props) {
         setAnswer,
         goNext,
         goBack,
+        setChatHistory,
       }}
     >
       {children}

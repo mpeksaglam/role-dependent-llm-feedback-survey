@@ -1,20 +1,27 @@
 "use client";
 
-import { useState } from "react";
-
-import { ChatMessage, ChatResponse, SURVEY_STEPS, UserRole } from "@/lib/types";
 import { ChatPanel } from "@/components/chat/ChatPanel";
+import {
+  ChatMessage,
+  ChatResponse,
+  ScenarioStepId,
+  SURVEY_STEPS,
+  UserRole,
+} from "@/lib/types";
+import { useSurvey } from "@/survey_engine/helpers/useSurvey";
 
 interface ChatModuleProps {
   userRole: UserRole;
-  scenarioId: string;
+  scenarioId: ScenarioStepId;
 }
 // TODO add limit for 2 messages
 export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
   const TRAINING_RESPONSE = "Dies ist eine Testantwort.";
 
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const { state, setChatHistory } = useSurvey();
+  const messages = state.chatHistory[scenarioId] ?? [];
 
+  // Handle user input/message
   const handleSend = async (text: string) => {
     // create userMessage from new input text and update
     const userMessage: ChatMessage = {
@@ -26,7 +33,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
 
     // Test answer in training
     if (scenarioId === SURVEY_STEPS.TRAINING_TASK) {
-      setMessages([
+      setChatHistory(scenarioId, [
         ...updatedMessages,
         {
           id: crypto.randomUUID(),
@@ -38,8 +45,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       return;
     }
 
-    // add new user message to messages
-    setMessages(updatedMessages);
+    // add new user message to message state
+    setChatHistory(scenarioId, updatedMessages);
 
     // send chat history to API and request response
     try {
@@ -58,8 +65,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       });
       // parse API response
       const data: ChatResponse = await response.json();
-      setMessages((prev) => [
-        ...prev,
+      setChatHistory(scenarioId, [
+        ...updatedMessages,
         {
           id: crypto.randomUUID(),
           role: "assistant",
@@ -67,8 +74,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
         },
       ]);
     } catch {
-      setMessages((prev) => [
-        ...prev,
+      setChatHistory(scenarioId, [
+        ...updatedMessages,
         {
           id: crypto.randomUUID(),
           role: "assistant",

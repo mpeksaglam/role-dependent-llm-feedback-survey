@@ -1,6 +1,12 @@
 import { createContext } from "react";
 
-import { AnswerValue, StepId, SurveyState } from "@/lib/types";
+import {
+  AnswerValue,
+  ChatMessage,
+  ScenarioStepId,
+  StepId,
+  SurveyState,
+} from "@/lib/types";
 
 export interface SurveyContextValue {
   state: SurveyState;
@@ -10,6 +16,8 @@ export interface SurveyContextValue {
   goNext: () => void;
 
   goBack: () => void;
+
+  setChatHistory: (scenarioId: ScenarioStepId, messages: ChatMessage[]) => void;
 }
 
 export const SurveyContext = createContext<SurveyContextValue | null>(null);
