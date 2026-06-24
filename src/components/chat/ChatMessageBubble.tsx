@@ -1,4 +1,5 @@
 import { ChatMessage } from "@/lib/types";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   message: ChatMessage;
@@ -26,7 +27,7 @@ export function ChatMessageBubble({ message }: Props) {
           ${isUser ? "bg-gray-100 text-black" : "text-black"}
         `}
       >
-        {message.content}
+        <ReactMarkdown>{message.content}</ReactMarkdown>
       </div>
     </div>
   );
