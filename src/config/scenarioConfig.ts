@@ -19,6 +19,10 @@ export const scenarioConfig = {
       proc_exp: undefined,
       robo_exp: undefined,
     },
+    systemPromptFile: {
+      proc_exp: "",
+      robo_exp: "",
+    },
   },
 
   [SURVEY_STEPS.GEN_SCEN_1]: {
@@ -35,6 +39,10 @@ export const scenarioConfig = {
       proc_exp: "scen1_gen_q3_action_acceptable",
       robo_exp: "scen1_gen_q3_action_acceptable",
     },
+    systemPromptFile: {
+      proc_exp: "system_prompts_generic_scenario1.txt",
+      robo_exp: "system_prompts_generic_scenario1.txt",
+    },
   },
 
   [SURVEY_STEPS.GEN_SCEN_2]: {
@@ -49,6 +57,10 @@ export const scenarioConfig = {
     rejectQuestionIds: {
       proc_exp: undefined,
       robo_exp: undefined,
+    },
+    systemPromptFile: {
+      proc_exp: "system_prompts_generic_scenario2.txt",
+      robo_exp: "system_prompts_generic_scenario2.txt",
     },
   },
 
@@ -65,6 +77,10 @@ export const scenarioConfig = {
       proc_exp: undefined,
       robo_exp: undefined,
     },
+    systemPromptFile: {
+      proc_exp: "system_prompts_generic_scenario3.txt",
+      robo_exp: "system_prompts_generic_scenario3.txt",
+    },
   },
 
   [SURVEY_STEPS.ROLE_SPEC_SCEN_1]: {
@@ -80,6 +96,10 @@ export const scenarioConfig = {
       proc_exp: "scen1_procexp_q4_match_with_process",
       robo_exp: "scen1_roboexp_q4_movement_acceptable",
     },
+    systemPromptFile: {
+      proc_exp: "system_prompts_processexpert_scenario1.txt",
+      robo_exp: "system_prompts_robotexpert_scenario1.txt",
+    },
   },
   [SURVEY_STEPS.ROLE_SPEC_SCEN_2]: {
     title: "Rollenspez szen 2",
@@ -94,6 +114,10 @@ export const scenarioConfig = {
       proc_exp: undefined,
       robo_exp: undefined,
     },
+    systemPromptFile: {
+      proc_exp: "system_prompts_processexpert_scenario2.txt",
+      robo_exp: "system_prompts_robotexpert_scenario2.txt",
+    },
   },
   [SURVEY_STEPS.ROLE_SPEC_SCEN_3]: {
     title: "Rollenspezifisch szen 3",
@@ -107,6 +131,10 @@ export const scenarioConfig = {
     rejectQuestionIds: {
       proc_exp: undefined,
       robo_exp: undefined,
+    },
+    systemPromptFile: {
+      proc_exp: "system_prompts_processexpert_scenario3.txt",
+      robo_exp: "system_prompts_robotexpert_scenario3.txt",
     },
   },
 };
