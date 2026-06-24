@@ -24,6 +24,7 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
     <div
       className="
         h-full
+        min-h-0
         flex
         flex-col
         rounded-2xl
@@ -39,6 +40,7 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
         ref={messagesRef}
         className="
           flex-1
+          min-h-0
           overflow-y-auto
           p-4
           space-y-4

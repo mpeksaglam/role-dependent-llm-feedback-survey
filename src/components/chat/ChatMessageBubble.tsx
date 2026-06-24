@@ -23,8 +23,11 @@ export function ChatMessageBubble({ message }: Props) {
           rounded-2xl
           text-sm
           leading-relaxed
-
           ${isUser ? "bg-gray-100 text-black" : "text-black"}
+
+          whitespace-pre-wrap
+          break-all
+          overflow-hidden
         `}
       >
         <ReactMarkdown>{message.content}</ReactMarkdown>
