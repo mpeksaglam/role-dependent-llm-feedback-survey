@@ -10,22 +10,36 @@ import {
 } from "@/lib/types";
 import { useSurvey } from "@/survey_engine/helpers/useSurvey";
 
+// static constants
+const WELCOME_MESSAGE: ChatMessage = {
+  id: "welcome", // to prevent hydration error / SSR safe
+  role: "assistant",
+  content: "Hallo, bitte teilen Sie mir Ihre Anpassung mit.",
+};
+const TRAINING_WELCOME_MESSAGE: ChatMessage = {
+  id: "training_welcome", // to prevent hydration error / SSR safe
+  role: "assistant",
+  content: "Hallo, in diesem Chatfeld können Sie mit ChatGPT interagieren.",
+};
+const TRAINING_RESPONSE = "Dies ist eine Testantwort.";
+
 interface ChatModuleProps {
   userRole: UserRole;
   scenarioId: ScenarioStepId;
 }
 // TODO add limit for 2 messages
 export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
-  const welcomeMessage: ChatMessage = {
-    id: "welcome", // to prevent hydration error / SSR safe
-    role: "assistant",
-    content: "Hallo, bitte teilen Sie mir Ihre Anpassung mit.",
-  };
-  const TRAINING_RESPONSE = "Dies ist eine Testantwort.";
-
-  // Set up surveyState and add welcome message if nothing there yet.
+  // Access surveyState
   const { state, setChatHistory } = useSurvey();
-  const messages = state.chatHistory[scenarioId] ?? [welcomeMessage];
+  // decide default message based on scenarioId
+  const defaultMessage =
+    scenarioId === SURVEY_STEPS.TRAINING_TASK
+      ? TRAINING_WELCOME_MESSAGE
+      : WELCOME_MESSAGE;
+  // display default welcome message if nothing there yet
+  const messages: ChatMessage[] = state.chatHistory[scenarioId] ?? [
+    defaultMessage,
+  ];
 
   // Handle user input/message
   const handleSend = async (text: string) => {
