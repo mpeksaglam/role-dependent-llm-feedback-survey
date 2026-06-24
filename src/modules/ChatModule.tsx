@@ -16,10 +16,16 @@ interface ChatModuleProps {
 }
 // TODO add limit for 2 messages
 export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
+  const welcomeMessage: ChatMessage = {
+    id: "welcome", // to prevent hydration error / SSR safe
+    role: "assistant",
+    content: "Hallo, bitte teilen Sie mir Ihre Anpassung mit.",
+  };
   const TRAINING_RESPONSE = "Dies ist eine Testantwort.";
 
+  // Set up surveyState and add welcome message if nothing there yet.
   const { state, setChatHistory } = useSurvey();
-  const messages = state.chatHistory[scenarioId] ?? [];
+  const messages = state.chatHistory[scenarioId] ?? [welcomeMessage];
 
   // Handle user input/message
   const handleSend = async (text: string) => {
@@ -41,7 +47,6 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
           content: TRAINING_RESPONSE,
         },
       ]);
-
       return;
     }
 

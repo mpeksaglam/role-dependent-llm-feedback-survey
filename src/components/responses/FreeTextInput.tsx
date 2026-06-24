@@ -7,7 +7,7 @@ interface FreeTextInputProps {
 export function FreeTextInput({ text, value, onChange }: FreeTextInputProps) {
   return (
     <div>
-      <p className="text-sm">{text}</p>
+      <p className="text-sm mb-4">{text}</p>
       <textarea
         className="
         w-sm h-24
