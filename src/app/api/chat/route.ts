@@ -34,19 +34,13 @@ export async function POST(request: Request) {
       },
       ...messages.map((message) => ({
         role: message.role as "user" | "assistant",
-        content: [
-          {
-            type: "input_text" as const,
-            text: message.content,
-          },
-        ],
+        content: message.content,
       })),
     ];
 
     // get response
     const response = await openai.responses.create({
-      model: "gpt-5-mini", // TODO change
-
+      model: "gpt-5.4-mini-2026-03-17", // TODO change
       input: input,
     });
 
