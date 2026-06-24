@@ -2,31 +2,32 @@
 
 import { useState } from "react";
 
-import { ChatMessage, SURVEY_STEPS } from "@/lib/types";
+import { ChatMessage, ChatResponse, SURVEY_STEPS, UserRole } from "@/lib/types";
 import { ChatPanel } from "@/components/chat/ChatPanel";
 
 interface ChatModuleProps {
+  userRole: UserRole;
   scenarioId: string;
 }
 // TODO add limit for 2 messages
-export function ChatModule({ scenarioId }: ChatModuleProps) {
+export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
   const TRAINING_RESPONSE = "Dies ist eine Testantwort.";
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   const handleSend = async (text: string) => {
-    // create userMessage from input text
+    // create userMessage from new input text and update
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
       role: "user",
       content: text,
     };
+    const updatedMessages = [...messages, userMessage];
 
     // Test answer in training
     if (scenarioId === SURVEY_STEPS.TRAINING_TASK) {
-      setMessages((prev) => [
-        ...prev,
-        userMessage,
+      setMessages([
+        ...updatedMessages,
         {
           id: crypto.randomUUID(),
           role: "assistant",
@@ -36,10 +37,11 @@ export function ChatModule({ scenarioId }: ChatModuleProps) {
 
       return;
     }
-    // add user messages to messages
-    setMessages((prev) => [...prev, userMessage]);
 
-    // get response
+    // add new user message to messages
+    setMessages(updatedMessages);
+
+    // send chat history to API and request response
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -50,11 +52,12 @@ export function ChatModule({ scenarioId }: ChatModuleProps) {
 
         body: JSON.stringify({
           scenarioId,
-          messages: [...messages, userMessage],
+          userRole,
+          messages: updatedMessages,
         }),
       });
-
-      const data = await response.json();
+      // parse API response
+      const data: ChatResponse = await response.json();
       setMessages((prev) => [
         ...prev,
         {

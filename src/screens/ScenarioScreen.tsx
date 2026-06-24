@@ -14,14 +14,14 @@ interface ScenarioScreenProps {
 export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   // get UserRole for rendering correct role-specific UI
   const { state } = useSurvey();
-  const role = state.userRole;
-  if (!role) throw new Error("userRole missing in ScenarioScreen"); // should not be null at this point
+  const userRole = state.userRole;
+  if (!userRole) throw new Error("userRole missing in ScenarioScreen"); // should not be null at this point
   // get questions and video URLs
   const config = scenarioConfig[stepId];
-  const questions = config.questions[role];
+  const questions = config.questions[userRole];
   // get scenario questions where chat could be necessary
   // (user rejected acceptability of robot action)
-  const rejectQuestionId = config.rejectQuestionIds[role];
+  const rejectQuestionId = config.rejectQuestionIds[userRole];
 
   const rejectAnswer = rejectQuestionId
     ? state.answers[rejectQuestionId]
@@ -49,7 +49,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
         </div>
         {showChat && (
           <div className="flex-1 min-h-0">
-            <ChatModule scenarioId={stepId} />
+            <ChatModule scenarioId={stepId} userRole={userRole} />
           </div>
         )}
       </div>

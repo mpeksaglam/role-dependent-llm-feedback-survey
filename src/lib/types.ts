@@ -121,6 +121,16 @@ export interface ChatMessage {
 
 export type ChatMode = "none" | "always" | "onReject";
 
+export type ChatRequest = {
+  scenarioId: ScenarioStepId;
+  userRole: UserRole;
+  messages: ChatMessage[];
+};
+
+export type ChatResponse = {
+  message: string;
+};
+
 // TODO logging
 export type SurveyEventType =
   | "condition_assigned"
