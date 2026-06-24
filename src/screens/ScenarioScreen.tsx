@@ -19,10 +19,9 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   // get questions and video URLs
   const config = scenarioConfig[stepId];
   const questions = config.questions[userRole];
-  // get scenario questions where chat could be necessary
-  // (user rejected acceptability of robot action)
+  // get scenario questions where chat is an option
+  // (user deems robot action improvable)
   const rejectQuestionId = config.rejectQuestionIds[userRole];
-
   const rejectAnswer = rejectQuestionId
     ? state.answers[rejectQuestionId]
     : undefined;
@@ -34,9 +33,10 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   return (
     <div className="space-y-8 p-10">
       {/* Titel */}
-      <h1 className="text-lg font-bold">{config.title}</h1>
+      <h1 className="text-lg font-bold">{config.title[userRole]}</h1>
 
-      {/* TODO add kurze Aufgabenbeschreibung */}
+      {/* kurze Aufgabenbeschreibung */}
+      <p>{config.task_descr[userRole]}</p>
 
       <div
         className={`

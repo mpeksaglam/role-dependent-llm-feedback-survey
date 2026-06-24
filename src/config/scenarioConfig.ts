@@ -3,11 +3,16 @@ import { simulationConfig } from "@/config/simulationConfig";
 import { questionConfig } from "./questionConfig";
 
 // References simulationConfig and questionConfig
-// Title is rendered into UI
-// TODO add aufgabenbeschreibung
 export const scenarioConfig = {
   [SURVEY_STEPS.TRAINING_TASK]: {
-    title: "Trainingsaufgabe",
+    title: {
+      proc_exp: "Trainingsaufgabe",
+      robo_exp: "Trainingsaufgabe",
+    },
+    task_descr: {
+      proc_exp: "Bitte machen Sie sich mit der Umgebung vertraut.",
+      robo_exp: "Bitte machen Sie sich mit der Umgebung vertraut.",
+    },
     simulation: simulationConfig.sim_vid1,
     questions: {
       proc_exp: questionConfig.trainingQuestions,
@@ -26,7 +31,14 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.GEN_SCEN_1]: {
-    title: "Szenario 1", // TODO change to Aufgabenuberschrift/anweisung?
+    title: {
+      proc_exp: "Feedback zur Roboterhandlung",
+      robo_exp: "Feedback zur Roboterhandlung",
+    },
+    task_descr: {
+      proc_exp: "Bitte bewerten Sie die gezeigte Handlung.",
+      robo_exp: "Bitte bewerten Sie die gezeigte Handlung.",
+    },
     simulation: simulationConfig.sim_vid1,
     questions: {
       // Always same in generic condition
@@ -46,7 +58,16 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.GEN_SCEN_2]: {
-    title: "Szenario 2",
+    title: {
+      proc_exp: "Korrektur der Roboterhandlung",
+      robo_exp: "Korrektur der Roboterhandlung",
+    },
+    task_descr: {
+      proc_exp:
+        "Beschreiben Sie, was an der gezeigten Handlung angepasst werden sollte.",
+      robo_exp:
+        "Beschreiben Sie, was an der gezeigten Handlung angepasst werden sollte.",
+    },
     simulation: simulationConfig.sim_vid1, // sim_vid2 later
     questions: {
       proc_exp: questionConfig.scen2GenericQuestions,
@@ -65,7 +86,16 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.GEN_SCEN_3]: {
-    title: "Szenario 3",
+    title: {
+      proc_exp: "Präferenz zwischen zwei Varianten",
+      robo_exp: "Präferenz zwischen zwei Varianten",
+    },
+    task_descr: {
+      proc_exp:
+        "Vergleichen Sie die beiden Varianten und wählen Sie die geeignetere Ausführung.",
+      robo_exp:
+        "Vergleichen Sie die beiden Varianten und wählen Sie die geeignetere Ausführung.",
+    },
     simulation: simulationConfig.sim_vids23, // change later
     questions: {
       proc_exp: questionConfig.scen3GenericQuestions,
@@ -84,7 +114,16 @@ export const scenarioConfig = {
   },
 
   [SURVEY_STEPS.ROLE_SPEC_SCEN_1]: {
-    title: "Rollenspezifisches Interface",
+    title: {
+      proc_exp: "Prozessfeedback zur Montagehandlung",
+      robo_exp: "Technisches Feedback zur Roboterbewegung",
+    },
+    task_descr: {
+      proc_exp:
+        "Bewerten Sie, ob der gezeigte Montageschritt aus Prozesssicht sinnvoll, sicher und praktikabel ist.",
+      robo_exp:
+        "Bewerten Sie, ob die Bewegung technisch geeignet und sicher ausführbar ist.",
+    },
     simulation: simulationConfig.sim_vid1,
     questions: {
       proc_exp: questionConfig.scen1ProcExpQuestions,
@@ -102,7 +141,15 @@ export const scenarioConfig = {
     },
   },
   [SURVEY_STEPS.ROLE_SPEC_SCEN_2]: {
-    title: "Rollenspez szen 2",
+    title: {
+      proc_exp: "Prozesskorrektur zur Montagehandlung",
+      robo_exp: "Technische Korrektur zur Roboterbewegung",
+    },
+    task_descr: {
+      proc_exp:
+        "Beschreiben Sie, was aus Prozesssicht angepasst werden sollte.",
+      robo_exp: "Beschreiben Sie, was technisch angepasst werden sollte.",
+    },
     simulation: simulationConfig.sim_vid1,
     questions: {
       proc_exp: questionConfig.scen2ProcExpQuestions,
@@ -120,7 +167,15 @@ export const scenarioConfig = {
     },
   },
   [SURVEY_STEPS.ROLE_SPEC_SCEN_3]: {
-    title: "Rollenspezifisch szen 3",
+    title: {
+      proc_exp: "Prozesspräferenz zwischen zwei Montagevarianten",
+      robo_exp: "Technische Präferenz zwischen zwei Montagevarianten",
+    },
+    task_descr: {
+      proc_exp:
+        "Vergleichen Sie die beiden Varianten aus Prozesssicht für die Montage.",
+      robo_exp: "Vergleichen Sie die beiden Varianten aus technischer Sicht.",
+    },
     simulation: simulationConfig.sim_vids23,
     questions: {
       proc_exp: questionConfig.scen3ProcExpQuestions,
