@@ -16,6 +16,10 @@ export async function POST(request: Request) {
     // receive request
     const body: ChatRequest = await request.json();
     const { scenarioId, userRole, messages, selectedAnswers } = body;
+
+    console.log("REQUEST BODY");
+    console.dir(body, { depth: null });
+
     // find and build system prompt
     const config = scenarioConfig[scenarioId];
     const promptFile = config.systemPromptFile[userRole];
@@ -31,6 +35,12 @@ export async function POST(request: Request) {
     // turn user selected answers into JSON
     const contextPrompt = JSON.stringify(selectedAnswers, null, 2);
 
+    // filter messages not meant for llm
+    const llmMessages = messages.filter(
+      (message) =>
+        message.id !== "welcome" && message.id !== "training_welcome",
+    );
+
     // build input: system prompt + dynamic current user answers
     const input = [
       {
@@ -38,6 +48,7 @@ export async function POST(request: Request) {
         content: `
           ${systemPrompt},
 
+          ### Return ONLY valid JSON. Do not use markdown code fences. Do not wrap the JSON in \`\`\`json.
           ### CURRENT CONTEXT (the answers the user selected):
               Use the following data to set fields in the output JSON if applicable.
               Specifically the given data should help fill in the fields 
@@ -45,20 +56,29 @@ export async function POST(request: Request) {
           ${contextPrompt}
         `,
       },
-      ...messages.map((message) => ({
+      // input all messages except welcome
+      ...llmMessages.map((message) => ({
         role: message.role as "user" | "assistant",
         content: message.content,
       })),
     ];
+    // TODO remove debug
+    // console.log("INPUT");
+    // console.dir(input, { depth: null });
 
     // get openAI response
-    const response = await openai.responses.create({
+    const openAiResponse = await openai.responses.create({
       model: "gpt-5.4-mini-2026-03-17", // TODO change
       input,
     });
     // send openAI response back to browser
+
+    // TODO remove debug
+    // console.log("OPENAI RESPONSE");
+    // console.dir(openAiResponse, { depth: null });
+
     return Response.json({
-      message: response.output_text,
+      message: openAiResponse.output_text,
     });
   } catch (error) {
     console.error(error);

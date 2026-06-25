@@ -88,9 +88,9 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       messages: updatedMessages,
       selectedAnswers,
     };
-    // send requestBody to backend server and await http response
+    // send requestBody to backend endpoint and await http response
     try {
-      const response = await fetch("/api/chat", {
+      const apiResponse = await fetch("/api/chat", {
         method: "POST",
 
         headers: {
@@ -99,23 +99,39 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
 
         body: JSON.stringify(requestBody),
       });
-      // receive http response from backend
-      const data: ChatResponse = await response.json();
-      setChatHistory(scenarioId, [
-        ...updatedMessages,
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          content: data.message,
-        },
-      ]);
+      // receive and parse http response from backend
+      const chatResponse: ChatResponse = await apiResponse.json();
+
+      // TODO remove debug
+      // console.group("message", chatResponse.message);
+
+      const parsedResponse = JSON.parse(chatResponse.message);
+      // extract fields to display for user
+      const userConfRequired: boolean = parsedResponse.confirmation_required;
+      const sysInterpretation =
+        parsedResponse.revised_system_interpretation_for_user ??
+        parsedResponse.system_interpretation_for_user;
+      const confirmationQuestion = parsedResponse.confirmation_question;
+
+      // build response message
+      const assistantMessage: ChatMessage = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content: userConfRequired
+          ? `${sysInterpretation}\n\n${confirmationQuestion}`
+          : sysInterpretation,
+      };
+      // update state
+      setChatHistory(scenarioId, [...updatedMessages, assistantMessage]);
+      // in case any errors happen (invalid JSON output etc...)
     } catch {
       setChatHistory(scenarioId, [
         ...updatedMessages,
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: "Fehler bei der Anfrage",
+          content:
+            "Es ist ein Fehler bei der Anfrage unterlaufen, bitte versuchen Sie es erneut.",
         },
       ]);
     }
