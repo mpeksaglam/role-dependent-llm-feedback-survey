@@ -70,10 +70,10 @@ export function SurveyProvider({ children }: Props) {
     }
     // Special case 2: assign userRole after presurvey
     else if (state.currentStepId === SURVEY_STEPS.PRE_SURVEY) {
-      const role = deriveUserRole(state.answers);
+      const userRole = deriveUserRole(state.answers);
       setState((prev) => ({
         ...prev,
-        userRole: role,
+        userRole,
         currentStepId: nextStep,
       }));
     } // Standard case goNext()

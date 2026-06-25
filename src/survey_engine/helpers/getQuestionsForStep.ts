@@ -5,7 +5,7 @@ import { StepId, SURVEY_STEPS, UserRole, QuestionGroup } from "@/lib/types";
 
 export function getQuestionsForStep(
   stepId: StepId,
-  role: UserRole | null, // null if not yet assigned
+  userRole: UserRole | null, // null if not yet assigned
 ): QuestionGroup | null {
   switch (stepId) {
     case SURVEY_STEPS.INTRO:
@@ -22,10 +22,10 @@ export function getQuestionsForStep(
     case SURVEY_STEPS.ROLE_SPEC_SCEN_1:
     case SURVEY_STEPS.ROLE_SPEC_SCEN_2:
     case SURVEY_STEPS.ROLE_SPEC_SCEN_3:
-      if (!role) {
+      if (!userRole) {
         throw new Error("User role not assigned but made it to scenarios");
       }
-      return scenarioConfig[stepId].questions[role];
+      return scenarioConfig[stepId].questions[userRole];
     case SURVEY_STEPS.QUESTIONNAIRES_A:
       return questionConfig.questionnairesAQuestions;
     case SURVEY_STEPS.QUESTIONNAIRES_B:

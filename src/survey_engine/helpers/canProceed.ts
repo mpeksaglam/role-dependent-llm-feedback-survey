@@ -7,9 +7,9 @@ import { getQuestionsForStep } from "./getQuestionsForStep";
 export function canProceed(
   stepId: StepId,
   answers: SurveyAnswers,
-  role: UserRole | null,
+  userRole: UserRole | null,
 ) {
-  const group = getQuestionsForStep(stepId, role);
+  const group = getQuestionsForStep(stepId, userRole);
 
   if (!group) {
     return true;
