@@ -51,7 +51,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
   const selectedAnswers = questions.questions.reduce<
     Record<string, string | number | undefined> // answer is number, string, or nothing yet
   >((acc, question) => {
-    acc[question.text] = state.answers[question.id];
+    acc[question.id] = state.answers[question.id];
     return acc;
   }, {});
 
@@ -88,7 +88,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       messages: updatedMessages,
       selectedAnswers,
     };
-    // send chat history to API and request response
+    // send requestBody to backend server and await http response
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -99,7 +99,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
 
         body: JSON.stringify(requestBody),
       });
-      // parse API response
+      // receive http response from backend
       const data: ChatResponse = await response.json();
       setChatHistory(scenarioId, [
         ...updatedMessages,
