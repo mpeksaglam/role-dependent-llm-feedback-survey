@@ -25,7 +25,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   const rejectAnswer = rejectQuestionId
     ? state.answers[rejectQuestionId]
     : undefined;
-
+  // decide when to render chat
   const showChat =
     config.chatMode === "always" ||
     (config.chatMode === "onReject" && rejectAnswer === "action_rejected");
@@ -43,11 +43,10 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
       {/* Titel */}
       <h1
         className="
-        text-2xl
-        font-semibold
-        tracking-tight
-        text-gray-900
-      "
+          text-lg
+          font-semibold
+          text-gray-900
+        "
       >
         {config.title[userRole]}
       </h1>
@@ -55,10 +54,11 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
       {/* kurze Aufgabenbeschreibung */}
       <p
         className="
-        text-gray-900
-        leading-7
-        max-w-3xl
-      "
+          text-sm
+          text-gray-900
+          leading-6
+          max-w-3xl
+        "
       >
         {config.taskDescr[userRole]}
       </p>

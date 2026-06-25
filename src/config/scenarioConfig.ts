@@ -92,9 +92,9 @@ export const scenarioConfig = {
     },
     taskDescr: {
       proc_exp:
-        "Vergleichen Sie die beiden Varianten und wählen Sie die geeignetere Ausführung.",
+        "Vergleichen Sie die beiden Varianten und wählen Sie die Ausführung, die sich besser eignet.",
       robo_exp:
-        "Vergleichen Sie die beiden Varianten und wählen Sie die geeignetere Ausführung.",
+        "Vergleichen Sie die beiden Varianten und wählen Sie die Ausführung, die sich besser eignet.",
     },
     simulation: simulationConfig.sim_vids23, // change later
     questions: {

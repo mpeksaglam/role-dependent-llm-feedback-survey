@@ -20,22 +20,32 @@ export function QuestionnaireScreen({ stepId }: QuestionnaireScreenProps) {
 
   return (
     <div className="space-y-12 p-10">
-      <h1 className="text-xl font-bold">Fragebögen</h1>
+      <h1
+        className="
+            text-xl 
+            text-gray-900
+            font-semibold
+          "
+      >
+        Fragebögen
+      </h1>
 
       <section className="space-y-6">
-        <h2 className="text-lg font-semibold">System Usability Scale</h2>
+        <h2 className="text-lg text-gray-900 font-semibold">
+          System Usability Scale
+        </h2>
 
         <QuestionModule group={sus} />
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-lg font-semibold">NASA-TLX</h2>
+        <h2 className="text-lg text-gray-900 font-semibold">NASA-TLX</h2>
 
         <QuestionModule group={nasa} />
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-lg font-semibold">Role Fit</h2>
+        <h2 className="text-lg text-gray-900 font-semibold">Role-Fit</h2>
 
         <QuestionModule group={roleFit} />
       </section>

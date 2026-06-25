@@ -11,7 +11,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
       <video
         controls
         className="
-                rounded-3xl
+                rounded-xl
                 w-full
                 h-full
                 object-contain
@@ -28,7 +28,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
       <video
         controls
         className="                
-          rounded-3xl
+          rounded-xl
           w-full
           h-full
           object-contain"
@@ -39,7 +39,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
       <video
         controls
         className="                
-          rounded-3xl
+          rounded-xl
           w-full
           h-full
           object-contain"
