@@ -1,5 +1,4 @@
 import { ChatMessage } from "@/lib/types";
-import ReactMarkdown from "react-markdown";
 
 interface Props {
   message: ChatMessage;
@@ -20,7 +19,7 @@ export function ChatMessageBubble({ message }: Props) {
           rounded-2xl
 
           text-sm
-          leading-7
+          leading-6
 
           whitespace-pre-wrap
           break-words
@@ -32,7 +31,7 @@ export function ChatMessageBubble({ message }: Props) {
           }
         `}
       >
-        <ReactMarkdown>{message.content}</ReactMarkdown>
+        {message.content}
       </div>
     </div>
   );
