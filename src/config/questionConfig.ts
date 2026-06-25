@@ -158,8 +158,8 @@ export const questionConfig = {
         text: "Welche Variante ist besser?",
         responseType: "singleChoice",
         options: [
-          { label: "Variante A", value: "variant_a_preferred" },
-          { label: "Variante B", value: "variant_b_preferred" },
+          { label: "Linkes Video", value: "variant_a_preferred" },
+          { label: "Rechtes Video", value: "variant_b_preferred" },
           { label: "Kein klarer Unterschied", value: "no_preference" },
         ],
       },
@@ -249,8 +249,8 @@ export const questionConfig = {
         text: "Welche Variante ist aus Prozesssicht besser?",
         responseType: "singleChoice",
         options: [
-          { label: "Variante A", value: "variant_a_preferred" },
-          { label: "Variante B", value: "variant_b_preferred" },
+          { label: "Linkes Video", value: "variant_a_preferred" },
+          { label: "Rechtes Video", value: "variant_b_preferred" },
           { label: "Kein klarer Unterschied", value: "no_preference" },
         ],
       },
@@ -355,8 +355,8 @@ export const questionConfig = {
         text: "Welche Variante ist technisch besser?",
         responseType: "singleChoice",
         options: [
-          { label: "Variante A", value: "variant_a_preferred" },
-          { label: "Variante B", value: "variant_b_preferred" },
+          { label: "Linkes Video", value: "variant_a_preferred" },
+          { label: "Rechtes Video", value: "variant_b_preferred" },
           { label: "Kein klarer Unterschied", value: "no_preference" },
         ],
       },
