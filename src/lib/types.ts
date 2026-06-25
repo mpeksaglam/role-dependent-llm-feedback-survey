@@ -116,7 +116,7 @@ export interface SurveyState {
 // Chat
 export interface ChatMessage {
   id: string;
-  role: "user" | "assistant";
+  role: "user" | "assistant"; // "role" used for openAI API, user or LLM
   content: string;
 }
 
@@ -126,6 +126,7 @@ export type ChatRequest = {
   scenarioId: ScenarioStepId;
   userRole: UserRole;
   messages: ChatMessage[];
+  selectedAnswers: Record<string, unknown>; // answers are <q.id, string || number>
 };
 
 export type ChatResponse = {

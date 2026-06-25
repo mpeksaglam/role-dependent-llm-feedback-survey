@@ -1,8 +1,10 @@
 "use client";
 
 import { ChatPanel } from "@/components/chat/ChatPanel";
+import { scenarioConfig } from "@/config/scenarioConfig";
 import {
   ChatMessage,
+  ChatRequest,
   ChatResponse,
   ScenarioStepId,
   SURVEY_STEPS,
@@ -27,10 +29,11 @@ interface ChatModuleProps {
   userRole: UserRole;
   scenarioId: ScenarioStepId;
 }
-// TODO add limit for 2 messages
+
 export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
-  // Access surveyState
+  // Access survey context
   const { state, setChatHistory } = useSurvey();
+
   // decide default message based on scenarioId
   const defaultMessage =
     scenarioId === SURVEY_STEPS.TRAINING_TASK
@@ -41,7 +44,18 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
     defaultMessage,
   ];
 
-  // Handle user input/message
+  // get current config and questions in order to send them to OpenAI
+  const config = scenarioConfig[scenarioId];
+  const questions = config.questions[userRole];
+  // create object with all questions { q.text: user-selected answer, ...}
+  const selectedAnswers = questions.questions.reduce<
+    Record<string, string | number | undefined> // answer is number, string, or nothing yet
+  >((acc, question) => {
+    acc[question.text] = state.answers[question.id];
+    return acc;
+  }, {});
+
+  // Send user input to OpenAI API
   const handleSend = async (text: string) => {
     // create userMessage from new input text and update
     const userMessage: ChatMessage = {
@@ -67,6 +81,13 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
     // add new user message to message state
     setChatHistory(scenarioId, updatedMessages);
 
+    // request body
+    const requestBody: ChatRequest = {
+      scenarioId,
+      userRole,
+      messages: updatedMessages,
+      selectedAnswers,
+    };
     // send chat history to API and request response
     try {
       const response = await fetch("/api/chat", {
@@ -76,11 +97,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
           "Content-Type": "application/json",
         },
 
-        body: JSON.stringify({
-          scenarioId,
-          userRole,
-          messages: updatedMessages,
-        }),
+        body: JSON.stringify(requestBody),
       });
       // parse API response
       const data: ChatResponse = await response.json();

@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   try {
     const body: ChatRequest = await request.json();
 
-    const { scenarioId, userRole, messages } = body;
+    const { scenarioId, userRole, messages, selectedAnswers } = body;
     // get system prompt
     const config = scenarioConfig[scenarioId];
     const promptFile = config.systemPromptFile[userRole];
@@ -26,11 +26,18 @@ export async function POST(request: Request) {
     );
     const systemPrompt = await fs.readFile(promptPath, "utf8");
 
-    // build input
+    // turn selected answers into JSON
+    const answerContext = JSON.stringify(selectedAnswers, null, 2);
+
+    // build input: system prompt + dynamic current user answers
     const input = [
       {
         role: "developer" as const,
         content: systemPrompt,
+      },
+      {
+        role: "developer" as const,
+        content: "Aktuelle Antworten des Nutzers:\n" + answerContext,
       },
       ...messages.map((message) => ({
         role: message.role as "user" | "assistant",
@@ -41,7 +48,7 @@ export async function POST(request: Request) {
     // get response
     const response = await openai.responses.create({
       model: "gpt-5.4-mini-2026-03-17", // TODO change
-      input: input,
+      input,
     });
 
     return Response.json({
