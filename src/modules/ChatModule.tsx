@@ -104,5 +104,14 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
     }
   };
 
-  return <ChatPanel messages={messages} onSend={handleSend} />;
+  return (
+    <div
+      className="
+        h-[600px]
+        md:h-[700px]
+      "
+    >
+      <ChatPanel messages={messages} onSend={handleSend} />
+    </div>
+  );
 }

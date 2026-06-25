@@ -31,46 +31,50 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
     (config.chatMode === "onReject" && rejectAnswer === "action_rejected");
 
   return (
-    <div className="space-y-8 p-10">
+    <div
+      className="
+        max-w-6xl
+        mx-auto
+        px-6
+        py-8
+        space-y-10
+      "
+    >
       {/* Titel */}
-      <h1 className="text-lg font-bold">{config.title[userRole]}</h1>
+      <h1
+        className="
+        text-2xl
+        font-semibold
+        tracking-tight
+        text-gray-900
+      "
+      >
+        {config.title[userRole]}
+      </h1>
 
       {/* kurze Aufgabenbeschreibung */}
-      <p>{config.task_descr[userRole]}</p>
-
-      <div
-        className={`
-        flex gap-6 h-[500px] 
-        ${showChat ? "lg:flex-row" : "justify-center"}
-        `}
+      <p
+        className="
+        text-gray-900
+        leading-7
+        max-w-3xl
+      "
       >
-        <div className={showChat ? "flex-1" : "w-full max-w-3xl"}>
-          <SimulationModule simVid={config.simulation} />
-        </div>
-        {showChat && (
-          <div className="flex-1 min-h-0">
-            <ChatModule key={stepId} scenarioId={stepId} userRole={userRole} />
-          </div>
-        )}
-      </div>
+        {config.taskDescr[userRole]}
+      </p>
 
-      <QuestionModule group={questions} />
+      <div className="max-w-5xl mx-auto">
+        <SimulationModule simVid={config.simulation} />
+      </div>
+      <div className="">
+        {/* TODO spacing? */}
+        <QuestionModule group={questions} />
+      </div>
+      {showChat && (
+        <div className="max-w-6xl mx-auto mt-8">
+          <ChatModule key={stepId} scenarioId={stepId} userRole={userRole} />
+        </div>
+      )}
     </div>
   );
 }
-
-/*  Taken from survey/page.tsx previous styling TODO
-
-    <main
-      className=" 
-      p-8 
-      flex flex-col
-      w-full max-w-5xl mx-auto
-      "
-    >
-      <div className="flex items-center justify-center mb-6">
-        <SimulationModule simVid={simulationVideos[0]} />
-      </div>
-
-      <QuestionModule group={scen1GenericQuestions} />
-    </main> */

@@ -40,10 +40,9 @@ export function QuestionModule({ group }: QuestionModuleProps) {
 
           case "freeTextInput":
             return (
-              // TODO add question above textInput box
               <FreeTextInput
                 key={q.id}
-                text={q.text}
+                text={q.text} // question
                 value={(state.answers[q.id] as string) ?? ""}
                 onChange={(value) => setAnswer(q.id, value)}
               />

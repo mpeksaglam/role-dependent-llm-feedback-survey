@@ -24,15 +24,16 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
     <div
       className="
         h-full
-        min-h-0
         flex
         flex-col
-        rounded-2xl
+        overflow-hidden
+
+        rounded-3xl
         border
         border-gray-200
+        
         bg-white
-        overflow-hidden
-        shadow-sm
+        shadow-xl
     "
     >
       {/* Messages */}
@@ -42,8 +43,10 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
           flex-1
           min-h-0
           overflow-y-auto
+
           p-4
           space-y-4
+          
         "
       >
         {messages.map((msg) => (
@@ -52,7 +55,7 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
       </div>
 
       {/* Input */}
-      <div className="p-4 border-t border-gray-100">
+      <div className="p-4">
         <ChatInput onSend={onSend} />
       </div>
     </div>

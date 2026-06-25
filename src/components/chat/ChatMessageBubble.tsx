@@ -11,23 +11,25 @@ export function ChatMessageBubble({ message }: Props) {
   return (
     <div
       className={`
-        flex
+        flex w-full
         ${isUser ? "justify-end" : "justify-start"}
       `}
     >
       <div
         className={`
-          max-w-[80%]
-          px-3
-          py-2
           rounded-2xl
+
           text-sm
-          leading-relaxed
-          ${isUser ? "bg-gray-100 text-black" : "text-black"}
+          leading-7
 
           whitespace-pre-wrap
-          break-all
-          overflow-hidden
+          break-words
+          
+          ${
+            isUser
+              ? "max-w-[80%] px-4 py-2 bg-slate-100 text-gray-900"
+              : "w-full px-4 py-4 bg-transparent text-gray-900"
+          }
         `}
       >
         <ReactMarkdown>{message.content}</ReactMarkdown>

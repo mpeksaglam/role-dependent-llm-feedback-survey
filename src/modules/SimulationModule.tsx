@@ -11,10 +11,11 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
       <video
         controls
         className="
-                rounded-2xl
+                rounded-3xl
                 w-full
                 h-full
                 object-contain
+                shadow-xl
                 "
       >
         <source src={simVid.videoUrl} />
@@ -27,7 +28,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
       <video
         controls
         className="                
-          rounded-2xl
+          rounded-3xl
           w-full
           h-full
           object-contain"
@@ -38,7 +39,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
       <video
         controls
         className="                
-          rounded-2xl
+          rounded-3xl
           w-full
           h-full
           object-contain"

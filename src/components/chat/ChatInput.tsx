@@ -23,18 +23,6 @@ export function ChatInput({ onSend }: ChatInputProps) {
   return (
     <div className="flex items-end gap-2">
       <input
-        className="
-          flex-1
-          rounded-full
-          border
-          border-gray-300
-          px-4
-          py-3
-          text-sm
-          outline-none
-          focus:border-gray-500
-          focus:ring-0
-        "
         placeholder="Feedback eingeben"
         value={text}
         onChange={(e) => setText(e.target.value)}
@@ -45,19 +33,43 @@ export function ChatInput({ onSend }: ChatInputProps) {
             handleSend();
           }
         }}
+        className="
+          flex-1
+          rounded-full
+
+          border
+          border-gray-200
+          bg-gray-50 
+
+          px-5
+          py-3
+
+          text-sm
+
+          outline-none
+
+          focus:border-gray-400
+
+          transition
+        "
       />
       <button
         onClick={handleSend}
         className="
           h-11
           w-11
+
           rounded-full
+
           bg-black
           text-white
+
           flex
           items-center
           justify-center
+
           hover:opacity-90
+
           transition
           cursor-pointer
         "
@@ -67,25 +79,3 @@ export function ChatInput({ onSend }: ChatInputProps) {
     </div>
   );
 }
-
-/* Alternative send button TODO
-<button
-  onClick={handleSend}
-  className="
-    px-5
-    py-3
-
-    rounded-full
-
-    bg-black
-    text-white
-
-    text-sm
-    font-medium
-
-    hover:opacity-90
-    transition
-  "
->
-  Senden
-</button> */

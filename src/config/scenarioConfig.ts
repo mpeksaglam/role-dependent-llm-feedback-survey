@@ -9,7 +9,7 @@ export const scenarioConfig = {
       proc_exp: "Trainingsaufgabe",
       robo_exp: "Trainingsaufgabe",
     },
-    task_descr: {
+    taskDescr: {
       proc_exp: "Bitte machen Sie sich mit der Umgebung vertraut.",
       robo_exp: "Bitte machen Sie sich mit der Umgebung vertraut.",
     },
@@ -35,7 +35,7 @@ export const scenarioConfig = {
       proc_exp: "Feedback zur Roboterhandlung",
       robo_exp: "Feedback zur Roboterhandlung",
     },
-    task_descr: {
+    taskDescr: {
       proc_exp: "Bitte bewerten Sie die gezeigte Handlung.",
       robo_exp: "Bitte bewerten Sie die gezeigte Handlung.",
     },
@@ -62,7 +62,7 @@ export const scenarioConfig = {
       proc_exp: "Korrektur der Roboterhandlung",
       robo_exp: "Korrektur der Roboterhandlung",
     },
-    task_descr: {
+    taskDescr: {
       proc_exp:
         "Beschreiben Sie, was an der gezeigten Handlung angepasst werden sollte.",
       robo_exp:
@@ -90,7 +90,7 @@ export const scenarioConfig = {
       proc_exp: "Präferenz zwischen zwei Varianten",
       robo_exp: "Präferenz zwischen zwei Varianten",
     },
-    task_descr: {
+    taskDescr: {
       proc_exp:
         "Vergleichen Sie die beiden Varianten und wählen Sie die geeignetere Ausführung.",
       robo_exp:
@@ -118,7 +118,7 @@ export const scenarioConfig = {
       proc_exp: "Prozessfeedback zur Montagehandlung",
       robo_exp: "Technisches Feedback zur Roboterbewegung",
     },
-    task_descr: {
+    taskDescr: {
       proc_exp:
         "Bewerten Sie, ob der gezeigte Montageschritt aus Prozesssicht sinnvoll, sicher und praktikabel ist.",
       robo_exp:
@@ -145,7 +145,7 @@ export const scenarioConfig = {
       proc_exp: "Prozesskorrektur zur Montagehandlung",
       robo_exp: "Technische Korrektur zur Roboterbewegung",
     },
-    task_descr: {
+    taskDescr: {
       proc_exp:
         "Beschreiben Sie, was aus Prozesssicht angepasst werden sollte.",
       robo_exp: "Beschreiben Sie, was technisch angepasst werden sollte.",
@@ -171,7 +171,7 @@ export const scenarioConfig = {
       proc_exp: "Prozesspräferenz zwischen zwei Montagevarianten",
       robo_exp: "Technische Präferenz zwischen zwei Montagevarianten",
     },
-    task_descr: {
+    taskDescr: {
       proc_exp:
         "Vergleichen Sie die beiden Varianten aus Prozesssicht für die Montage.",
       robo_exp: "Vergleichen Sie die beiden Varianten aus technischer Sicht.",
