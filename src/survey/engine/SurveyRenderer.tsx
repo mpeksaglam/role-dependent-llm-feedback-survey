@@ -1,14 +1,13 @@
 import { StepId, SURVEY_STEPS } from "@/lib/types";
-import { useSurvey } from "./helpers/useSurvey";
-import { SimulationModule } from "@/modules/SimulationModule";
-import { SurveyNavigation } from "./SurveyNavigation";
-import { IntroScreen } from "@/screens/IntroScreen";
-import { PreSurveyScreen } from "@/screens/PreSurveyScreen";
-import { ScenarioScreen } from "@/screens/ScenarioScreen";
-import { OutroScreen } from "@/screens/OutroScreen";
-import { TrainingInfoScreen } from "@/screens/TrainingInfoScreen";
-import { QuestionnaireScreen } from "@/screens/QuestionnaireScreen";
 import { ComparisonQuestionsScreen } from "@/screens/ComparisonQuestionsScreen";
+import { IntroScreen } from "@/screens/IntroScreen";
+import { OutroScreen } from "@/screens/OutroScreen";
+import { PreSurveyScreen } from "@/screens/PreSurveyScreen";
+import { QuestionnaireScreen } from "@/screens/QuestionnaireScreen";
+import { ScenarioScreen } from "@/screens/ScenarioScreen";
+import { TrainingInfoScreen } from "@/screens/TrainingInfoScreen";
+import { useSurvey } from "./helpers/useSurvey";
+import { SurveyNavigation } from "./SurveyNavigation";
 
 export function SurveyRenderer() {
   const { state } = useSurvey();

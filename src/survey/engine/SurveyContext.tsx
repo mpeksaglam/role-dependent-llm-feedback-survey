@@ -4,7 +4,6 @@ import {
   AnswerValue,
   ChatMessage,
   ScenarioStepId,
-  StepId,
   SurveyState,
 } from "@/lib/types";
 

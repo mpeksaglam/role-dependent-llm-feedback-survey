@@ -5,34 +5,44 @@ import { ReactNode, useEffect, useState } from "react";
 import {
   AnswerValue,
   ChatMessage,
-  Condition,
   ScenarioStepId,
-  StepId,
   SURVEY_STEPS,
   SurveyState,
 } from "@/lib/types";
 import { SurveyContext } from "@/survey/engine/SurveyContext";
-import { initialSurveyState } from "./initialSurveyState";
 import {
   buildParticipantFlow,
   randomize,
 } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
+import { initialSurveyState } from "./initialSurveyState";
 
 interface Props {
   children: ReactNode;
 }
 
 export function SurveyProvider({ children }: Props) {
-  // Initialization of static state
+  // Initialization with non-dynamic state
   const [state, setState] = useState<SurveyState>(initialSurveyState);
-  // TODO maybe use % 2 instead of randomize
+  // Client side
   useEffect(() => {
-    // client side
+    // ParticipantID
+    // retrieve if existent
+    let participantId = localStorage.getItem("participantId");
+    // else generate new one
+    if (!participantId) {
+      participantId = crypto.randomUUID();
+
+      localStorage.setItem("participantId", participantId);
+    }
+
+    // Randomization of conditions
     const conditionOrder = randomize();
 
+    // Add everything to state
     setState((prev) => ({
       ...prev,
+      participantId,
       conditionOrder,
       participantFlow: buildParticipantFlow(conditionOrder),
     }));

@@ -106,6 +106,7 @@ export type ScenarioStepId =
 
 export interface SurveyState {
   currentStepId: StepId;
+  participantId: string | null;
   answers: SurveyAnswers;
   userRole: UserRole | null; // allocated after presurvey
   conditionOrder: [Condition, Condition] | null; // [gen, role_spec || role_spec , gen]
@@ -133,12 +134,18 @@ export type ChatResponse = {
   message: string;
 };
 
-// TODO logging
-export type SurveyEventType =
+// Logging
+export type SurveyEvent =
+  | "survey_started"
+  | "survey_completed"
   | "condition_assigned"
-  | "answer"
-  | "next"
-  | "back"
-  | "role_selected"
+  | "role_assigned"
   | "training_completed"
-  | "scenario_started";
+  | "scenario_started"
+  | "scenario_completed"
+  | "answer_saved"
+  | "chat_message_sent"
+  | "interpretation_shown"
+  | "interpretation_corrected"
+  | "next"
+  | "back";
