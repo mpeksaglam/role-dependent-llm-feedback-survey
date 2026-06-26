@@ -16,36 +16,54 @@ import {
 } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
 import { initialSurveyState } from "./initialSurveyState";
+import { loadSession } from "../persistence/loadSession";
 
 interface Props {
   children: ReactNode;
 }
 
 export function SurveyProvider({ children }: Props) {
-  // Initialization with non-dynamic state
+  // Initialization of state
   const [state, setState] = useState<SurveyState>(initialSurveyState);
-  // Client side
+
+  // runs on first client mount
   useEffect(() => {
-    // ParticipantID
-    // retrieve if existent
-    let participantId = localStorage.getItem("participantId");
-    // else generate new one
-    if (!participantId) {
-      participantId = crypto.randomUUID();
+    async function initializeSurvey() {
+      // Check if participantId exists
+      let participantId = localStorage.getItem("participantId");
+      let savedSession: SurveyState | null = null;
 
-      localStorage.setItem("participantId", participantId);
+      // if an id exists, try retrieving previous session from server
+      if (participantId) {
+        savedSession = await loadSession(participantId);
+      }
+      // Case A: succes -> restore previous session
+      if (savedSession) {
+        setState(savedSession);
+        return; // initialisation complete
+      }
+
+      // Case B: No ID existent OR server did not send savedSession
+      // NEW USER
+      if (!participantId) {
+        participantId = crypto.randomUUID();
+        localStorage.setItem("participantId", participantId);
+      }
+
+      // Generate new survey data
+      // Randomization of conditions
+      const conditionOrder = randomize();
+      // Build static participant flow for the survey
+      const participantFlow = buildParticipantFlow(conditionOrder);
+      // Add everything to state
+      setState((prev) => ({
+        ...prev,
+        participantId,
+        conditionOrder,
+        participantFlow,
+      }));
     }
-
-    // Randomization of conditions
-    const conditionOrder = randomize();
-
-    // Add everything to state
-    setState((prev) => ({
-      ...prev,
-      participantId,
-      conditionOrder,
-      participantFlow: buildParticipantFlow(conditionOrder),
-    }));
+    initializeSurvey();
   }, []); // runs once at client start / mount
 
   // keep track of answers in current survey state
