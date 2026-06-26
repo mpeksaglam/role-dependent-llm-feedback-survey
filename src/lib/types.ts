@@ -138,6 +138,8 @@ export type ChatResponse = {
 export type SurveyEvent =
   | "survey_started"
   | "survey_completed"
+  | "consent_accepted"
+  | "consent_rejected"
   | "condition_assigned"
   | "role_assigned"
   | "training_completed"
