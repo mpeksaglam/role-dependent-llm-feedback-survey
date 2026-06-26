@@ -10,7 +10,7 @@ import {
   SURVEY_STEPS,
   UserRole,
 } from "@/lib/types";
-import { useSurvey } from "@/survey_engine/helpers/useSurvey";
+import { useSurvey } from "@/survey/engine/helpers/useSurvey";
 
 // static constants
 const WELCOME_MESSAGE: ChatMessage = {

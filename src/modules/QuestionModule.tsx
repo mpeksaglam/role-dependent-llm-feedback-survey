@@ -6,7 +6,7 @@ import {
   QuestionGroup,
   SelectionOption,
 } from "@/lib/types";
-import { useSurvey } from "@/survey_engine/helpers/useSurvey";
+import { useSurvey } from "@/survey/engine/helpers/useSurvey";
 
 interface QuestionModuleProps {
   group: QuestionGroup;

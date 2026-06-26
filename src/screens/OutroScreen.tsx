@@ -1,4 +1,4 @@
-import { useSurvey } from "@/survey_engine/helpers/useSurvey";
+import { useSurvey } from "@/survey/engine/helpers/useSurvey";
 
 export function OutroScreen() {
   const { state } = useSurvey();

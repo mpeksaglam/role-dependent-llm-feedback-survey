@@ -11,7 +11,7 @@ import {
   SURVEY_STEPS,
   SurveyState,
 } from "@/lib/types";
-import { SurveyContext } from "@/survey_engine/SurveyContext";
+import { SurveyContext } from "@/survey/engine/SurveyContext";
 import { initialSurveyState } from "./initialSurveyState";
 import {
   buildParticipantFlow,

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { SurveyContext } from "@/survey_engine/SurveyContext";
+import { SurveyContext } from "@/survey/engine/SurveyContext";
 
 export const useSurvey = () => {
   const context = useContext(SurveyContext);
