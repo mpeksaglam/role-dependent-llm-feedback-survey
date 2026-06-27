@@ -30,11 +30,9 @@ export function SurveyNavigation() {
       -between scenarios (enforce within-subjects design & keep timing correct)   */
 
   const noWayBack =
-    // in TRAINING_TASK ok to go back
-    currentStep !== SURVEY_STEPS.TRAINING_TASK &&
-    (currentStep === SURVEY_STEPS.INTRO || // TODO change forward button , put on IntroScreen and hideNavigation in surveyRenderer
-      currentStep === SURVEY_STEPS.TRAINING_INFO ||
-      isScenarioStep(currentStep));
+    currentStep === SURVEY_STEPS.INTRO || // TODO change forward button , put on IntroScreen and hideNavigation in surveyRenderer
+    currentStep === SURVEY_STEPS.TRAINING_INFO ||
+    isScenarioStep(currentStep);
 
   const isLastStep = currentStep === SURVEY_STEPS.OUTRO;
   // checks if its possible to proceed and gives back potential error message for user

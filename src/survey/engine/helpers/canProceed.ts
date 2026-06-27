@@ -38,11 +38,9 @@ export function canProceed(
 
   // check if message still missing in chat (at least one message should be sent)
   let missingChat = false;
-  // only in case of real scenarios, not training screen
-  if (stepId === SURVEY_STEPS.TRAINING_TASK) {
-  }
+  // only possible in scenarios
   // Chat not possible if userRole === null
-  else if (userRole !== null && isScenarioStep(stepId)) {
+  if (userRole !== null && isScenarioStep(stepId)) {
     const config = scenarioConfig[stepId];
     let requiresChat = false;
     // watch out magic strings TODO

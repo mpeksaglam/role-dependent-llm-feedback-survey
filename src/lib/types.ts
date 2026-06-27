@@ -95,6 +95,7 @@ export const SURVEY_STEPS = {
 
 export type StepId = (typeof SURVEY_STEPS)[keyof typeof SURVEY_STEPS];
 
+// TRAINING_TASK included here because rendering is similar to scenarioScreen
 export type ScenarioStepId =
   | typeof SURVEY_STEPS.TRAINING_TASK
   | typeof SURVEY_STEPS.GEN_SCEN_1
@@ -113,9 +114,12 @@ const SCENARIO_STEPS = [
   SURVEY_STEPS.ROLE_SPEC_SCEN_2,
   SURVEY_STEPS.ROLE_SPEC_SCEN_3,
 ] as const;
-// function to check if a step is a scenarioStep
+// function to check if a step is a REAL scenarioStep (not TRAINING_TASK)
 export function isScenarioStep(stepId: StepId): stepId is ScenarioStepId {
-  return SCENARIO_STEPS.includes(stepId as ScenarioStepId);
+  return (
+    stepId !== SURVEY_STEPS.TRAINING_TASK &&
+    SCENARIO_STEPS.includes(stepId as ScenarioStepId)
+  );
 }
 
 export interface SurveyState {
