@@ -16,9 +16,9 @@ export async function POST(request: Request) {
     // receive request
     const body: ChatRequest = await request.json();
     const { scenarioId, userRole, messages, selectedAnswers } = body;
-
-    console.log("REQUEST BODY");
-    console.dir(body, { depth: null });
+    // TODO remove debug
+    // console.log("REQUEST BODY");
+    // console.dir(body, { depth: null });
 
     // find and build system prompt
     const config = scenarioConfig[scenarioId];

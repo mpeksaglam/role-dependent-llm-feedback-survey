@@ -104,6 +104,20 @@ export type ScenarioStepId =
   | typeof SURVEY_STEPS.ROLE_SPEC_SCEN_2
   | typeof SURVEY_STEPS.ROLE_SPEC_SCEN_3;
 
+const SCENARIO_STEPS = [
+  SURVEY_STEPS.TRAINING_TASK,
+  SURVEY_STEPS.GEN_SCEN_1,
+  SURVEY_STEPS.GEN_SCEN_2,
+  SURVEY_STEPS.GEN_SCEN_3,
+  SURVEY_STEPS.ROLE_SPEC_SCEN_1,
+  SURVEY_STEPS.ROLE_SPEC_SCEN_2,
+  SURVEY_STEPS.ROLE_SPEC_SCEN_3,
+] as const;
+// function to check if a step is a scenarioStep
+export function isScenarioStep(stepId: StepId): stepId is ScenarioStepId {
+  return SCENARIO_STEPS.includes(stepId as ScenarioStepId);
+}
+
 export interface SurveyState {
   currentStepId: StepId;
   participantId: string | null;
