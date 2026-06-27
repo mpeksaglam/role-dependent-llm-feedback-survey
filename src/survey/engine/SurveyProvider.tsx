@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useState } from "react";
 import {
   AnswerValue,
   ChatMessage,
+  isScenarioStep,
   ScenarioStepId,
   SURVEY_STEPS,
   SurveyState,
@@ -18,6 +19,7 @@ import { deriveUserRole } from "./helpers/deriveUserRole";
 import { initialSurveyState } from "./initialSurveyState";
 import { loadSession } from "../persistence/loadSession";
 import { saveSession } from "../persistence/saveSession";
+import next from "next";
 
 interface Props {
   children: ReactNode;
@@ -84,6 +86,7 @@ export function SurveyProvider({ children }: Props) {
   };
   // navigate to next step
   const goNext = () => {
+    // get current step INDEX and next one according to participantFlow
     const currentIndex = state.participantFlow.indexOf(state.currentStepId);
     const nextStep = state.participantFlow[currentIndex + 1];
 
@@ -91,6 +94,16 @@ export function SurveyProvider({ children }: Props) {
     if (!nextStep) {
       return;
     }
+
+    // calculate how long user spent on scenarioScreen
+    // has to be used / sent to logging before setState or will be lost TODO Math.floor(durationMs/1000)
+    const durationMs =
+      isScenarioStep(state.currentStepId) &&
+      state.scenarioStartTimestamp !== null
+        ? Date.now() - state.scenarioStartTimestamp
+        : null;
+
+    // LOG goes here TODO
 
     // Special case 1: User declined consent, go to end
     if (
@@ -124,9 +137,11 @@ export function SurveyProvider({ children }: Props) {
     // Standard case goNext()
     else {
       setState((prev) => {
+        // change stepId and start timer if nextStep is a scenario
         const nextState = {
           ...prev,
           currentStepId: nextStep,
+          scenarioStartTimestamp: isScenarioStep(nextStep) ? Date.now() : null,
         };
         // send to backend for persistence
         saveSession(nextState);
@@ -174,6 +189,8 @@ export function SurveyProvider({ children }: Props) {
       return nextState;
     });
   };
+
+  // TIMERS for scenarios
   // Add startTime to state to time how long it took
   const startScenarioTimer = () => {
     setState((prev) => ({
