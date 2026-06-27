@@ -17,6 +17,7 @@ import {
 import { deriveUserRole } from "./helpers/deriveUserRole";
 import { initialSurveyState } from "./initialSurveyState";
 import { loadSession } from "../persistence/loadSession";
+import { saveSession } from "../persistence/saveSession";
 
 interface Props {
   children: ReactNode;
@@ -68,13 +69,18 @@ export function SurveyProvider({ children }: Props) {
 
   // keep track of answers in current survey state
   const setAnswer = (questionId: string, value: AnswerValue) => {
-    setState((prev) => ({
-      ...prev,
-      answers: {
-        ...prev.answers,
-        [questionId]: value,
-      },
-    }));
+    setState((prev) => {
+      const nextState = {
+        ...prev,
+        answers: {
+          ...prev.answers,
+          [questionId]: value,
+        },
+      };
+      // send state to backend for persistence
+      saveSession(nextState);
+      return nextState;
+    });
   };
   // navigate to next step
   const goNext = () => {
@@ -86,32 +92,49 @@ export function SurveyProvider({ children }: Props) {
       return;
     }
 
-    // Special case 1: User declined consent
+    // Special case 1: User declined consent, go to end
     if (
       state.currentStepId === SURVEY_STEPS.INTRO &&
       state.answers["dsgvo_consent"] === "reject"
     ) {
-      setState((prev) => ({
-        ...prev,
-        currentStepId: SURVEY_STEPS.OUTRO,
-      }));
+      setState((prev) => {
+        const nextState = {
+          ...prev,
+          currentStepId: SURVEY_STEPS.OUTRO,
+        };
+        // send to backend for persistence
+        saveSession(nextState);
+        return nextState;
+      });
     }
     // Special case 2: assign userRole after presurvey
     else if (state.currentStepId === SURVEY_STEPS.PRE_SURVEY) {
       const userRole = deriveUserRole(state.answers);
-      setState((prev) => ({
-        ...prev,
-        userRole,
-        currentStepId: nextStep,
-      }));
-    } // Standard case goNext()
+      setState((prev) => {
+        const nextState = {
+          ...prev,
+          userRole,
+          currentStepId: nextStep,
+        };
+        // send to backend for persistence
+        saveSession(nextState);
+        return nextState;
+      });
+    }
+    // Standard case goNext()
     else {
-      setState((prev) => ({
-        ...prev,
-        currentStepId: nextStep,
-      }));
+      setState((prev) => {
+        const nextState = {
+          ...prev,
+          currentStepId: nextStep,
+        };
+        // send to backend for persistence
+        saveSession(nextState);
+        return nextState;
+      });
     }
   };
+
   // navigate to previous step
   const goBack = () => {
     const currentIndex = state.participantFlow.indexOf(state.currentStepId);
@@ -122,23 +145,34 @@ export function SurveyProvider({ children }: Props) {
       return;
     }
 
-    setState((prev) => ({
-      ...prev,
-      currentStepId: previousStep,
-    }));
+    setState((prev) => {
+      const backStep = {
+        ...prev,
+        currentStepId: previousStep,
+      };
+      // send to backend for persistence
+      saveSession(backStep);
+      return backStep;
+    });
   };
 
+  // keep chat messages in survey state
   const setChatHistory = (
     scenarioId: ScenarioStepId,
     messages: ChatMessage[],
   ) => {
-    setState((prev) => ({
-      ...prev,
-      chatHistory: {
-        ...prev.chatHistory,
-        [scenarioId]: messages,
-      },
-    }));
+    setState((prev) => {
+      const nextState = {
+        ...prev,
+        chatHistory: {
+          ...prev.chatHistory,
+          [scenarioId]: messages,
+        },
+      };
+      // send to backend for persistence
+      saveSession(nextState);
+      return nextState;
+    });
   };
 
   return (
