@@ -135,19 +135,18 @@ export type ChatResponse = {
 };
 
 // Logging
-export type SurveyEvent =
+export type LogEvent =
   | "survey_started"
   | "survey_completed"
   | "consent_accepted"
   | "consent_rejected"
   | "condition_assigned"
   | "role_assigned"
+  | "training_started"
   | "training_completed"
   | "scenario_started"
   | "scenario_completed"
-  | "answer_saved"
-  | "chat_message_sent"
-  | "interpretation_shown"
-  | "interpretation_corrected"
-  | "next"
-  | "back";
+  | "questionnaire_started"
+  | "questionnaire_completed"
+  | "comparison_questions_started"
+  | "comparison_questions_completed";
