@@ -174,6 +174,22 @@ export function SurveyProvider({ children }: Props) {
       return nextState;
     });
   };
+  // Add startTime to state to time how long it took
+  const startScenarioTimer = () => {
+    setState((prev) => ({
+      ...prev,
+      scenarioStartTimestamp: Date.now(),
+    }));
+  };
+  // Stop timer and return duration in ms
+  const stopScenarioTimer = () => {
+    const duration =
+      state.scenarioStartTimestamp === null
+        ? null
+        : Date.now() - state.scenarioStartTimestamp;
+
+    return duration;
+  };
 
   return (
     <SurveyContext.Provider
