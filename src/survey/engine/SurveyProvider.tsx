@@ -11,15 +11,16 @@ import {
   SurveyState,
 } from "@/lib/types";
 import { SurveyContext } from "@/survey/engine/SurveyContext";
+import { logCurrentStep } from "../logging/logCurrentStep";
+import { logEvent } from "../logging/logEvent";
+import { loadSession } from "../persistence/loadSession";
+import { saveSession } from "../persistence/saveSession";
 import {
   buildParticipantFlow,
   randomize,
 } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
 import { initialSurveyState } from "./initialSurveyState";
-import { loadSession } from "../persistence/loadSession";
-import { saveSession } from "../persistence/saveSession";
-import next from "next";
 
 interface Props {
   children: ReactNode;
@@ -40,10 +41,20 @@ export function SurveyProvider({ children }: Props) {
       if (participantId) {
         savedSession = await loadSession(participantId);
       }
-      // Case A: succes -> restore previous session
+      // Case A: success -> restore previous session
       if (savedSession) {
-        logEvent();
         setState(savedSession);
+
+        if (!savedSession.participantId) {
+          throw new Error("Restored previous session without participantId");
+        }
+        // void to not await response
+        // only case where session_restore event can happen
+        void logEvent({
+          participantId: savedSession.participantId,
+          eventType: "session_restored",
+          payload: {},
+        });
         return; // initialisation complete
       }
 
@@ -59,6 +70,18 @@ export function SurveyProvider({ children }: Props) {
       const conditionOrder = randomize();
       // Build static participant flow for the survey
       const participantFlow = buildParticipantFlow(conditionOrder);
+
+      // side effects always outside of setState!
+      // only case where survey_started event can occur
+      void logEvent({
+        participantId,
+        eventType: "survey_started",
+        payload: {
+          conditionOrder,
+        },
+      });
+
+      // prev used here since we're in an async function
       // Add everything to state
       setState((prev) => ({
         ...prev,
@@ -72,18 +95,19 @@ export function SurveyProvider({ children }: Props) {
 
   // keep track of answers in current survey state
   const setAnswer = (questionId: string, value: AnswerValue) => {
-    setState((prev) => {
-      const nextState = {
-        ...prev,
-        answers: {
-          ...prev.answers,
-          [questionId]: value,
-        },
-      };
-      // send state to backend for persistence
-      saveSession(nextState);
-      return nextState;
-    });
+    // no (prev) needed since no async function
+    // fix nextState
+    const nextState = {
+      ...state,
+      answers: {
+        ...state.answers,
+        [questionId]: value,
+      },
+    };
+    // set nextState
+    setState(nextState);
+    // send state to backend for persistence
+    void saveSession(nextState);
   };
   // navigate to next step
   const goNext = () => {
@@ -95,65 +119,70 @@ export function SurveyProvider({ children }: Props) {
     if (!nextStep) {
       return;
     }
-
-    // calculate how long user spent on scenarioScreen
-    // has to be used / sent to logging before setState or will be lost TODO Math.floor(durationMs/1000)
-    const durationMs =
+    // startTimestamp was set before (further down), this happens at end of scenarioScreen before nextStep is set
+    // calculate scenario duration
+    const durationSeconds =
       isScenarioStep(state.currentStepId) &&
       state.scenarioStartTimestamp !== null
-        ? Date.now() - state.scenarioStartTimestamp
-        : null;
-    // convert to seconds if not null
-    if (durationMs) {
-      const durationSeconds = Math.round(durationMs / 1000);
+        ? Math.round((Date.now() - state.scenarioStartTimestamp) / 1000) // convert from ms to seconds
+        : undefined;
+
+    // log current completed step before moving on (end snapshot)
+    if (state.currentStepId !== SURVEY_STEPS.PRE_SURVEY) {
+      void logCurrentStep(state, durationSeconds);
     }
-    // LOG goes here TODO
 
     // Special case 1: User declined consent, go to end
     if (
       state.currentStepId === SURVEY_STEPS.INTRO &&
       state.answers["dsgvo_consent"] === "reject"
     ) {
-      setState((prev) => {
-        const nextState = {
-          ...prev,
-          currentStepId: SURVEY_STEPS.OUTRO,
-        };
-        // send to backend for persistence
-        saveSession(nextState);
-        return nextState;
-      });
+      const nextState = {
+        ...state,
+        currentStepId: SURVEY_STEPS.OUTRO,
+      };
+      setState(nextState);
+      // send to backend for persistence
+      void saveSession(nextState);
+      // log again because end reached, no interaction happening anymore
+      void logCurrentStep(nextState);
+      return;
     }
     // Special case 2: assign userRole after presurvey
     else if (state.currentStepId === SURVEY_STEPS.PRE_SURVEY) {
       const userRole = deriveUserRole(state.answers);
 
-      setState((prev) => {
-        const nextState = {
-          ...prev,
-          userRole,
-          currentStepId: nextStep,
-        };
-        // send to backend for persistence
-        saveSession(nextState);
-        // Log goes here TODO
+      // for logging purposes
+      const stateWithRole = {
+        ...state,
+        userRole,
+      };
+      void logCurrentStep(stateWithRole);
 
-        return nextState;
-      });
+      // set next state
+      const nextState = {
+        ...state,
+        userRole,
+        currentStepId: nextStep,
+      };
+      setState(nextState);
+      // send to backend for persistence
+      void saveSession(nextState);
+      return;
     }
     // Standard case goNext()
     else {
-      setState((prev) => {
-        // change stepId and start timer if nextStep is a scenario
-        const nextState = {
-          ...prev,
-          currentStepId: nextStep,
-          scenarioStartTimestamp: isScenarioStep(nextStep) ? Date.now() : null,
-        };
-        // send to backend for persistence
-        saveSession(nextState);
-        return nextState;
-      });
+      // change stepId and start timer if nextStep is a scenario
+      const nextState = {
+        ...state,
+        currentStepId: nextStep,
+        scenarioStartTimestamp: isScenarioStep(nextStep) ? Date.now() : null,
+      };
+      setState(nextState);
+
+      // send to backend for persistence
+      void saveSession(nextState);
+      return;
     }
   };
 
@@ -166,16 +195,16 @@ export function SurveyProvider({ children }: Props) {
     if (!previousStep) {
       return;
     }
-
-    setState((prev) => {
-      const backStep = {
-        ...prev,
-        currentStepId: previousStep,
-      };
-      // send to backend for persistence
-      saveSession(backStep);
-      return backStep;
-    });
+    // calculate previous Step
+    const backStep = {
+      ...state,
+      currentStepId: previousStep,
+    };
+    // set previous state
+    setState(backStep);
+    // send to backend for persistence
+    void saveSession(backStep);
+    return;
   };
 
   // keep chat messages in survey state
@@ -183,36 +212,18 @@ export function SurveyProvider({ children }: Props) {
     scenarioId: ScenarioStepId,
     messages: ChatMessage[],
   ) => {
-    setState((prev) => {
-      const nextState = {
-        ...prev,
-        chatHistory: {
-          ...prev.chatHistory,
-          [scenarioId]: messages,
-        },
-      };
-      // send to backend for persistence
-      saveSession(nextState);
-      return nextState;
-    });
-  };
+    const nextState = {
+      ...state,
+      chatHistory: {
+        ...state.chatHistory,
+        [scenarioId]: messages,
+      },
+    };
+    setState(nextState);
 
-  // TIMERS for scenarios
-  // Add startTime to state to time how long it took
-  const startScenarioTimer = () => {
-    setState((prev) => ({
-      ...prev,
-      scenarioStartTimestamp: Date.now(),
-    }));
-  };
-  // Stop timer and return duration in ms
-  const stopScenarioTimer = () => {
-    const duration =
-      state.scenarioStartTimestamp === null
-        ? null
-        : Date.now() - state.scenarioStartTimestamp;
-
-    return duration;
+    // send to backend for persistence
+    void saveSession(nextState);
+    return;
   };
 
   return (
