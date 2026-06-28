@@ -3,6 +3,7 @@ import { LikertRow } from "@/components/responses/LikertRow";
 import { RadioGroup } from "@/components/responses/RadioGroup";
 import {
   LikertResponseType,
+  ResponseType,
   QuestionGroup,
   SelectionOption,
 } from "@/lib/types";
@@ -59,12 +60,15 @@ export function QuestionModule({ group }: QuestionModuleProps) {
                   name={q.id}
                   value={(state.answers[q.id] as string) ?? ""}
                   onChange={(value) => setAnswer(q.id, value)}
-                  options={q.options as SelectionOption[]}
+                  options={q.options}
                 />
               </div>
             );
           default:
-            throw new Error("Unknown responseType"); // new types have to be added
+            const exhaustiveCheck: never = q as never;
+            throw new Error(
+              `Unhandled question type: ${JSON.stringify(exhaustiveCheck)}`,
+            );
         }
       })}
     </div>

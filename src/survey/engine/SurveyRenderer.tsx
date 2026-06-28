@@ -53,7 +53,9 @@ function renderCurrentStep(stepId: StepId) {
       return <ComparisonQuestionsScreen />;
     case SURVEY_STEPS.OUTRO:
       return <OutroScreen />;
-    default:
-      throw new Error("Unknown survey step"); // add new survey Steps
+    default: {
+      const exhaustiveCheck: never = stepId;
+      throw new Error(`Unhandled survey step: ${exhaustiveCheck}`);
+    }
   }
 }

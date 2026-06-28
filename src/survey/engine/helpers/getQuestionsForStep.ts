@@ -34,7 +34,9 @@ export function getQuestionsForStep(
       return questionConfig.comparisonQuestions;
     case SURVEY_STEPS.OUTRO:
       return null;
-    default:
-      throw new Error("Unknown survey step"); // new survey steps have to be added
+    default: {
+      const exhaustiveCheck: never = stepId;
+      throw new Error(`Unhandled survey step: ${exhaustiveCheck}`);
+    }
   }
 }
