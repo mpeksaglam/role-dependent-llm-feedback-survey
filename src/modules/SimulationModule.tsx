@@ -18,7 +18,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
                 w-full
                 h-full
                 object-contain
-                shadow-xl
+                shadow-lg
                 "
       >
         <source src={simVid.videoUrl} type="video/mp4" />
@@ -39,7 +39,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
           rounded-xl
           w-full
           object-contain
-          shadow-md"
+          shadow-lg"
         >
           <source src={simVid.videoUrls[0]} type="video/mp4" />
         </video>
@@ -55,7 +55,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
           rounded-xl
           w-full
           object-contain
-          shadow-md"
+          shadow-lg"
         >
           <source src={simVid.videoUrls[1]} type="video/mp4" />
         </video>
