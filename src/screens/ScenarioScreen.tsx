@@ -1,11 +1,11 @@
-import { ScenarioStepId, StepId } from "@/lib/types";
+import { ScenarioStepId } from "@/lib/types";
 
 import { scenarioConfig } from "@/config/scenarioConfig";
 
-import { SimulationModule } from "@/modules/SimulationModule";
-import { QuestionModule } from "@/modules/QuestionModule";
-import { useSurvey } from "@/survey/engine/helpers/useSurvey";
 import { ChatModule } from "@/modules/ChatModule";
+import { QuestionModule } from "@/modules/QuestionModule";
+import { SimulationModule } from "@/modules/SimulationModule";
+import { useSurvey } from "@/survey/engine/helpers/useSurvey";
 
 interface ScenarioScreenProps {
   stepId: ScenarioStepId;
@@ -64,7 +64,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
       </p>
 
       <div className="max-w-5xl mx-auto">
-        <SimulationModule simVid={config.simulation} />
+        <SimulationModule key={stepId} simVid={config.simulation} />
       </div>
       <div className="">
         {/* TODO spacing? */}
