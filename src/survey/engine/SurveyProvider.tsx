@@ -235,6 +235,14 @@ export function SurveyProvider({ children }: Props) {
     return;
   };
 
+  // set scroll position to top on each new stepId render
+  useEffect(() => {
+    // browser window
+    window.scrollTo(0, 0);
+    // safety net, scroll to top as well
+    document.documentElement.scrollTo(0, 0);
+  }, [state.currentStepId]); // on stepId change
+
   return (
     <SurveyContext.Provider
       value={{
