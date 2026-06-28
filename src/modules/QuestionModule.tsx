@@ -44,7 +44,7 @@ export function QuestionModule({ group }: QuestionModuleProps) {
                 key={q.id}
                 text={q.text} // question
                 value={(state.answers[q.id] as string) ?? ""}
-                onChange={(value) => setAnswer(q.id, value)}
+                onSave={(value) => setAnswer(q.id, value)}
               />
             );
 

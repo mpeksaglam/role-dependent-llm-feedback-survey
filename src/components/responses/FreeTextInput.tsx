@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
+
 interface FreeTextInputProps {
   text: string;
   value: string;
-  onChange: (value: string) => void;
+  onSave: (value: string) => void;
 }
 
-export function FreeTextInput({ text, value, onChange }: FreeTextInputProps) {
+export function FreeTextInput({ text, value, onSave }: FreeTextInputProps) {
+  /* seperate local changes from changes to save
+     local changes to show typing to user, but save only when leaving the text field 
+     (prevent too many server persistence requests) */
+  const [localValue, setLocalValue] = useState(value);
+
+  // on change, make sure to rerender (if loaded session from server e.g.)
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
+
   return (
     <div className="mt-10 space-y-3">
       <p
@@ -45,8 +57,9 @@ export function FreeTextInput({ text, value, onChange }: FreeTextInputProps) {
 
           resize-none
         "
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={localValue}
+        onChange={(e) => setLocalValue(e.target.value)}
+        onBlur={() => onSave(localValue)}
       />
     </div>
   );
