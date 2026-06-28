@@ -4,6 +4,7 @@ import { buildEventPayload } from "./buildEventPayload";
 import { logEvent } from "./logEvent";
 
 // Logs the current survey step
+// make sure to cover all steps/cases from SURVEY_STEPS here
 export async function logCurrentStep(
   state: SurveyState,
   durationSeconds?: number,
@@ -51,8 +52,13 @@ export async function logCurrentStep(
     case SURVEY_STEPS.OUTRO:
       eventType = "survey_completed";
       break;
-    default:
-      throw new Error("Unknown survey step requested in logCurrentStep");
+    // no logging happening in this case
+    case SURVEY_STEPS.TRAINING_INFO:
+      return;
+    default: {
+      const exhaustiveCheck: never = state.currentStepId;
+      throw new Error(`Unhandled survey step: ${exhaustiveCheck}`);
+    }
   }
 
   // Fill with payload and send to backend

@@ -1,4 +1,9 @@
-import { LogEvent, SurveyState } from "@/lib/types";
+import {
+  isScenarioStep,
+  LogEvent,
+  SURVEY_STEPS,
+  SurveyState,
+} from "@/lib/types";
 
 import { getQuestionsForStep } from "../engine/helpers/getQuestionsForStep";
 
@@ -14,6 +19,31 @@ export function buildEventPayload({
   state,
   durationSeconds,
 }: BuildPayloadParams) {
+  // HELPERS
+  // returns one object with all questions {q.id: answer,} from the respective screen
+  function getAnswers() {
+    const group = getQuestionsForStep(state.currentStepId, state.userRole);
+
+    const answers =
+      group === null
+        ? {}
+        : Object.fromEntries(
+            group.questions.map((question) => [
+              question.id,
+              state.answers[question.id],
+            ]),
+          );
+    return answers;
+  }
+  // returns the chat corresponding to current step
+  function getChatHistory() {
+    if (!isScenarioStep(state.currentStepId)) {
+      return [];
+    }
+    return state.chatHistory[state.currentStepId] ?? [];
+  }
+  // FUNCTION CODE
+  // find the appropriate payload based on event
   switch (eventType) {
     case "survey_started":
       return {
@@ -25,39 +55,40 @@ export function buildEventPayload({
     case "consent_accepted":
     case "consent_rejected":
     case "training_completed":
-      return {};
-
-    case "pre_survey_completed":
-    case "scenario_completed":
-    case "questionnaire_completed":
-    case "comparison_questions_completed": {
-      const group = getQuestionsForStep(state.currentStepId, state.userRole);
-
-      const answers =
-        group === null
-          ? {}
-          : Object.fromEntries(
-              group.questions.map((question) => [
-                question.id,
-                state.answers[question.id],
-              ]),
-            );
-
-      return {
-        answers,
-        ...(eventType === "pre_survey_completed" && {
-          userRole: state.userRole,
-        }), // TODO look at this, why ... and correct this way?
-        ...(durationSeconds !== undefined && {
-          durationSeconds,
-        }),
-      };
-    }
-
     case "survey_completed":
       return {};
 
-    default:
-      return {};
+    case "pre_survey_completed":
+      return {
+        answers: getAnswers(),
+        userRole: state.userRole,
+      };
+    case "scenario_completed": {
+      if (durationSeconds === undefined) {
+        throw new Error(
+          "Timer undefined for scenario completion in buildEventPayload",
+        );
+      }
+      return {
+        answers: getAnswers(),
+        chatHistory: getChatHistory(),
+        durationSeconds, // should not be undefined in this case
+      };
+    }
+    case "questionnaire_completed":
+      return {
+        questionnaire:
+          state.currentStepId === SURVEY_STEPS.QUESTIONNAIRES_A ? "A" : "B",
+        answers: getAnswers(),
+      };
+
+    case "comparison_questions_completed":
+      return {
+        answers: getAnswers(),
+      };
+    default: {
+      const exhaustiveCheck: never = eventType;
+      throw new Error(`Unhandled event: ${exhaustiveCheck}`);
+    }
   }
 }

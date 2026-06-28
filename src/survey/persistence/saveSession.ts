@@ -2,7 +2,11 @@ import { SurveyState } from "@/lib/types";
 
 export async function saveSession(state: SurveyState) {
   // nothing to save yet
-  if (!state.participantId) return;
+  if (!state.participantId) {
+    throw new Error(
+      "failed to allocate participantId but tried to saveSession",
+    );
+  }
   // send survey state to backend
   try {
     const response = await fetch("/api/survey/session", {
