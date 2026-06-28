@@ -42,6 +42,7 @@ export function SurveyProvider({ children }: Props) {
       }
       // Case A: succes -> restore previous session
       if (savedSession) {
+        logEvent();
         setState(savedSession);
         return; // initialisation complete
       }
@@ -102,7 +103,10 @@ export function SurveyProvider({ children }: Props) {
       state.scenarioStartTimestamp !== null
         ? Date.now() - state.scenarioStartTimestamp
         : null;
-
+    // convert to seconds if not null
+    if (durationMs) {
+      const durationSeconds = Math.round(durationMs / 1000);
+    }
     // LOG goes here TODO
 
     // Special case 1: User declined consent, go to end
@@ -123,6 +127,7 @@ export function SurveyProvider({ children }: Props) {
     // Special case 2: assign userRole after presurvey
     else if (state.currentStepId === SURVEY_STEPS.PRE_SURVEY) {
       const userRole = deriveUserRole(state.answers);
+
       setState((prev) => {
         const nextState = {
           ...prev,
@@ -131,6 +136,8 @@ export function SurveyProvider({ children }: Props) {
         };
         // send to backend for persistence
         saveSession(nextState);
+        // Log goes here TODO
+
         return nextState;
       });
     }

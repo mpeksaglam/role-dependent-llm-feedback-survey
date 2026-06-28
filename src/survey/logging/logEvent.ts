@@ -3,9 +3,10 @@ import { LogEvent } from "@/lib/types";
 interface LogPayload {
   participantId: string;
   eventType: LogEvent;
-  payload?: unknown;
+  payload?: Record<string, unknown>;
 }
 
+// Sends one survey event to backend
 export async function logEvent({
   participantId,
   eventType,
