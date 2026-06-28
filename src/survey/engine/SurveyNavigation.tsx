@@ -16,7 +16,7 @@ export function SurveyNavigation() {
     const timer = setTimeout(() => {
       setShowRequirement(false);
     }, 5000);
-
+    // cleanup function to ensure no doubling of timers
     return () => clearTimeout(timer);
   }, [showRequirement]);
 

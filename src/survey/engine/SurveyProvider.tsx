@@ -21,6 +21,7 @@ import {
 } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
 import { initialSurveyState } from "./initialSurveyState";
+import { logBackNavigation } from "../logging/logBackNavigation";
 
 interface Props {
   children: ReactNode;
@@ -50,6 +51,7 @@ export function SurveyProvider({ children }: Props) {
         }
         // void to not await response
         // only case where session_restore event can happen
+        // manual calling because of initializeSurvey no state existent yet!
         void logEvent({
           participantId: savedSession.participantId,
           eventType: "session_restored",
@@ -73,11 +75,13 @@ export function SurveyProvider({ children }: Props) {
 
       // side effects always outside of setState!
       // only case where survey_started event can occur
+      // manual calling because of initializeSurvey no state existent yet!
       void logEvent({
         participantId,
         eventType: "survey_started",
         payload: {
           conditionOrder,
+          participantFlow,
         },
       });
 
@@ -195,11 +199,16 @@ export function SurveyProvider({ children }: Props) {
     if (!previousStep) {
       return;
     }
-    // calculate previous Step
+
+    // log that user went back
+    void logBackNavigation(state);
+
+    // calculate the new (previous) Step
     const backStep = {
       ...state,
       currentStepId: previousStep,
     };
+
     // set previous state
     setState(backStep);
     // send to backend for persistence

@@ -21,7 +21,9 @@ export type FreeTextResponseType = "freeTextInput";
 export type SelectionResponseType = "singleChoice";
 
 export type ResponseType =
-  LikertResponseType | FreeTextResponseType | SelectionResponseType;
+  | LikertResponseType
+  | FreeTextResponseType
+  | SelectionResponseType;
 
 interface BaseQuestion {
   id: string;
@@ -162,4 +164,5 @@ export type LogEvent =
   | "scenario_completed"
   | "questionnaire_completed"
   | "comparison_questions_completed"
-  | "survey_completed";
+  | "survey_completed"
+  | "user_navigated_back";

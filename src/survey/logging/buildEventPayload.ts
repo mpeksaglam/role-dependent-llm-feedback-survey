@@ -45,13 +45,15 @@ export function buildEventPayload({
   // FUNCTION CODE
   // find the appropriate payload based on event
   switch (eventType) {
-    case "survey_started":
-      return {
-        participantId: state.participantId,
-        conditionOrder: state.conditionOrder,
-      };
+    /* case survey_started and case session_restored:
+       called manually in SurveyProvider and can't be called via this function
+       case user_navigated_back as well called in different function
+       included here for exhaustiveCheck (never) */
+
     // only log that event happened, no payload
+    case "survey_started":
     case "session_restored":
+    case "user_navigated_back":
     case "consent_accepted":
     case "consent_rejected":
     case "training_completed":
