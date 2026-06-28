@@ -10,7 +10,7 @@ export function FreeTextInput({ text, value, onSave }: FreeTextInputProps) {
   /* seperate local changes from changes to save
      local changes to show typing to user, but save only when leaving the text field 
      (prevent too many server persistence requests) */
-  const [localValue, setLocalValue] = useState(value);
+  const [localValue, setLocalValue] = useState(value); // renders on first mount only
 
   // on change, make sure to rerender (if loaded session from server e.g.)
   useEffect(() => {
@@ -59,7 +59,7 @@ export function FreeTextInput({ text, value, onSave }: FreeTextInputProps) {
         "
         value={localValue}
         onChange={(e) => setLocalValue(e.target.value)}
-        onBlur={() => onSave(localValue)}
+        onBlur={() => onSave(localValue)} // only save persistence to server when textinput field is left
       />
     </div>
   );

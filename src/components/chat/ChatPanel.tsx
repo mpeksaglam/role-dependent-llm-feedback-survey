@@ -16,8 +16,11 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
   useEffect(() => {
     const container = messagesRef.current;
     if (!container) return;
-
-    container.scrollTop = container.scrollHeight;
+    // smooth scroll to new message
+    container.scrollTo({
+      top: container.scrollHeight,
+      behavior: "smooth",
+    });
   }, [messages]);
 
   return (
