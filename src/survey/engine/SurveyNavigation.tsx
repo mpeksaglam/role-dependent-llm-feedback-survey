@@ -46,32 +46,33 @@ export function SurveyNavigation() {
   );
 
   return (
-    <div className="mt-auto">
+    <div className="mt-auto w-full">
       {/* Tell user to complete questions/chat */}
-      <div className="h-6 mb-2  text-red-800 text-right">
+      <div className="h-6 mb-2 text-red-800 text-right">
         {showRequirement && !proceed.canProceed && proceed.message}
       </div>
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="flex justify-between border-t border-gray-100">
+          <NavigationButton
+            action="back"
+            label="Zurück"
+            onClick={goBack}
+            disabled={noWayBack}
+          />
 
-      <div className="flex justify-between">
-        <NavigationButton
-          action="back"
-          label="Zurück"
-          onClick={goBack}
-          disabled={noWayBack}
-        />
-
-        <NavigationButton
-          action={isLastStep ? "send_survey" : "forward"} // on last page send instead
-          label={isLastStep ? "Absenden" : "Weiter"} // TODO maybe "Umfrage beenden" und anderes icon
-          onClick={() => {
-            if (proceed.canProceed) {
-              goNext();
-            } else {
-              setShowRequirement(true);
-            }
-          }}
-          disabled={false} // TODO keep always disabled?
-        />
+          <NavigationButton
+            action={isLastStep ? "send_survey" : "forward"} // on last page send instead
+            label={isLastStep ? "Absenden" : "Weiter"} // TODO maybe "Umfrage beenden" und anderes icon
+            onClick={() => {
+              if (proceed.canProceed) {
+                goNext();
+              } else {
+                setShowRequirement(true);
+              }
+            }}
+            disabled={false} // TODO keep always disabled?
+          />
+        </div>
       </div>
     </div>
   );
