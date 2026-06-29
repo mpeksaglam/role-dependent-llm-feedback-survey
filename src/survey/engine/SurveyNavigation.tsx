@@ -62,7 +62,7 @@ export function SurveyNavigation() {
 
           <NavigationButton
             action={isLastStep ? "send_survey" : "forward"} // on last page send instead
-            label={isLastStep ? "Absenden" : "Weiter"} // TODO maybe "Umfrage beenden" und anderes icon
+            label={isLastStep ? "Daten übermitteln" : "Weiter"}
             onClick={() => {
               if (proceed.canProceed) {
                 goNext();

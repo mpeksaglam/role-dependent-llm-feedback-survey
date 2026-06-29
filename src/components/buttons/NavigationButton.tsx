@@ -1,6 +1,5 @@
-import { MoveRight } from "lucide-react";
-import { MoveLeft } from "lucide-react";
 import { NavigationType } from "@/lib/types";
+import { MoveLeft, MoveRight, SendHorizonal } from "lucide-react";
 
 type NavigationButtonProps = {
   action: NavigationType;
@@ -22,10 +21,10 @@ export function NavigationButton({
       className="
           flex items-center gap-2
           px-4 py-2
-           font-medium text-black
+          font-medium text-black
           cursor-pointer
           transition-all
-          disabled:opacity-70 font-normal
+          disabled:opacity-0
         "
       onClick={onClick}
       disabled={disabled}
@@ -33,6 +32,7 @@ export function NavigationButton({
       {action === "back" && <MoveLeft size={15} />}
       {label}
       {action === "forward" && <MoveRight size={15} />}
+      {action === "send_survey" && <SendHorizonal size={15} />}
     </button>
   );
 }
