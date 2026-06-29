@@ -21,7 +21,7 @@ function getScaleLength(type: LikertResponseType) {
 export function QuestionModule({ group }: QuestionModuleProps) {
   const { state, setAnswer } = useSurvey();
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 divide-y divide-gray-50">
       {group.questions.map((q) => {
         switch (q.responseType) {
           case "likert5":
@@ -51,7 +51,7 @@ export function QuestionModule({ group }: QuestionModuleProps) {
 
           case "singleChoice":
             return (
-              <div key={q.id} className="space-y-2">
+              <div key={q.id} className="space-y-3 pt-2">
                 {/* Frage */}
                 <p className="text-md">{q.text}</p>
 
