@@ -132,6 +132,7 @@ export function SurveyProvider({ children }: Props) {
         : undefined;
 
     // log current completed step before moving on (end snapshot)
+    // pre survey excluded because it is handled in Special Case 2
     if (state.currentStepId !== SURVEY_STEPS.PRE_SURVEY) {
       void logCurrentStep(state, durationSeconds);
     }

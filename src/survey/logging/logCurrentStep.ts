@@ -27,7 +27,7 @@ export async function logCurrentStep(
       eventType = "pre_survey_completed";
       break;
 
-    case SURVEY_STEPS.TRAINING_TASK:
+    case SURVEY_STEPS.TRAINING_FINISHED:
       eventType = "training_completed";
       break;
 
@@ -52,8 +52,10 @@ export async function logCurrentStep(
     case SURVEY_STEPS.OUTRO:
       eventType = "survey_completed";
       break;
-    // no logging happening in this case
+    // no logging happening in this case (info screens)
     case SURVEY_STEPS.TRAINING_INFO:
+    case SURVEY_STEPS.TRAINING_TASK:
+    case SURVEY_STEPS.CONDITION_SWITCH:
       return;
     default: {
       const exhaustiveCheck: never = state.currentStepId;

@@ -38,6 +38,8 @@ function renderCurrentStep(stepId: StepId) {
       return <PreSurveyScreen />;
     case SURVEY_STEPS.TRAINING_INFO:
       return <TrainingInfoScreen />;
+    case SURVEY_STEPS.TRAINING_FINISHED: // comes after training_task
+      return <TrainingFinishedScreen />;
     case SURVEY_STEPS.TRAINING_TASK:
     case SURVEY_STEPS.GEN_SCEN_1:
     case SURVEY_STEPS.GEN_SCEN_2:
@@ -49,6 +51,8 @@ function renderCurrentStep(stepId: StepId) {
     case SURVEY_STEPS.QUESTIONNAIRES_A:
     case SURVEY_STEPS.QUESTIONNAIRES_B:
       return <QuestionnaireScreen stepId={stepId} />;
+    case SURVEY_STEPS.CONDITION_SWITCH:
+      return <ConditionSwitchScreen />;
     case SURVEY_STEPS.COMPARISON_QUESTIONS:
       return <ComparisonQuestionsScreen />;
     case SURVEY_STEPS.OUTRO:
