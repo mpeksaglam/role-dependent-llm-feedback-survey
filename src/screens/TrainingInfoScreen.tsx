@@ -21,11 +21,6 @@ export function TrainingInfoScreen() {
         Die Trainingsaufgabe dient ausschließlich der Vorbereitung und wird
         nicht ausgewertet.
       </p>
-      <p>
-        Hinweis zur Bearbeitungszeit: In den nachfolgenden Aufgaben wird Ihre
-        Bearbeitungszeit gemessen. Bitte bearbeiten Sie die Aufgaben daher
-        zügig, aber dennoch sorgfältig.
-      </p>
     </div>
   );
 }
