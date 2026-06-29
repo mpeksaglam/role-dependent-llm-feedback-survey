@@ -48,7 +48,7 @@ export function SurveyNavigation() {
   return (
     <div className="mt-auto">
       {/* Tell user to complete questions/chat */}
-      <div className="h-6 mb-2 text-sm text-red-800 text-right">
+      <div className="h-6 mb-2  text-red-800 text-right">
         {showRequirement && !proceed.canProceed && proceed.message}
       </div>
 

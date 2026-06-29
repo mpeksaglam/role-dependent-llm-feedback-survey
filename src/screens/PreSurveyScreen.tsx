@@ -8,7 +8,7 @@ export function PreSurveyScreen() {
         className="
           text-lg
           font-semibold
-          text-gray-900
+          
           mb-10
         "
       >
@@ -16,7 +16,7 @@ export function PreSurveyScreen() {
       </h1>
       <p
         className="
-          text-gray-900
+          
           leading-7
           max-w-3xl
         "

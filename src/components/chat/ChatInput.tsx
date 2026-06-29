@@ -44,7 +44,7 @@ export function ChatInput({ onSend }: ChatInputProps) {
           px-5
           py-3
 
-          text-sm
+          
 
           outline-none
 

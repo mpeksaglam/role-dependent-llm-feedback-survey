@@ -1,13 +1,13 @@
 export function DsgvoInfo() {
   return (
-    <div className="space-y-6 text-sm leading-relaxed">
+    <div className="space-y-6  ">
       <section>
         <h2 className="text-lg font-semibold mb-2">
           1. Informationen zum Verantwortlichen
         </h2>
         <p>Verantwortlich für die Datenerhebung und -verarbeitung ist:</p>
         <p className="mt-2">
-          Saskia Hutschenreiter
+          xy
           <br />
           [Adresse]
           <br />

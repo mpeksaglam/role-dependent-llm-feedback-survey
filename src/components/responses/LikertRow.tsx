@@ -23,7 +23,7 @@ export function LikertRow({
     <div className="flex items-center justify-between py-5 gap-6">
       {/* Frage */}
       <div className="w-1/2">
-        <p className="text-sm">{text}</p>
+        <p className="">{text}</p>
       </div>
 
       {/* Antwortbereich */}

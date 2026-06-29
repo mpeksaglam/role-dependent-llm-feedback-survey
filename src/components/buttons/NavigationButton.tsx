@@ -22,7 +22,7 @@ export function NavigationButton({
       className="
           flex items-center gap-2
           px-4 py-2
-          text-sm font-medium text-black
+           font-medium text-black
           cursor-pointer
           transition-all
           disabled:opacity-70 font-normal

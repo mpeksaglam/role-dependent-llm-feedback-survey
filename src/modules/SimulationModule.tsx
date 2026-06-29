@@ -30,7 +30,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
     <div className="flex flex-col space-y-8 w-full max-w-3xl mx-auto">
       {/* Variant A */}
       <div className="space-y-2">
-        <h3 className="text-md font-medium text-gray-900 px-1">Variante A</h3>
+        <h3 className="text-md font-medium  px-1">Variante A</h3>
         <video
           controls
           preload="auto"
@@ -46,7 +46,7 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
       </div>
       {/* Variant B */}
       <div className="space-y-2">
-        <h3 className="text-md font-medium text-gray-900 px-1">Variante B</h3>
+        <h3 className="text-md font-medium  px-1">Variante B</h3>
         <video
           controls
           preload="auto"

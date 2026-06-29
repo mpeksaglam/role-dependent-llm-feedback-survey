@@ -18,7 +18,7 @@ export function ChatMessageBubble({ message }: Props) {
         className={`
           rounded-2xl
 
-          text-sm
+          
           leading-6
 
           whitespace-pre-wrap
@@ -26,8 +26,8 @@ export function ChatMessageBubble({ message }: Props) {
           
           ${
             isUser
-              ? "max-w-[80%] px-4 py-2 bg-slate-100 text-gray-900"
-              : "w-full px-4 py-4 bg-transparent text-gray-900"
+              ? "max-w-[80%] px-4 py-2 bg-slate-100 "
+              : "w-full px-4 py-4 bg-transparent "
           }
         `}
       >

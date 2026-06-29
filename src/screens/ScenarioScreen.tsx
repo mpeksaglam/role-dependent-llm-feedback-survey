@@ -68,7 +68,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
         className="
           text-lg
           font-semibold
-          text-gray-900
+          
         "
       >
         {config.title[userRole]}
@@ -77,8 +77,8 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
       {/* kurze Aufgabenbeschreibung */}
       <p
         className="
-          text-sm
-          text-gray-900
+          
+          
           leading-6
           max-w-3xl
         "

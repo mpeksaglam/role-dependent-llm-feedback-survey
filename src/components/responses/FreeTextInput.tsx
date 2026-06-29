@@ -21,9 +21,9 @@ export function FreeTextInput({ text, value, onSave }: FreeTextInputProps) {
     <div className="mt-10 space-y-3">
       <p
         className="
-          text-sm
+          
           mx-1 mb-4
-          text-gray-900
+          
         "
       >
         {text}
@@ -46,7 +46,7 @@ export function FreeTextInput({ text, value, onSave }: FreeTextInputProps) {
           px-4
           py-3
 
-          text-sm
+          
           leading-6
 
           outline-none
