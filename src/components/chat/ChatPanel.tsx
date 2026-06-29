@@ -25,19 +25,18 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
 
   return (
     <div
-      className="
+      className={`
         h-full
         flex
         flex-col
         overflow-hidden
-
         rounded-3xl
         border
         border-gray-200
-        
         bg-white
         shadow-xl
-    "
+        transition
+        `}
     >
       {/* Messages */}
       <div
@@ -46,10 +45,8 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
           flex-1
           min-h-0
           overflow-y-auto
-
           p-4
           space-y-4
-          
         "
       >
         {messages.map((msg) => (

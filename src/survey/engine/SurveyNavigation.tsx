@@ -43,7 +43,6 @@ export function SurveyNavigation() {
     state.answers,
     state.userRole,
     state.chatHistory,
-    state.isChatLoading,
   );
 
   return (

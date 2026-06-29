@@ -9,5 +9,4 @@ export const initialSurveyState: SurveyState = {
   participantFlow: [],
   chatHistory: {},
   scenarioStartTimestamp: null,
-  isChatLoading: false,
 };
