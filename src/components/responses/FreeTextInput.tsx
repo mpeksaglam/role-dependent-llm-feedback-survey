@@ -7,7 +7,7 @@ interface FreeTextInputProps {
 }
 
 export function FreeTextInput({ text, value, onSave }: FreeTextInputProps) {
-  /* seperate local changes from changes to save
+  /* separate local changes from changes to save
      local changes to show typing to user, but save only when leaving the text field 
      (prevent too many server persistence requests) */
   const [localValue, setLocalValue] = useState(value); // renders on first mount only
@@ -18,43 +18,23 @@ export function FreeTextInput({ text, value, onSave }: FreeTextInputProps) {
   }, [value]);
 
   return (
-    <div className="mt-10 space-y-3">
-      <p
-        className="
-          
-          mx-1 mb-4
-          
-        "
-      >
-        {text}
-      </p>
+    <div className="pt-4 space-y-3">
+      <p className="mb-4 font-medium">{text}</p>
 
       <textarea
         className="
-          w-full
-          max-w-xl
-
+          w-full max-w-2xl
           h-24
-
-          rounded-2xl
-
+          rounded-xl
           border
-          border-gray-300
-
+          border-gray-200
           bg-white
-
           px-4
           py-3
-
-          
-          leading-6
-
+          leading-relaxed
           outline-none
           transition
-
           focus:border-gray-400
-          focus:ring-0
-
           resize-none
         "
         value={localValue}
