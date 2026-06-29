@@ -236,6 +236,10 @@ export function SurveyProvider({ children }: Props) {
     return;
   };
 
+  const setChatLoading = (loading: boolean) => {
+    setState((prev) => ({ ...prev, isChatLoading: loading })); // using prev because of asynchronous chat api call
+  };
+
   // set scroll position to top on each new stepId render
   useEffect(() => {
     // browser window
@@ -252,6 +256,7 @@ export function SurveyProvider({ children }: Props) {
         goNext,
         goBack,
         setChatHistory,
+        setChatLoading,
       }}
     >
       {children}

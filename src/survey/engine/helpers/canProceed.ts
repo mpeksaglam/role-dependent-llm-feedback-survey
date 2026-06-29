@@ -2,14 +2,13 @@ import {
   ChatMessage,
   isScenarioStep,
   ScenarioStepId,
-  SURVEY_STEPS,
   SurveyAnswers,
 } from "@/lib/types";
 
 import { StepId, UserRole } from "@/lib/types";
 
-import { getQuestionsForStep } from "./getQuestionsForStep";
 import { scenarioConfig } from "@/config/scenarioConfig";
+import { getQuestionsForStep } from "./getQuestionsForStep";
 
 // maps the reason for not proceeding, so surveyNavigation can display correct requirement to proceed
 type ProceedResult = {
@@ -22,7 +21,16 @@ export function canProceed(
   answers: SurveyAnswers,
   userRole: UserRole | null,
   chatHistory: Partial<Record<ScenarioStepId, ChatMessage[]>>,
+  isChatLoading: boolean,
 ): ProceedResult {
+  // Do not proceed until LLM responded, or bugs and jumping of screens will happen
+  if (isChatLoading) {
+    return {
+      canProceed: false,
+      message: "Bitte warten Sie, bis der Chat-Assistent geantwortet hat.",
+    };
+  }
+
   // get all questions that have to be answered on that screen
   const group = getQuestionsForStep(stepId, userRole);
 

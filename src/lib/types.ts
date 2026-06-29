@@ -133,6 +133,7 @@ export interface SurveyState {
   participantFlow: StepId[];
   chatHistory: Partial<Record<ScenarioStepId, ChatMessage[]>>;
   scenarioStartTimestamp: number | null;
+  isChatLoading: boolean;
 }
 
 // Chat
