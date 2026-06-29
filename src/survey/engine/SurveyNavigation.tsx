@@ -27,14 +27,16 @@ export function SurveyNavigation() {
   /* special cases (no way back):
       -beginning of survey
       -pre-survey to survey step (user Role assigned) 
-      -between scenarios (enforce within-subjects design & keep timing correct)   */
+      -between and in scenarios (enforce within-subjects design & keep timing correct)   */
 
   const noWayBack =
     currentStep === SURVEY_STEPS.INTRO || // TODO change forward button , put on IntroScreen and hideNavigation in surveyRenderer
     currentStep === SURVEY_STEPS.TRAINING_INFO ||
+    currentStep === SURVEY_STEPS.QUESTIONNAIRES_A ||
+    currentStep === SURVEY_STEPS.QUESTIONNAIRES_B ||
     isScenarioStep(currentStep);
 
-  const isLastStep = currentStep === SURVEY_STEPS.OUTRO;
+  const isLastStep = currentStep === SURVEY_STEPS.COMPARISON_QUESTIONS;
   // checks if its possible to proceed and gives back potential error message for user
   const proceed = canProceed(
     state.currentStepId,
