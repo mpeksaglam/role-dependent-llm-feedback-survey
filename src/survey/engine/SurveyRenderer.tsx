@@ -8,6 +8,7 @@ import { ScenarioScreen } from "@/screens/ScenarioScreen";
 import { TrainingInfoScreen } from "@/screens/TrainingInfoScreen";
 import { useSurvey } from "./helpers/useSurvey";
 import { SurveyNavigation } from "./SurveyNavigation";
+import { MessageScreen } from "@/screens/MessageScreen";
 
 export function SurveyRenderer() {
   const { state } = useSurvey();
@@ -39,7 +40,7 @@ function renderCurrentStep(stepId: StepId) {
     case SURVEY_STEPS.TRAINING_INFO:
       return <TrainingInfoScreen />;
     case SURVEY_STEPS.TRAINING_FINISHED: // comes after training_task
-      return <TrainingFinishedScreen />;
+      return <MessageScreen type="trainingFinished" />;
     case SURVEY_STEPS.TRAINING_TASK:
     case SURVEY_STEPS.GEN_SCEN_1:
     case SURVEY_STEPS.GEN_SCEN_2:
@@ -52,7 +53,7 @@ function renderCurrentStep(stepId: StepId) {
     case SURVEY_STEPS.QUESTIONNAIRES_B:
       return <QuestionnaireScreen stepId={stepId} />;
     case SURVEY_STEPS.CONDITION_SWITCH:
-      return <ConditionSwitchScreen />;
+      return <MessageScreen type="conditionSwitch" />;
     case SURVEY_STEPS.COMPARISON_QUESTIONS:
       return <ComparisonQuestionsScreen />;
     case SURVEY_STEPS.OUTRO:
