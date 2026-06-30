@@ -23,7 +23,7 @@ export function FreeTextInput({ text, value, onSave }: FreeTextInputProps) {
 
       <textarea
         className="
-          w-full max-w-2xl
+          w-2xl
           h-24
           rounded-xl
           border

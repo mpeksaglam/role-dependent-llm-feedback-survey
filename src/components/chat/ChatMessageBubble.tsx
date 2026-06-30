@@ -17,8 +17,6 @@ export function ChatMessageBubble({ message }: Props) {
       <div
         className={`
           rounded-2xl
-
-          
           leading-6
 
           whitespace-pre-wrap
