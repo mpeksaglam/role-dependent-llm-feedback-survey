@@ -51,50 +51,26 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
 
       return () => clearTimeout(timer);
     }
-  }, [showChat]); // upon showChat change from false to true, scroll down
+  }, [showChat, stepId]); // upon showChat change from false to true, scroll down
 
   return (
-    <div
-      className="
-        max-w-6xl
-        mx-auto
-        px-6
-        py-8
-        space-y-10
-      "
-    >
+    <div className="max-w-5xl mx-auto px-10 space-y-10">
       {/* Titel */}
-      <h1
-        className="
-          text-lg
-          font-semibold
-          
-        "
-      >
+      <h2 className="text-xl font-semibold tracking-tight pb-4 border-b border-gray-100">
         {config.title[userRole]}
-      </h1>
+      </h2>
 
       {/* kurze Aufgabenbeschreibung */}
-      <p
-        className="
-          
-          
-          leading-6
-          max-w-3xl
-        "
-      >
-        {config.taskDescr[userRole]}
-      </p>
+      <p className="max-w-3xl">{config.taskDescr[userRole]}</p>
 
-      <div className="max-w-5xl mx-auto">
+      <div className="w-full">
         <SimulationModule key={stepId} simVid={config.simulation} />
       </div>
-      <div className="">
-        {/* TODO spacing? */}
+      <div className="pt-4">
         <QuestionModule group={questions} />
       </div>
       {showChat && (
-        <div ref={chatRef} className="max-w-6xl mx-auto mt-8 scroll-mt-6">
+        <div ref={chatRef} className="w-full mt-8 scroll-mt-6">
           <ChatModule key={stepId} scenarioId={stepId} userRole={userRole} />
         </div>
       )}

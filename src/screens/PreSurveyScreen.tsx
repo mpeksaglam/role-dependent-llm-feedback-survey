@@ -3,7 +3,7 @@ import { QuestionModule } from "@/modules/QuestionModule";
 
 export function PreSurveyScreen() {
   return (
-    <div className="max-w-5xl mx-auto px-10 py-12 space-y-8 flex flex-col">
+    <div className="max-w-5xl mx-auto px-10 space-y-8">
       <h1 className="text-xl font-semibold tracking-tight pb-4 border-b border-gray-100">
         Technische Vorerfahrung
       </h1>

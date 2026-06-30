@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="de" // german
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col text-sm text-gray-900 leading-relaxed bg-white">
+      <body className="min-h-full flex flex-col text-sm text-gray-900 leading-relaxed bg-white pt-16">
         <SurveyProvider>{children}</SurveyProvider>
       </body>
     </html>

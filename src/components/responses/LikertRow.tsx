@@ -20,17 +20,17 @@ export function LikertRow({
   onChange,
 }: LikertRowProps) {
   return (
-    <div className="flex items-center justify-between py-5 gap-6">
+    <div className="w-full flex items-center justify-between py-5 gap-6">
       {/* Frage */}
       <div className="flex-1 min-w-0">
         <p>{text}</p>
       </div>
 
       {/* Antwortbereich */}
-      <div className="flex items-center justify-end shrink-0">
+      <div className="w-[510px] flex items-center justify-end shrink-0">
         {/* LEFT LABEL */}
         {leftLabel && (
-          <span className="text-xs select-none w-36 text-right pr-4 leading-tight">
+          <span className="text-xs select-none flex-1 text-right pr-4 leading-tight">
             {leftLabel}
           </span>
         )}
@@ -45,7 +45,7 @@ export function LikertRow({
 
         {/* RIGHT LABEL */}
         {rightLabel && (
-          <span className="text-xs select-none w-36 text-left pl-4 leading-tight">
+          <span className="text-xs select-none flex-1 text-left pl-4 leading-tight">
             {rightLabel}
           </span>
         )}

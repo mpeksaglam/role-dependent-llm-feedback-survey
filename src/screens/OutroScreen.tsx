@@ -6,7 +6,7 @@ export function OutroScreen() {
   if (consentRejected) {
     return (
       <div className="space-y-4 mt-30">
-        <h1>Vielen Dank für Ihr Interesse.</h1>
+        <h2>Vielen Dank für Ihr Interesse.</h2>
 
         <p>
           Da Sie der Teilnahme nicht zugestimmt haben, wird die Umfrage nicht
@@ -19,7 +19,7 @@ export function OutroScreen() {
 
   return (
     <div className="space-y-4 mt-30">
-      <h1>Vielen Dank für Ihre Teilnahme.</h1>
+      <h2>Vielen Dank für Ihre Teilnahme.</h2>
       <p>Ihre Antworten wurden erfolgreich übermittelt.</p>
     </div>
   );

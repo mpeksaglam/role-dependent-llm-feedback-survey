@@ -4,10 +4,10 @@ import { QuestionModule } from "@/modules/QuestionModule";
 
 export function IntroScreen() {
   return (
-    <div className="max-w-4xl mx-auto px-10 py-12 space-y-10">
-      <h1 className="text-xl font-semibold tracking-tight pb-4 border-b border-gray-100">
+    <div className="max-w-5xl mx-auto px-10 space-y-10">
+      <h2 className="text-xl font-semibold tracking-tight pb-4 border-b border-gray-100">
         Belehrung über die Datenschutzgrundverordnung
-      </h1>
+      </h2>
       <div>
         <DsgvoInfo />
       </div>

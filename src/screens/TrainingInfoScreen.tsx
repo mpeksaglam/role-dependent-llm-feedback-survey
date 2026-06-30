@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function TrainingInfoScreen() {
   return (
-    <div className="max-w-4xl mx-auto px-10 py-12 space-y-12">
+    <div className="max-w-5xl mx-auto px-10 space-y-12">
       <section className="space-y-6">
         <h2 className="text-xl font-semibold tracking-tight border-b border-gray-100 pb-3">
           Beschreibung der Aufgabe
@@ -14,7 +14,7 @@ export function TrainingInfoScreen() {
           die Verschraubung eines Stoßfängers an einem Chassis.
         </p>
 
-        <div className="max-w-xl mx-auto py-2">
+        <div className="w-fit mx-auto py-2">
           <Image
             src="/images/workstation_overview.png"
             alt="Übersicht der Arbeitstools"
@@ -44,12 +44,12 @@ export function TrainingInfoScreen() {
           Chassis durchzuführen.
         </p>
 
-        <div className="max-w-xl mx-auto py-2">
+        <div className="w-fit mx-auto py-2">
           <Image
             src="/images/process_step.png"
             alt="Dargestellter Prozessschritt"
-            width={600}
-            height={333}
+            width={450}
+            height={284}
             priority
           />
           <p className="text-xs text-center text-gray-500 mt-2 font-serif">
