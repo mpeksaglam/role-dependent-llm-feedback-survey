@@ -40,7 +40,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
       return;
     }
     // does not happen in scenario 2 since showChat always true (no change)
-    if (showChat && chatRef.current) {
+    if (showChat && config.chatMode === "onReject" && chatRef.current) {
       // small time out to give time to render until scroll
       const timer = setTimeout(() => {
         chatRef.current?.scrollIntoView({
@@ -51,7 +51,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
 
       return () => clearTimeout(timer);
     }
-  }, [showChat, stepId]); // upon showChat change from false to true, scroll down
+  }, [showChat, stepId, config.chatMode]); // upon showChat change from false to true, scroll down
 
   return (
     <div className="max-w-5xl mx-auto px-10 pt-16 pb-6 space-y-10">
