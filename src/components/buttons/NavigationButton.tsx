@@ -8,8 +8,6 @@ type NavigationButtonProps = {
   disabled: boolean;
 };
 
-// TODO roter Text handleDisabledClick ?
-
 export function NavigationButton({
   action,
   label,
@@ -25,6 +23,7 @@ export function NavigationButton({
           cursor-pointer
           transition-all
           disabled:opacity-0
+          disabled:pointer-events-none
         "
       onClick={onClick}
       disabled={disabled}
