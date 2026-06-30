@@ -1,10 +1,6 @@
 import { Condition, StepId, SURVEY_STEPS } from "@/lib/types";
 
-// Set condition order for participant
-export function randomize(): [Condition, Condition] {
-  return Math.random() < 0.5 ? ["gen", "role_spec"] : ["role_spec", "gen"];
-}
-
+// builds participantFlow based on the condition order that was assigned
 export function buildParticipantFlow(
   conditionOrder: [Condition, Condition],
 ): StepId[] {

@@ -12,18 +12,15 @@ import {
   SurveyState,
 } from "@/lib/types";
 import { SurveyContext } from "@/survey/engine/SurveyContext";
+import { logBackNavigation } from "../logging/logBackNavigation";
 import { logCurrentStep } from "../logging/logCurrentStep";
 import { logEvent } from "../logging/logEvent";
 import { loadSession } from "../persistence/loadSession";
 import { saveSession } from "../persistence/saveSession";
-import {
-  buildParticipantFlow,
-  randomize,
-} from "./helpers/buildParticipantFlow";
+import { buildParticipantFlow } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
+import { fetchConditionOrder } from "./helpers/fetchConditionOrder";
 import { initialSurveyState } from "./initialSurveyState";
-import { logBackNavigation } from "../logging/logBackNavigation";
-import next from "next";
 
 interface Props {
   children: ReactNode;
@@ -70,9 +67,9 @@ export function SurveyProvider({ children }: Props) {
         localStorage.setItem("participantId", participantId);
       }
 
-      // Generate new survey data
+      // Get new survey data
       // Randomization of conditions
-      const conditionOrder = randomize();
+      const conditionOrder = await fetchConditionOrder(participantId);
       // Build static participant flow for the survey
       const participantFlow = buildParticipantFlow(conditionOrder);
 
