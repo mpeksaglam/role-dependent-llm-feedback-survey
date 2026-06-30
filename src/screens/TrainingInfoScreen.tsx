@@ -2,9 +2,11 @@ import Image from "next/image";
 
 export function TrainingInfoScreen() {
   return (
-    <div className="max-w-4xl mx-auto px-10 py-8 space-y-10">
-      <section className="space-y-5">
-        <h2 className="text-xl font-semibold">Beschreibung der Aufgabe</h2>
+    <div className="max-w-4xl mx-auto px-10 py-12 space-y-12">
+      <section className="space-y-6">
+        <h2 className="text-xl font-semibold tracking-tight border-b border-gray-100 pb-3">
+          Beschreibung der Aufgabe
+        </h2>
 
         <p>
           In den folgenden Szenarien wird ein teil-mobiler Arbeitsplatz für die
@@ -12,22 +14,27 @@ export function TrainingInfoScreen() {
           die Verschraubung eines Stoßfängers an einem Chassis.
         </p>
 
-        <Image
-          src="/images/workstation_overview.png"
-          alt="Übersicht des Arbeitsplatzes"
-          width={900}
-          height={500}
-          className="rounded-lg border"
-        />
+        <div className="max-w-xl mx-auto py-2">
+          <Image
+            src="/images/workstation_overview.png"
+            alt="Übersicht der Arbeitstools"
+            width={600}
+            height={333}
+            priority
+          />
+          <p className="text-xs text-center text-gray-500 mt-2 font-serif">
+            Abbildung 1: Bauteile und Hilfsmittel
+          </p>
+        </div>
 
         <p>
           Der Arbeitsplatz besteht aus einer Roboterzelle mit einem
           UR5e-Roboter, einem Schraubwerkzeug als Endeffektor sowie einer
           automatischen Schraubenzuführung. Eine Halterung, im Folgenden als
-          <em> Jig </em> bezeichnet, dient dazu, die Bauteile wiederholgenau für
-          den Verschraubungsprozess zu positionieren. Die Interaktion mit dem
-          System erfolgt über einen Freigabetaster beziehungsweise einen
-          Lichttaster.
+          <em className="italic"> Jig</em> bezeichnet, dient dazu, die Bauteile
+          wiederholgenau für den Verschraubungsprozess zu positionieren. Die
+          Interaktion mit dem System erfolgt über einen Freigabetaster
+          beziehungsweise einen Lichttaster.
         </p>
 
         <p>
@@ -37,39 +44,43 @@ export function TrainingInfoScreen() {
           Chassis durchzuführen.
         </p>
 
-        <Image
-          src="/images/process_step.png"
-          alt="Dargestellter Prozessschritt"
-          width={800}
-          height={350}
-          className="rounded-lg border"
-        />
+        <div className="max-w-xl mx-auto py-2">
+          <Image
+            src="/images/process_step.png"
+            alt="Dargestellter Prozessschritt"
+            width={600}
+            height={333}
+            priority
+          />
+          <p className="text-xs text-center text-gray-500 mt-2 font-serif">
+            Abbildung 2: Schematische Darstellung des Arbeitsschrittes
+          </p>
+        </div>
 
         <p>
           Das Chassis und der Stoßfänger selbst sind in der Simulation nicht
           sichtbar. Dargestellt werden lediglich der Roboter, der Arbeitsplatz,
           die Position des Jigs sowie die Schraubenzuführung. Bewerten Sie daher
-          ausschließlich die in der Simulation gezeigte Roboterbewegung und das
-          Anfahren der vorgesehenen Arbeitsposition.
+          nur die in der Simulation gezeigte Roboterbewegung und das Anfahren
+          der vorgesehenen Arbeitsposition.
         </p>
       </section>
 
-      <div className="max-w-2xl px-6 py-12 space-y-8 ">
-        {/* Title */}
-        <h2 className="text-xl font-semibold tracking-tight  border-b border-gray-100 pb-4">
-          Trainingsaufgabe
+      <section className="space-y-6 pt-4">
+        <h2 className="text-xl font-semibold tracking-tight border-b border-gray-100 pb-3">
+          Durchführung der Aufgabe
         </h2>
-        {/* Body Content Container */}
-        <div className="space-y-5   ">
+
+        <div className="space-y-4">
           <p>
             Bevor die eigentliche Untersuchung beginnt, bearbeiten Sie zunächst
             eine kurze Trainingsaufgabe. Diese hilft Ihnen dabei, sich mit dem
             Ablauf und der Bedienung vertraut zu machen.
           </p>
 
-          <p className="font-medium ">In der Trainingsaufgabe lernen Sie:</p>
+          <p>In der Trainingsaufgabe lernen Sie,</p>
 
-          <ul className="list-disc pl-5 space-y-2 ">
+          <ul className="list-disc pl-5 space-y-2">
             <li>wie die Simulation dargestellt wird,</li>
             <li>wie die Schaltflächen bedient werden,</li>
             <li>wie Bewertungen abgegeben werden und</li>
@@ -78,9 +89,10 @@ export function TrainingInfoScreen() {
             </li>
           </ul>
         </div>
-        {/* Scientific Disclaimer Block */}
-        <h2 className=" font-bold  ">Wichtiger Hinweis zur Auswertung</h2>
-        <p className="  font-medium  mb-1">
+      </section>
+
+      <div className="py-1 font-bold">
+        <p>
           Die Trainingsaufgabe dient ausschließlich der Vorbereitung und wird
           nicht in die wissenschaftliche Auswertung einbezogen.
         </p>

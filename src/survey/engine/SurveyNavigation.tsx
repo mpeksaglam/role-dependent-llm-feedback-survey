@@ -48,11 +48,11 @@ export function SurveyNavigation() {
   return (
     <div className="mt-auto w-full">
       {/* Tell user to complete questions/chat */}
-      <div className="h-6 mb-2 text-red-800 text-right">
+      <div className="h-6 mb-2 text-red-800 text-right font-medium transition-all text-xs">
         {showRequirement && !proceed.canProceed && proceed.message}
       </div>
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="flex justify-between border-t border-gray-100">
+      <div className="max-w-5xl mx-auto px-10">
+        <div className="flex justify-between border-t border-gray-100 pt-4">
           <NavigationButton
             action="back"
             label="Zurück"
