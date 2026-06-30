@@ -8,5 +8,6 @@ export const initialSurveyState: SurveyState = {
   conditionOrder: null,
   participantFlow: [],
   chatHistory: {},
+  llmResponses: {},
   scenarioStartTimestamp: null,
 };

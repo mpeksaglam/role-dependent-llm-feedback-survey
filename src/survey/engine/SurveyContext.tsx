@@ -3,6 +3,7 @@ import { createContext } from "react";
 import {
   AnswerValue,
   ChatMessage,
+  LlmResponse,
   ScenarioStepId,
   SurveyState,
 } from "@/lib/types";
@@ -17,6 +18,8 @@ export interface SurveyContextValue {
   goBack: () => void;
 
   setChatHistory: (scenarioId: ScenarioStepId, messages: ChatMessage[]) => void;
+
+  setLlmResponses: (scenarioId: ScenarioStepId, response: LlmResponse) => void;
 
   lockNavigation: () => void;
   unlockNavigation: () => void;

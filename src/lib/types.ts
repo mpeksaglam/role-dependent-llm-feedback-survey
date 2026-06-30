@@ -21,9 +21,7 @@ export type FreeTextResponseType = "freeTextInput";
 export type SelectionResponseType = "singleChoice";
 
 export type ResponseType =
-  | LikertResponseType
-  | FreeTextResponseType
-  | SelectionResponseType;
+  LikertResponseType | FreeTextResponseType | SelectionResponseType;
 
 interface BaseQuestion {
   id: string;
@@ -132,6 +130,7 @@ export interface SurveyState {
   conditionOrder: [Condition, Condition] | null; // [gen, role_spec || role_spec , gen]
   participantFlow: StepId[];
   chatHistory: Partial<Record<ScenarioStepId, ChatMessage[]>>;
+  llmResponses: Partial<Record<ScenarioStepId, LlmResponse[]>>;
   scenarioStartTimestamp: number | null;
 }
 
@@ -154,6 +153,10 @@ export type ChatRequest = {
 export type ChatResponse = {
   message: string;
 };
+
+export interface LlmResponse {
+  [key: string]: unknown;
+}
 
 // Logging
 export type LogEvent =

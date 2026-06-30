@@ -6,6 +6,7 @@ import {
   ChatMessage,
   ChatRequest,
   ChatResponse,
+  LlmResponse,
   ScenarioStepId,
   SURVEY_STEPS,
   UserRole,
@@ -32,8 +33,13 @@ interface ChatModuleProps {
 
 export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
   // Access survey context
-  const { state, setChatHistory, lockNavigation, unlockNavigation } =
-    useSurvey();
+  const {
+    state,
+    setChatHistory,
+    lockNavigation,
+    unlockNavigation,
+    setLlmResponses,
+  } = useSurvey();
 
   // decide default message based on scenarioId
   const defaultMessage =
@@ -110,6 +116,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       // console.group("message", chatResponse.message);
 
       const parsedResponse = JSON.parse(chatResponse.message);
+
+      setLlmResponses(scenarioId, parsedResponse);
       // extract fields to display for user
       const userConfRequired: boolean = parsedResponse.confirmation_required;
       const sysInterpretation =

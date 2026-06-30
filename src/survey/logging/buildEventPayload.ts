@@ -42,6 +42,12 @@ export function buildEventPayload({
     }
     return state.chatHistory[state.currentStepId] ?? [];
   }
+  function getLlmResponses() {
+    if (!isScenarioStep(state.currentStepId)) {
+      return [];
+    }
+    return state.llmResponses[state.currentStepId] ?? [];
+  }
   // FUNCTION CODE
   // find the appropriate payload based on event
   switch (eventType) {
@@ -73,8 +79,9 @@ export function buildEventPayload({
       }
       return {
         answers: getAnswers(),
-        chatHistory: getChatHistory(),
         durationSeconds, // should not be undefined in this case
+        chatHistory: getChatHistory(),
+        llmResponses: getLlmResponses(),
       };
     }
     case "questionnaire_completed":

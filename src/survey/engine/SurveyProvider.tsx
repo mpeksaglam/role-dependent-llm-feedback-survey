@@ -6,6 +6,7 @@ import {
   AnswerValue,
   ChatMessage,
   isScenarioStep,
+  LlmResponse,
   ScenarioStepId,
   SURVEY_STEPS,
   SurveyState,
@@ -22,6 +23,7 @@ import {
 import { deriveUserRole } from "./helpers/deriveUserRole";
 import { initialSurveyState } from "./initialSurveyState";
 import { logBackNavigation } from "../logging/logBackNavigation";
+import next from "next";
 
 interface Props {
   children: ReactNode;
@@ -241,6 +243,25 @@ export function SurveyProvider({ children }: Props) {
     return;
   };
 
+  // keep complete llm response for logging
+  const setLlmResponses = (
+    scenarioId: ScenarioStepId,
+    response: LlmResponse,
+  ) => {
+    const nextState = {
+      ...state,
+      llmResponses: {
+        ...state.llmResponses,
+        [scenarioId]: [...(state.llmResponses[scenarioId] ?? []), response],
+      },
+    };
+    setState(nextState);
+
+    // send to backend for persistence
+    void saveSession(nextState);
+    return;
+  };
+
   const lockNavigation = () => {
     navigationLockRef.current = true;
   };
@@ -264,6 +285,7 @@ export function SurveyProvider({ children }: Props) {
         goNext,
         goBack,
         setChatHistory,
+        setLlmResponses,
         lockNavigation,
         unlockNavigation,
       }}
