@@ -21,6 +21,7 @@ import { buildParticipantFlow } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
 import { fetchConditionOrder } from "./helpers/fetchConditionOrder";
 import { initialSurveyState } from "./initialSurveyState";
+import next from "next";
 
 interface Props {
   children: ReactNode;
@@ -227,18 +228,19 @@ export function SurveyProvider({ children }: Props) {
     scenarioId: ScenarioStepId,
     messages: ChatMessage[],
   ) => {
-    const nextState = {
-      ...state,
-      chatHistory: {
-        ...state.chatHistory,
-        [scenarioId]: messages,
-      },
-    };
-    setState(nextState);
+    setState((prev) => {
+      const nextState = {
+        ...prev,
+        chatHistory: {
+          ...prev.chatHistory,
+          [scenarioId]: messages,
+        },
+      };
 
-    // send to backend for persistence
-    void saveSession(nextState);
-    return;
+      // send to backend for persistence
+      void saveSession(nextState);
+      return nextState;
+    });
   };
   // keep chat messages in survey state and add complete llm response for log
   const setChatData = (
@@ -246,24 +248,23 @@ export function SurveyProvider({ children }: Props) {
     messages: ChatMessage[],
     response: LlmResponse,
   ) => {
-    const nextState = {
-      ...state,
-      chatHistory: {
-        ...state.chatHistory,
-        [scenarioId]: messages,
-      },
-      llmResponses: {
-        ...state.llmResponses,
-        [scenarioId]: [...(state.llmResponses[scenarioId] ?? []), response],
-      },
-    };
-    setState(nextState);
-
-    // send to backend for persistence
-    void saveSession(nextState);
-    return;
+    setState((prev) => {
+      const nextState = {
+        ...prev,
+        chatHistory: {
+          ...prev.chatHistory,
+          [scenarioId]: messages,
+        },
+        llmResponses: {
+          ...prev.llmResponses,
+          [scenarioId]: [...(prev.llmResponses[scenarioId] ?? []), response],
+        },
+      };
+      // send to backend for persistence
+      void saveSession(nextState);
+      return nextState;
+    });
   };
-
   const lockNavigation = () => {
     navigationLockRef.current = true;
   };
