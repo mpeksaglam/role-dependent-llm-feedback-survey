@@ -1,5 +1,5 @@
 import { NavigationType } from "@/lib/types";
-import { MoveLeft, MoveRight, SendHorizonal } from "lucide-react";
+import { ArrowUpFromLine, MoveLeft, MoveRight } from "lucide-react";
 
 type NavigationButtonProps = {
   action: NavigationType;
@@ -32,7 +32,7 @@ export function NavigationButton({
       {action === "back" && <MoveLeft size={15} />}
       {label}
       {action === "forward" && <MoveRight size={15} />}
-      {action === "send_survey" && <SendHorizonal size={15} />}
+      {action === "send_survey" && <ArrowUpFromLine size={17} />}
     </button>
   );
 }
