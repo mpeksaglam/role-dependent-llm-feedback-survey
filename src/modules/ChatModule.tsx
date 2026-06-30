@@ -12,6 +12,7 @@ import {
   UserRole,
 } from "@/lib/types";
 import { useSurvey } from "@/survey/engine/helpers/useSurvey";
+import { useRef } from "react";
 
 // static constants
 const WELCOME_MESSAGE: ChatMessage = {
@@ -41,6 +42,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
     unlockNavigation,
   } = useSurvey();
 
+  const isWaitingRef = useRef(false);
+
   // decide default message based on scenarioId
   const defaultMessage =
     scenarioId === SURVEY_STEPS.TRAINING_TASK
@@ -64,6 +67,12 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
 
   // Send user input to OpenAI API
   const handleSend = async (text: string) => {
+    // if waiting for api response, ignore double sending of messages
+    if (isWaitingRef.current) {
+      return;
+    }
+    // lock user out of sending multiple messages at once
+    isWaitingRef.current = true;
     // Prevent user from clicking next before the response came
     lockNavigation();
     // create userMessage from new input text and update
@@ -88,6 +97,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
         ],
         {} as LlmResponse,
       );
+      isWaitingRef.current = false;
       unlockNavigation();
       return;
     }
@@ -152,6 +162,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
         { error: "Fetch or parse failed" } as unknown as LlmResponse,
       );
     } finally {
+      isWaitingRef.current = false;
       unlockNavigation();
     }
   };
