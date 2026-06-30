@@ -132,6 +132,7 @@ export interface SurveyState {
   chatHistory: Partial<Record<ScenarioStepId, ChatMessage[]>>;
   llmResponses: Partial<Record<ScenarioStepId, LlmResponse[]>>;
   scenarioStartTimestamp: number | null;
+  isLoading: boolean;
 }
 
 // Chat

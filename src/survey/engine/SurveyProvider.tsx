@@ -92,6 +92,7 @@ export function SurveyProvider({ children }: Props) {
         participantId,
         conditionOrder,
         participantFlow,
+        isLoading: false,
       }));
     }
     initializeSurvey();

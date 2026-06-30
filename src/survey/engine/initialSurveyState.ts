@@ -10,4 +10,5 @@ export const initialSurveyState: SurveyState = {
   chatHistory: {},
   llmResponses: {},
   scenarioStartTimestamp: null,
+  isLoading: true,
 };
