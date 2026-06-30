@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function TrainingInfoScreen() {
   return (
-    <div className="max-w-5xl mx-auto px-10 space-y-12">
+    <div className="max-w-5xl mx-auto px-10 pt-16 pb-6 space-y-12">
       <section className="space-y-6">
         <h2 className="text-xl font-semibold tracking-tight border-b border-gray-100 pb-3">
           Beschreibung der Aufgabe
@@ -21,6 +21,7 @@ export function TrainingInfoScreen() {
             width={600}
             height={333}
             priority
+            className="h-auto w-full"
           />
           <p className="text-xs text-center text-gray-500 mt-2 font-serif">
             Abbildung 1: Bauteile und Hilfsmittel
@@ -44,15 +45,16 @@ export function TrainingInfoScreen() {
           Chassis durchzuführen.
         </p>
 
-        <div className="w-fit mx-auto py-2">
+        <div className="w-fit mx-auto py-2 max-w-[450px]">
           <Image
             src="/images/process_step.png"
             alt="Dargestellter Prozessschritt"
             width={450}
-            height={284}
+            height={250}
             priority
+            className=""
           />
-          <p className="text-xs text-center text-gray-500 mt-2 font-serif">
+          <p className="text-xs text-center text-gray-500 mt-2 pt-2 font-serif">
             Abbildung 2: Schematische Darstellung des Arbeitsschrittes
           </p>
         </div>

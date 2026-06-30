@@ -4,13 +4,13 @@ type MessageScreenProps = {
 
 export function MessageScreen({ type }: MessageScreenProps) {
   return (
-    <div className="space-y-6 p-10 flex flex-col">
+    <div className="max-w-5xl mx-auto px-10 pt-16 flex flex-col flex-1 justify-center items-center min-h-[60vh] space-y-12">
       {type === "trainingFinished" ? (
-        <>
+        <div className="max-w-2xl space-y-10 text-center">
           <section className="space-y-4">
-            <h3 className="text-lg font-bold mb-10">
+            <h2 className="text-md font-semibold">
               Beginn der eigentlichen Szenarien
-            </h3>
+            </h2>
 
             <p>
               Die Trainingsaufgabe ist nun abgeschlossen. In den folgenden
@@ -24,24 +24,24 @@ export function MessageScreen({ type }: MessageScreenProps) {
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h3 className="text-lg font-bold mb-10">
+          <section className="space-y-4 pt-4">
+            <h2 className="text-md font-semibold">
               Hinweis zur Bearbeitungszeit
-            </h3>
+            </h2>
 
             <p>
               In den nachfolgenden Aufgaben wird Ihre Bearbeitungszeit gemessen.
               Bitte bearbeiten Sie die Aufgaben daher{" "}
-              <strong>zügig, aber dennoch sorgfältig.</strong>
+              <span className="font-bold">zügig, aber dennoch sorgfältig.</span>
             </p>
           </section>
-        </>
+        </div>
       ) : (
-        <>
+        <div className="max-w-2xl space-y-10 text-center">
           <section className="space-y-4">
-            <h3 className="text-lg font-bold mb-10">
+            <h2 className="text-md font-semibold">
               Beginn des zweiten Aufgabenblocks
-            </h3>
+            </h2>
 
             <p>
               Die Fragebögen sind nun abgeschlossen. Im folgenden zweiten
@@ -56,18 +56,19 @@ export function MessageScreen({ type }: MessageScreenProps) {
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h3 className="text-lg font-bold mb-10">
+          {/* Sektion 2 */}
+          <section className="space-y-4 pt-4">
+            <h2 className="text-md font-semibold">
               Hinweis zur Bearbeitungszeit
-            </h3>
+            </h2>
 
             <p>
               Auch in den nachfolgenden Aufgaben wird Ihre Bearbeitungszeit
               gemessen. Bitte bearbeiten Sie die Aufgaben daher weiterhin{" "}
-              <strong>zügig, aber dennoch sorgfältig.</strong>
+              <span className="font-bold">zügig, aber dennoch sorgfältig.</span>
             </p>
           </section>
-        </>
+        </div>
       )}
     </div>
   );

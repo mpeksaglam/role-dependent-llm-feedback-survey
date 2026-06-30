@@ -54,7 +54,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   }, [showChat, stepId]); // upon showChat change from false to true, scroll down
 
   return (
-    <div className="max-w-5xl mx-auto px-10 space-y-10">
+    <div className="max-w-5xl mx-auto px-10 pt-16 pb-6 space-y-10">
       {/* Titel */}
       <h2 className="text-xl font-semibold tracking-tight pb-4 border-b border-gray-100">
         {config.title[userRole]}

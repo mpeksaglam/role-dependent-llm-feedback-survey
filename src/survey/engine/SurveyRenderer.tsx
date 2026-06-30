@@ -16,17 +16,12 @@ export function SurveyRenderer() {
   const hideNavigation = currentStep === SURVEY_STEPS.OUTRO;
 
   return (
-    <main
-      className=" 
-      min-h-screen 
-      p-8 
-      flex flex-col
-      w-full
-      "
-    >
+    <main className="min-h-screen flex flex-col w-full bg-white">
       {/* Show current screen + Navigation buttons most of the time */}
-      {renderCurrentStep(currentStep)}
-      {!hideNavigation && <SurveyNavigation />}
+      <div className="flex-1 flex flex-col w-full">
+        {renderCurrentStep(currentStep)}
+        {!hideNavigation && <SurveyNavigation />}
+      </div>
     </main>
   );
 }
