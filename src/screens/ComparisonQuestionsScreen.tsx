@@ -4,12 +4,12 @@ import { QuestionModule } from "@/modules/QuestionModule";
 
 export function ComparisonQuestionsScreen() {
   return (
-    <div className="space-y-8 p-10">
-      <h1 className="text-lg font-semibold">Vergleich der Interfaces</h1>
+    <div className="max-w-5xl mx-auto px-10 pt-16 pb-6 space-y-10">
+      <h2 className="text-xl font-semibold tracking-tight pb-4 border-b border-gray-100">
+        Vergleich der Interfaces
+      </h2>
 
-      <p className=" ">
-        Bitte vergleichen Sie die beiden zuvor verwendeten Interfaces.
-      </p>
+      <p>Bitte vergleichen Sie die beiden zuvor verwendeten Interfaces.</p>
 
       <QuestionModule group={questionConfig.comparisonQuestions} />
     </div>

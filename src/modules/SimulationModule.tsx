@@ -27,10 +27,10 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
   }
   // Case two videos
   return (
-    <div className="flex flex-col space-y-8 w-full max-w-3xl mx-auto">
+    <div className="space-y-10 w-full">
       {/* Variant A */}
-      <div className="space-y-2">
-        <h3 className="text-md font-medium  px-1">Variante A</h3>
+      <div className="space-y-3">
+        <h3 className="text-md font-semibold pb-2">Variante A</h3>
         <video
           controls
           preload="auto"
@@ -45,8 +45,8 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
         </video>
       </div>
       {/* Variant B */}
-      <div className="space-y-2">
-        <h3 className="text-md font-medium  px-1">Variante B</h3>
+      <div className="space-y-3">
+        <h3 className="text-md font-semibold pb-2">Variante B</h3>
         <video
           controls
           preload="auto"

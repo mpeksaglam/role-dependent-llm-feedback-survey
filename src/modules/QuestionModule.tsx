@@ -51,7 +51,7 @@ export function QuestionModule({ group }: QuestionModuleProps) {
 
           case "singleChoice":
             return (
-              <div key={q.id} className="space-y-3 pt-2">
+              <div key={q.id} className="space-y-4 pt-2">
                 {/* Frage */}
                 <p className="text-md">{q.text}</p>
 

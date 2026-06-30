@@ -19,31 +19,27 @@ export function QuestionnaireScreen({ stepId }: QuestionnaireScreenProps) {
     : questionConfig.roleFitQuestionsB;
 
   return (
-    <div className="space-y-12 p-10">
-      <h1
-        className="
-            text-xl 
-            
-            font-semibold
-          "
-      >
+    <div className="max-w-5xl mx-auto px-10 pt-16 pb-6 space-y-12">
+      <h2 className="text-xl font-semibold pb-4 border-b border-gray-100">
         Fragebögen
-      </h1>
+      </h2>
 
       <section className="space-y-6">
-        <h2 className="text-lg  font-semibold">System Usability Scale</h2>
+        <h2 className="text-lg font-semibold tracking-tight">
+          System Usability Scale
+        </h2>
 
         <QuestionModule group={sus} />
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-lg  font-semibold">NASA-TLX</h2>
+        <h2 className="text-lg font-semibold tracking-tight">NASA-TLX</h2>
 
         <QuestionModule group={nasa} />
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-lg  font-semibold">Role-Fit</h2>
+        <h2 className="text-lg font-semibold tracking-tight">Role-Fit</h2>
 
         <QuestionModule group={roleFit} />
       </section>
