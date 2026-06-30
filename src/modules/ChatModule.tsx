@@ -32,7 +32,8 @@ interface ChatModuleProps {
 
 export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
   // Access survey context
-  const { state, setChatHistory } = useSurvey();
+  const { state, setChatHistory, lockNavigation, unlockNavigation } =
+    useSurvey();
 
   // decide default message based on scenarioId
   const defaultMessage =
@@ -57,6 +58,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
 
   // Send user input to OpenAI API
   const handleSend = async (text: string) => {
+    // Prevent user from clicking next before the response came
+    lockNavigation();
     // create userMessage from new input text and update
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
@@ -75,6 +78,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
           content: TRAINING_RESPONSE,
         },
       ]);
+      unlockNavigation();
       return;
     }
 
@@ -134,6 +138,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
             "Es ist ein Fehler bei der Anfrage unterlaufen, bitte versuchen Sie es erneut.",
         },
       ]);
+    } finally {
+      unlockNavigation();
     }
   };
 

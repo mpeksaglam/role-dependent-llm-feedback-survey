@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 import {
   AnswerValue,
@@ -30,6 +30,7 @@ interface Props {
 export function SurveyProvider({ children }: Props) {
   // Initialization of state
   const [state, setState] = useState<SurveyState>(initialSurveyState);
+  const navigationLockRef = useRef(false);
 
   // runs on first client mount
   useEffect(() => {
@@ -115,6 +116,8 @@ export function SurveyProvider({ children }: Props) {
   };
   // navigate to next step
   const goNext = () => {
+    // do not navigate when locked
+    if (navigationLockRef.current) return;
     // get current step INDEX and next one according to participantFlow
     const currentIndex = state.participantFlow.indexOf(state.currentStepId);
     const nextStep = state.participantFlow[currentIndex + 1];
@@ -193,6 +196,8 @@ export function SurveyProvider({ children }: Props) {
 
   // navigate to previous step
   const goBack = () => {
+    // do not navigate when locked
+    if (navigationLockRef.current) return;
     const currentIndex = state.participantFlow.indexOf(state.currentStepId);
     const previousStep = state.participantFlow[currentIndex - 1];
 
@@ -236,6 +241,13 @@ export function SurveyProvider({ children }: Props) {
     return;
   };
 
+  const lockNavigation = () => {
+    navigationLockRef.current = true;
+  };
+  const unlockNavigation = () => {
+    navigationLockRef.current = false;
+  };
+
   // set scroll position to top on each new stepId render
   useEffect(() => {
     // browser window
@@ -252,6 +264,8 @@ export function SurveyProvider({ children }: Props) {
         goNext,
         goBack,
         setChatHistory,
+        lockNavigation,
+        unlockNavigation,
       }}
     >
       {children}

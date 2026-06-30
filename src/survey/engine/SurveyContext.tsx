@@ -17,6 +17,9 @@ export interface SurveyContextValue {
   goBack: () => void;
 
   setChatHistory: (scenarioId: ScenarioStepId, messages: ChatMessage[]) => void;
+
+  lockNavigation: () => void;
+  unlockNavigation: () => void;
 }
 
 export const SurveyContext = createContext<SurveyContextValue | null>(null);
