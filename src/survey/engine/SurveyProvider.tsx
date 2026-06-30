@@ -21,7 +21,6 @@ import { buildParticipantFlow } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
 import { fetchConditionOrder } from "./helpers/fetchConditionOrder";
 import { initialSurveyState } from "./initialSurveyState";
-import next from "next";
 
 interface Props {
   children: ReactNode;
@@ -227,44 +226,39 @@ export function SurveyProvider({ children }: Props) {
   const setChatHistory = (
     scenarioId: ScenarioStepId,
     messages: ChatMessage[],
-  ) => {
-    setState((prev) => {
-      const nextState = {
-        ...prev,
-        chatHistory: {
-          ...prev.chatHistory,
-          [scenarioId]: messages,
-        },
-      };
+  ) =>
+    setState((prev) => ({
+      ...prev,
+      chatHistory: {
+        ...prev.chatHistory,
+        [scenarioId]: messages,
+      },
+    }));
 
-      // send to backend for persistence
-      void saveSession(nextState);
-      return nextState;
-    });
-  };
   // keep chat messages in survey state and add complete llm response for log
   const setChatData = (
     scenarioId: ScenarioStepId,
     messages: ChatMessage[],
     response: LlmResponse,
-  ) => {
-    setState((prev) => {
-      const nextState = {
-        ...prev,
-        chatHistory: {
-          ...prev.chatHistory,
-          [scenarioId]: messages,
-        },
-        llmResponses: {
-          ...prev.llmResponses,
-          [scenarioId]: [...(prev.llmResponses[scenarioId] ?? []), response],
-        },
-      };
-      // send to backend for persistence
-      void saveSession(nextState);
-      return nextState;
-    });
-  };
+  ) =>
+    setState((prev) => ({
+      ...prev,
+      chatHistory: {
+        ...prev.chatHistory,
+        [scenarioId]: messages,
+      },
+      llmResponses: {
+        ...prev.llmResponses,
+        [scenarioId]: [...(prev.llmResponses[scenarioId] ?? []), response],
+      },
+    }));
+  // persist the changes of chats (here because of asynchronous setChatData function)
+  useEffect(() => {
+    if (!state.participantId || state.isLoading) return;
+
+    void saveSession(state);
+  }, [state.chatHistory, state.llmResponses, state.participantId]);
+
   const lockNavigation = () => {
     navigationLockRef.current = true;
   };
