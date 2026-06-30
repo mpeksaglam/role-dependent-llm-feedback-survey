@@ -35,10 +35,10 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
   // Access survey context
   const {
     state,
+    setChatData,
     setChatHistory,
     lockNavigation,
     unlockNavigation,
-    setLlmResponses,
   } = useSurvey();
 
   // decide default message based on scenarioId
@@ -76,19 +76,23 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
 
     // Test answer in training
     if (scenarioId === SURVEY_STEPS.TRAINING_TASK) {
-      setChatHistory(scenarioId, [
-        ...updatedMessages,
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          content: TRAINING_RESPONSE,
-        },
-      ]);
+      setChatData(
+        scenarioId,
+        [
+          ...updatedMessages,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content: TRAINING_RESPONSE,
+          },
+        ],
+        {} as LlmResponse,
+      );
       unlockNavigation();
       return;
     }
 
-    // add new user message to message state
+    // display message for UI
     setChatHistory(scenarioId, updatedMessages);
 
     // request body
@@ -111,13 +115,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       });
       // receive and parse http response from backend
       const chatResponse: ChatResponse = await apiResponse.json();
-
-      // TODO remove debug
-      // console.group("message", chatResponse.message);
-
       const parsedResponse = JSON.parse(chatResponse.message);
 
-      setLlmResponses(scenarioId, parsedResponse);
       // extract fields to display for user
       const userConfRequired: boolean = parsedResponse.confirmation_required;
       const sysInterpretation =
@@ -133,19 +132,25 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
           ? `${sysInterpretation}\n\n${confirmationQuestion}`
           : sysInterpretation,
       };
+
+      const newMessages = [...updatedMessages, assistantMessage];
       // update state
-      setChatHistory(scenarioId, [...updatedMessages, assistantMessage]);
+      setChatData(scenarioId, newMessages, parsedResponse);
       // in case any errors happen (invalid JSON output etc...)
     } catch {
-      setChatHistory(scenarioId, [
-        ...updatedMessages,
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          content:
-            "Es ist ein Fehler bei der Anfrage unterlaufen, bitte versuchen Sie es erneut.",
-        },
-      ]);
+      setChatData(
+        scenarioId,
+        [
+          ...updatedMessages,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content:
+              "Es ist ein Fehler bei der Anfrage unterlaufen, bitte versuchen Sie es erneut.",
+          },
+        ],
+        { error: "Fetch or parse failed" } as unknown as LlmResponse,
+      );
     } finally {
       unlockNavigation();
     }

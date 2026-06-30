@@ -222,7 +222,7 @@ export function SurveyProvider({ children }: Props) {
     return;
   };
 
-  // keep chat messages in survey state
+  // add chat message to display in ChatModule
   const setChatHistory = (
     scenarioId: ScenarioStepId,
     messages: ChatMessage[],
@@ -240,14 +240,18 @@ export function SurveyProvider({ children }: Props) {
     void saveSession(nextState);
     return;
   };
-
-  // keep complete llm response for logging
-  const setLlmResponses = (
+  // keep chat messages in survey state and add complete llm response for log
+  const setChatData = (
     scenarioId: ScenarioStepId,
+    messages: ChatMessage[],
     response: LlmResponse,
   ) => {
     const nextState = {
       ...state,
+      chatHistory: {
+        ...state.chatHistory,
+        [scenarioId]: messages,
+      },
       llmResponses: {
         ...state.llmResponses,
         [scenarioId]: [...(state.llmResponses[scenarioId] ?? []), response],
@@ -283,7 +287,7 @@ export function SurveyProvider({ children }: Props) {
         goNext,
         goBack,
         setChatHistory,
-        setLlmResponses,
+        setChatData,
         lockNavigation,
         unlockNavigation,
       }}

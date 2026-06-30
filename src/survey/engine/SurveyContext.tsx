@@ -17,9 +17,13 @@ export interface SurveyContextValue {
 
   goBack: () => void;
 
-  setChatHistory: (scenarioId: ScenarioStepId, messages: ChatMessage[]) => void;
+  setChatHistory: (ScenarioId: ScenarioStepId, messages: ChatMessage[]) => void;
 
-  setLlmResponses: (scenarioId: ScenarioStepId, response: LlmResponse) => void;
+  setChatData: (
+    scenarioId: ScenarioStepId,
+    messages: ChatMessage[],
+    response: LlmResponse,
+  ) => void;
 
   lockNavigation: () => void;
   unlockNavigation: () => void;
