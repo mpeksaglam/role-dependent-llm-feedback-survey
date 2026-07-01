@@ -7,7 +7,7 @@ export function DsgvoInfo() {
         </h2>
         <p>Verantwortlich für die Datenerhebung und -verarbeitung ist:</p>
         <p className="mt-2">
-          xy
+          Saskia Hutschenreiter
           <br />
           [Adresse]
           <br />
@@ -23,7 +23,7 @@ export function DsgvoInfo() {
         </h2>
         <p>
           Die Erhebung und Verarbeitung Ihrer personenbezogenen Daten erfolgt
-          zum Zweck der wissenschaftlichen Forschung im Rahmen der Studie:
+          zum Zweck der wissenschaftlichen Forschung im Rahmen des Projekts:
         </p>
         <p className="mt-2 font-semibold">KIRo4LeMi</p>
         <p className="mt-2">
@@ -39,15 +39,8 @@ export function DsgvoInfo() {
         </h2>
         <p>Im Rahmen dieser Studie werden folgende Daten verarbeitet:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1.5">
-          <li>
-            Kontaktdaten (Name, E-Mail/Telefonnummer) zur Organisation der
-            Studienteilnahme.
-          </li>
-          <li>Soziodemografische Daten (z. B. Alter, Geschlecht, Beruf).</li>
-          <li>
-            Studiendaten (Antworten aus Fragebögen, Interviewprotokolle,
-            Messdaten).
-          </li>
+          <li>Soziodemografische Daten (z. B. Beruf)</li>
+          <li>Studiendaten (Antworten aus Fragebögen, Messdaten)</li>
         </ul>
       </section>
 
@@ -61,9 +54,8 @@ export function DsgvoInfo() {
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1.5">
           <li>
-            <strong>Pseudonymisierung:</strong> Spätestens nach Abschluss der
-            Erhebung werden Ihre Daten pseudonymisiert (d. h. Ihr Name wird
-            durch einen Code ersetzt).
+            <strong>Pseudonymisierung:</strong> Ihre Daten sind von Anfang an
+            pseudonymisiert.
           </li>
           <li>
             <strong>Löschung:</strong> Ihre Kontaktdaten werden spätestens [z.
