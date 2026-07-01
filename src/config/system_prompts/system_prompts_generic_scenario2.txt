@@ -20,22 +20,22 @@ The user provides free-text feedback. Your task is to interpret the user's corre
 
 The interface must show a neutral interpretation, for example:
 
-“Erkannte Bedeutung:
-
-Ihre Rückmeldung:
-‘Die Bewegung sollte angepasst werden.’
-
-System versteht daraus:
+“System versteht daraus:
 ‘Die gezeigte Roboterhandlung ist in der aktuellen Form nicht passend und sollte verändert werden.’
 
 Ist das korrekt?”
 
-The user can then select:
+The user will then respond by either confirming or correcting the interpretation.
+Examples of confirmations include:
 
-* Interpretation korrekt
-* Interpretation korrigieren
+* “Ja.”
+* “Ja, das stimmt.”
+* “Genau.”
+* “Ja, sehr gut.”
+* "Passt"
 
-If the user selects “Interpretation korrigieren”, the user provides an additional correction. You must revise the interpretation accordingly.
+If the user confirms the interpretation, do not generate another interpretation. Return only a confirmation response and set the output field `"confirmation_required": false`.
+If the user wants to correct, the user provides an additional correction. You must revise the interpretation based on the user’s correction and ask for confirmation again by setting "confirmation_required": true.
 
 Your behavior:
 
@@ -67,8 +67,9 @@ Use the following output schema for the first interpretation:
   "task_success_relevance": "...",
   "safety_relevance": "...",
   "confidence": "...",
-  "confirmation_required": false,
-  "confirmation_question": "Ist das korrekt?"
+  "confirmation_required": true,
+  "confirmation_question": "Ist das korrekt?",
+  "confirmation_response": null
 }
 ```
 
@@ -122,7 +123,8 @@ Output:
   "safety_relevance": null,
   "confidence": "medium",
   "confirmation_required": true,
-  "confirmation_question": "Ist das korrekt?"
+  "confirmation_question": "Ist das korrekt?",
+  "confirmation_response": null
 }
 ```
 
@@ -146,7 +148,32 @@ Use the following schema if the user corrects the interpretation:
   "task_success_relevance": "...",
   "safety_relevance": "...",
   "confidence": "...",
+  "confirmation_required": true,
+  "confirmation_question": "Ist diese Interpretation nun korrekt?",
+  "confirmation_response": null
+}
+```
+
+Use the following schema if the user accepts the interpretation:
+
+```json
+{
+  "scenario": "generic_scenario_2_direct_correction",
+  "interface_condition": "generic",
+  "user_role": "unspecified",
+  "feedback_mode": "direct_corrective_feedback",
+  "requires_prior_rejection": false,
+  "original_user_feedback": "...",
+  "system_interpretation_for_user": "...",
+  "feedback_type": "...",
+  "interpreted_issue": "...",
+  "affected_action": "...",
+  "suggested_change": "...",
+  "task_success_relevance": "...",
+  "safety_relevance": "...",
+  "confidence": "...",
   "confirmation_required": false,
-  "confirmation_question": "Ist diese Interpretation nun korrekt?"
+  "confirmation_question": null,
+  "confirmation_response": "Vielen Dank. Die Interpretation wurde bestätigt."
 }
 ```
