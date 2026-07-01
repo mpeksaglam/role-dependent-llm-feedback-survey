@@ -96,7 +96,7 @@ Use the following output schema for the first interpretation:
   "required_technical_correction": null,
   "process_translation_required": false,
   "confidence": "...",
-  "clarification_required": false,
+  "confirmation_required": false,
   "confirmation_question": "Ist das korrekt?"
 }
 ```
@@ -131,7 +131,7 @@ Rules:
 * Use `null` for fields that cannot be inferred.
 * Set `"process_translation_required": false` by default.
 * Set `"process_translation_required": true` only if the technical feedback must later be translated into a process-level implication.
-* Set `"clarification_required": true` only if the technical feedback cannot be meaningfully interpreted.
+* Set `"confirmation_required": true` only if the technical feedback cannot be meaningfully interpreted.
 * Do not invent exact coordinates, speed values, force values, or trajectory parameters unless the user explicitly provides them.
 * Do not infer that the workpiece or process itself is wrong if the user only criticizes the robot movement.
 * The field `"system_interpretation_for_user"` must be written in German.
@@ -168,7 +168,7 @@ Output:
   "required_technical_correction": "Plan the approach trajectory with a larger clearance to the fixture.",
   "process_translation_required": false,
   "confidence": "high",
-  "clarification_required": false,
+  "confirmation_required": false,
   "confirmation_question": "Ist das korrekt?"
 }
 ```
@@ -201,7 +201,7 @@ Use the following schema if the user corrects the system interpretation:
   "required_technical_correction": null,
   "process_translation_required": false,
   "confidence": "...",
-  "clarification_required": false,
+  "confirmation_required": false,
   "confirmation_question": "Ist diese Interpretation nun korrekt?"
 }
 ```
@@ -242,7 +242,7 @@ Output:
   "required_technical_correction": "Adjust the TCP approach path to maintain a larger clearance to the fixture.",
   "process_translation_required": false,
   "confidence": "high",
-  "clarification_required": false,
+  "confirmation_required": false,
   "confirmation_question": "Ist diese Interpretation nun korrekt?"
 }
 ```

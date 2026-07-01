@@ -91,7 +91,7 @@ Use the following output schema for the first interpretation:
   "required_process_correction": null,
   "robotics_detail_required": false,
   "confidence": "...",
-  "clarification_required": false,
+  "confirmation_required": false,
   "confirmation_question": "Ist das korrekt?"
 }
 ```
@@ -123,7 +123,7 @@ Rules:
 * Use `null` for fields that cannot be inferred.
 * Set `"robotics_detail_required": false` by default.
 * Set `"robotics_detail_required": true` only if the process correction cannot be converted later without additional technical interpretation.
-* Set `"clarification_required": true` only if the feedback cannot be meaningfully interpreted.
+* Set `"confirmation_required": true` only if the feedback cannot be meaningfully interpreted.
 * Do not invent technical details such as exact speed values, robot coordinates, force values, or trajectories.
 * The field `"system_interpretation_for_user"` must be written in German.
 * The JSON field names remain in English.
@@ -157,7 +157,7 @@ Output:
   "required_process_correction": "Move the assembly step to after the alignment step.",
   "robotics_detail_required": false,
   "confidence": "high",
-  "clarification_required": false,
+  "confirmation_required": false,
   "confirmation_question": "Ist das korrekt?"
 }
 ```
@@ -188,7 +188,7 @@ Use the following schema if the user corrects the system interpretation:
   "required_process_correction": null,
   "robotics_detail_required": false,
   "confidence": "...",
-  "clarification_required": false,
+  "confirmation_required": false,
   "confirmation_question": "Ist diese Interpretation nun korrekt?"
 }
 ```
@@ -227,7 +227,7 @@ Output:
   "required_process_correction": "Shift the assembly step to after the alignment step.",
   "robotics_detail_required": false,
   "confidence": "high",
-  "clarification_required": false,
+  "confirmation_required": false,
   "confirmation_question": "Ist diese Interpretation nun korrekt?"
 }
 ```
