@@ -75,13 +75,19 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
     isWaitingRef.current = true;
     // Prevent user from clicking next before the response came
     lockNavigation();
-    // create userMessage from new input text and update
+    // create userMessage from new input text and update/add
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
       role: "user",
       content: text,
     };
     const updatedMessages = [...messages, userMessage];
+
+    // get typing animation message
+    const messagesWithTyping = [
+      ...updatedMessages,
+      { id: "typing", role: "assistant" as const, content: "" },
+    ];
 
     // Test answer in training
     if (scenarioId === SURVEY_STEPS.TRAINING_TASK) {
@@ -102,8 +108,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       return;
     }
 
-    // display message for UI
-    setChatHistory(scenarioId, updatedMessages);
+    // display message + typing for UI
+    setChatHistory(scenarioId, messagesWithTyping);
 
     // request body
     const requestBody: ChatRequest = {
@@ -147,7 +153,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       };
 
       const newMessages = [...updatedMessages, assistantMessage];
-      // update state
+      // update state without typing message
       setChatData(scenarioId, newMessages, parsedResponse);
       // in case any errors happen (invalid JSON output etc...)
     } catch {

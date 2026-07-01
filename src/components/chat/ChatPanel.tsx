@@ -4,6 +4,7 @@ import { ChatMessage } from "@/lib/types";
 import { ChatInput } from "./ChatInput";
 import { ChatMessageBubble } from "./ChatMessageBubble";
 import { useEffect, useRef } from "react";
+import { TypingIndicator } from "./TypingIndicator";
 
 interface ChatPanelProps {
   messages: ChatMessage[];
@@ -49,9 +50,12 @@ export function ChatPanel({ messages, onSend }: ChatPanelProps) {
           space-y-4
         "
       >
-        {messages.map((msg) => (
-          <ChatMessageBubble key={msg.id} message={msg} />
-        ))}
+        {messages.map((msg) => {
+          if (msg.id === "typing") {
+            return <TypingIndicator key="typing-indicator" />;
+          }
+          return <ChatMessageBubble key={msg.id} message={msg} />;
+        })}
       </div>
 
       {/* Input */}
