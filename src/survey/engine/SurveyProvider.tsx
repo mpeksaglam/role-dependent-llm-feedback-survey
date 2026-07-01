@@ -190,6 +190,11 @@ export function SurveyProvider({ children }: Props) {
 
       // send to backend for persistence
       void saveSession(nextState);
+
+      // if last screen is reached, final log for survey completion
+      if (nextStep === SURVEY_STEPS.OUTRO) {
+        void logCurrentStep(nextState);
+      }
       return;
     }
   };

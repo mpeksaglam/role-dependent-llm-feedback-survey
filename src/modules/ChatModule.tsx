@@ -134,13 +134,16 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
         parsedResponse.system_interpretation_for_user;
       const confirmationQuestion = parsedResponse.confirmation_question;
 
+      // in case no user conf required:
+      const lastResponse = parsedResponse.confirmation_response;
+
       // build response message
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
         role: "assistant",
         content: userConfRequired
           ? `${sysInterpretation}\n\n${confirmationQuestion}`
-          : sysInterpretation,
+          : (lastResponse ?? ""),
       };
 
       const newMessages = [...updatedMessages, assistantMessage];
