@@ -21,13 +21,9 @@ export async function POST(request: Request) {
     // find and build system prompt
     const config = scenarioConfig[scenarioId];
     const promptFile = config.systemPromptFile[userRole];
-    // routeDir: .../src/app/api/chat
-    const routeDir = path.dirname(fileURLToPath(import.meta.url));
-    const promptPath = path.join(
-      routeDir,
-      "../../../config/system_prompts",
-      promptFile,
-    );
+
+    const promptPath = path.join(process.cwd(), "system_prompts", promptFile);
+
     const systemPrompt = await fs.readFile(promptPath, "utf8");
 
     // turn user selected answers into JSON
