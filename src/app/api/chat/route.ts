@@ -5,14 +5,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { ChatRequest } from "@/lib/types";
 
-// Backend server
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
+// Request to openAI
 export async function POST(request: Request) {
   try {
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
     // receive request
     const body: ChatRequest = await request.json();
     const { scenarioId, userRole, messages, selectedAnswers } = body;
