@@ -5,31 +5,22 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { ChatRequest } from "@/lib/types";
 
-// Backend server
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
+// Request to openAI
 export async function POST(request: Request) {
   try {
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
     // receive request
     const body: ChatRequest = await request.json();
     const { scenarioId, userRole, messages, selectedAnswers } = body;
-    // TODO remove debug
-    // console.log("REQUEST BODY");
-    // console.dir(body, { depth: null });
 
     // find and build system prompt
     const config = scenarioConfig[scenarioId];
     const promptFile = config.systemPromptFile[userRole];
-    // routeDir: .../src/app/api/chat
-    const routeDir = path.dirname(fileURLToPath(import.meta.url));
-    const promptPath = path.join(
-      routeDir,
-      "../../../config/system_prompts",
-      promptFile,
-    );
+
+    const promptPath = path.join(process.cwd(), "system_prompts", promptFile);
+
     const systemPrompt = await fs.readFile(promptPath, "utf8");
 
     // turn user selected answers into JSON
@@ -62,20 +53,13 @@ export async function POST(request: Request) {
         content: message.content,
       })),
     ];
-    // TODO remove debug
-    // console.log("INPUT");
-    // console.dir(input, { depth: null });
 
     // get openAI response
     const openAiResponse = await openai.responses.create({
-      model: "gpt-5.4-mini-2026-03-17", // TODO change
+      model: "gpt-5.4-mini-2026-03-17",
       input,
     });
     // send openAI response back to browser
-
-    // TODO remove debug
-    // console.log("OPENAI RESPONSE");
-    // console.dir(openAiResponse, { depth: null });
 
     return Response.json({
       message: openAiResponse.output_text,

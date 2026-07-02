@@ -30,7 +30,7 @@ export function SurveyNavigation() {
       -between and in scenarios (enforce within-subjects design & keep timing correct)   */
 
   const noWayBack =
-    currentStep === SURVEY_STEPS.INTRO || // TODO change forward button , put on IntroScreen and hideNavigation in surveyRenderer
+    currentStep === SURVEY_STEPS.INTRO ||
     currentStep === SURVEY_STEPS.TRAINING_INFO ||
     currentStep === SURVEY_STEPS.QUESTIONNAIRES_A ||
     currentStep === SURVEY_STEPS.QUESTIONNAIRES_B ||
@@ -72,7 +72,7 @@ export function SurveyNavigation() {
                 setShowRequirement(true);
               }
             }}
-            disabled={false} // TODO keep always disabled?
+            disabled={false}
           />
         </div>
       </div>

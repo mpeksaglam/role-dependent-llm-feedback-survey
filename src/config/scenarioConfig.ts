@@ -68,7 +68,7 @@ export const scenarioConfig = {
       robo_exp:
         "Beschreiben Sie, was an der gezeigten Handlung angepasst werden sollte.",
     },
-    simulation: simulationConfig.sim_vid1, // sim_vid2 later
+    simulation: simulationConfig.sim_vid1, // sim_vid2 later TODO
     questions: {
       proc_exp: questionConfig.scen2GenericQuestions,
       robo_exp: questionConfig.scen2GenericQuestions,
@@ -96,7 +96,7 @@ export const scenarioConfig = {
       robo_exp:
         "Vergleichen Sie die beiden Varianten und wählen Sie die Ausführung, die sich besser eignet.",
     },
-    simulation: simulationConfig.sim_vids23, // change later
+    simulation: simulationConfig.sim_vids23, // change later TODO
     questions: {
       proc_exp: questionConfig.scen3GenericQuestions,
       robo_exp: questionConfig.scen3GenericQuestions,
@@ -108,8 +108,8 @@ export const scenarioConfig = {
       robo_exp: undefined,
     },
     systemPromptFile: {
-      proc_exp: "system_prompts_generic_scenario3.txt",
-      robo_exp: "system_prompts_generic_scenario3.txt",
+      proc_exp: "",
+      robo_exp: "",
     },
   },
 
@@ -188,8 +188,8 @@ export const scenarioConfig = {
       robo_exp: undefined,
     },
     systemPromptFile: {
-      proc_exp: "system_prompts_processexpert_scenario3.txt",
-      robo_exp: "system_prompts_robotexpert_scenario3.txt",
+      proc_exp: "",
+      robo_exp: "",
     },
   },
 };
