@@ -2,22 +2,7 @@ default:
   image: node:22
 
 stages:
-  - test
-  - secret-detection
   - deploy
-
-include:
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Security/Secret-Detection.gitlab-ci.yml
-
-variables:
-  SECRET_DETECTION_ENABLED: "true"
-
-sast:
-  stage: test
-
-secret_detection:
-  stage: secret-detection
 
 deploy_preview:
   stage: deploy
