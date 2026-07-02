@@ -42,7 +42,7 @@ export function canProceed(
   if (userRole !== null && isScenarioStep(stepId)) {
     const config = scenarioConfig[stepId];
     let requiresChat = false;
-    // watch out magic strings TODO
+    // watch out magic strings
     if (config.chatMode === "always") {
       requiresChat = true;
     } // chat is only required if person rejected the robot action
