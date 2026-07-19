@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function TrainingInfoScreen() {
   return (
-    <div className="max-w-5xl mx-auto px-10 pt-16 pb-6 space-y-12">
+    <div className="max-w-5xl mx-auto px-6 pt-16 pb-6 space-y-12">
       <section className="space-y-6">
         <h2 className="text-xl font-semibold tracking-tight border-b border-gray-100 pb-3">
           Beschreibung der Aufgabe

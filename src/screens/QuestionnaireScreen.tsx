@@ -19,7 +19,7 @@ export function QuestionnaireScreen({ stepId }: QuestionnaireScreenProps) {
     : questionConfig.roleFitQuestionsB;
 
   return (
-    <div className="max-w-5xl mx-auto px-10 pt-16 pb-6 space-y-12">
+    <div className="max-w-5xl mx-auto px-6 pt-16 pb-6 space-y-12">
       <h2 className="text-xl font-semibold pb-4 border-b border-gray-100">
         Fragebögen
       </h2>

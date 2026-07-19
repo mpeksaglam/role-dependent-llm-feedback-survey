@@ -4,7 +4,7 @@ type MessageScreenProps = {
 
 export function MessageScreen({ type }: MessageScreenProps) {
   return (
-    <div className="max-w-5xl mx-auto px-10 pt-16 flex flex-col flex-1 justify-center items-center min-h-[60vh] space-y-12">
+    <div className="max-w-5xl mx-auto px-6 pt-16 flex flex-col flex-1 justify-center items-center min-h-[60vh] space-y-12">
       {type === "trainingFinished" ? (
         <div className="max-w-2xl space-y-8">
           <section className="space-y-5">
