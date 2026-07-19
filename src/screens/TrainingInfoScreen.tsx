@@ -19,7 +19,7 @@ export function TrainingInfoScreen() {
             src="/images/workstation_overview.png"
             alt="Übersicht der Arbeitstools"
             width={600}
-            height={333}
+            height={266}
             priority
             className="h-auto w-full"
           />
@@ -50,7 +50,7 @@ export function TrainingInfoScreen() {
             src="/images/process_step.png"
             alt="Dargestellter Prozessschritt"
             width={450}
-            height={250}
+            height={469}
             priority
             className=""
           />
