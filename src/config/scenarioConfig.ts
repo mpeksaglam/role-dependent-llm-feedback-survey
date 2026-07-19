@@ -1,5 +1,4 @@
 import { SURVEY_STEPS } from "@/lib/types";
-import { simulationConfig } from "@/config/simulationConfig";
 import { questionConfig } from "./questionConfig";
 
 // References simulationConfig and questionConfig
@@ -13,12 +12,12 @@ export const scenarioConfig = {
       proc_exp: "Bitte machen Sie sich mit der Umgebung vertraut.",
       robo_exp: "Bitte machen Sie sich mit der Umgebung vertraut.",
     },
-    simulation: simulationConfig.sim_vid1,
+    scenarioKey: "training",
     questions: {
       proc_exp: questionConfig.trainingQuestions,
       robo_exp: questionConfig.trainingQuestions,
     },
-    condition: "gen",
+    condition: null,
     chatMode: "always",
     rejectQuestionIds: {
       proc_exp: undefined,
@@ -39,7 +38,7 @@ export const scenarioConfig = {
       proc_exp: "Bitte bewerten Sie die gezeigte Handlung.",
       robo_exp: "Bitte bewerten Sie die gezeigte Handlung.",
     },
-    simulation: simulationConfig.sim_vid1,
+    scenarioKey: "scenario1",
     questions: {
       // Always same in generic condition
       proc_exp: questionConfig.scen1GenericQuestions,
@@ -68,7 +67,7 @@ export const scenarioConfig = {
       robo_exp:
         "Beschreiben Sie, was an der gezeigten Handlung angepasst werden sollte.",
     },
-    simulation: simulationConfig.sim_vid1, // sim_vid2 later TODO
+    scenarioKey: "scenario2",
     questions: {
       proc_exp: questionConfig.scen2GenericQuestions,
       robo_exp: questionConfig.scen2GenericQuestions,
@@ -96,7 +95,7 @@ export const scenarioConfig = {
       robo_exp:
         "Vergleichen Sie die beiden Varianten und wählen Sie die Ausführung, die sich besser eignet.",
     },
-    simulation: simulationConfig.sim_vids23, // change later TODO
+    scenarioKey: "scenario3",
     questions: {
       proc_exp: questionConfig.scen3GenericQuestions,
       robo_exp: questionConfig.scen3GenericQuestions,
@@ -124,7 +123,7 @@ export const scenarioConfig = {
       robo_exp:
         "Bewerten Sie, ob die Bewegung technisch geeignet und sicher ausführbar ist.",
     },
-    simulation: simulationConfig.sim_vid1,
+    scenarioKey: "scenario1",
     questions: {
       proc_exp: questionConfig.scen1ProcExpQuestions,
       robo_exp: questionConfig.scen1RoboExpQuestions,
@@ -150,7 +149,7 @@ export const scenarioConfig = {
         "Beschreiben Sie, was aus Prozesssicht angepasst werden sollte.",
       robo_exp: "Beschreiben Sie, was technisch angepasst werden sollte.",
     },
-    simulation: simulationConfig.sim_vid1,
+    scenarioKey: "scenario2",
     questions: {
       proc_exp: questionConfig.scen2ProcExpQuestions,
       robo_exp: questionConfig.scen2RoboExpQuestions,
@@ -176,7 +175,7 @@ export const scenarioConfig = {
         "Vergleichen Sie die beiden Varianten aus Prozesssicht für die Montage.",
       robo_exp: "Vergleichen Sie die beiden Varianten aus technischer Sicht.",
     },
-    simulation: simulationConfig.sim_vids23,
+    scenarioKey: "scenario3",
     questions: {
       proc_exp: questionConfig.scen3ProcExpQuestions,
       robo_exp: questionConfig.scen3RoboExpQuestions,
@@ -192,4 +191,4 @@ export const scenarioConfig = {
       robo_exp: "",
     },
   },
-};
+} as const;

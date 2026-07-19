@@ -20,9 +20,7 @@ Your task is to interpret the process meaning of the user's feedback and formula
 The interface must show a process-oriented interpretation, for example:
 
 “System versteht daraus:
-‘Der gezeigte Montageschritt ist in der aktuellen Reihenfolge zu früh eingeplant. Er sollte erst ausgeführt werden, nachdem das Bauteil korrekt ausgerichtet wurde.’
-
-Ist das korrekt?”
+‘Der gezeigte Montageschritt ist in der aktuellen Reihenfolge zu früh eingeplant. Er sollte erst ausgeführt werden, nachdem das Bauteil korrekt ausgerichtet wurde.’”
 
 The user will then respond by either confirming or correcting the interpretation.
 Examples of confirmations include:

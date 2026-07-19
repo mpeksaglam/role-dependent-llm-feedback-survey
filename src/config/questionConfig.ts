@@ -430,8 +430,8 @@ export const questionConfig = {
         text: "Welches Interface war insgesamt hilfreicher?",
         responseType: "singleChoice",
         options: [
-          { label: "Generisches Interface", value: "gen_int" },
-          { label: "Rollenbasiertes Interface", value: "role_int" },
+          { label: "Interface aus der ersten Runde", value: "gen_int" },
+          { label: "Interface aus der zweiten Runde", value: "role_spec_int" },
           { label: "Kein Unterschied", value: "none" },
         ],
       },
@@ -440,8 +440,8 @@ export const questionConfig = {
         text: "Mit welchem Interface konnten Sie Feedback schneller geben?",
         responseType: "singleChoice",
         options: [
-          { label: "Generisches Interface", value: "gen_int" },
-          { label: "Rollenbasiertes Interface", value: "role_int" },
+          { label: "Interface aus der ersten Runde", value: "gen_int" },
+          { label: "Interface aus der zweiten Runde", value: "role_spec_int" },
           { label: "Kein Unterschied", value: "none" },
         ],
       },
@@ -450,8 +450,8 @@ export const questionConfig = {
         text: "Welches Interface passte besser zu Ihrer Rolle?",
         responseType: "singleChoice",
         options: [
-          { label: "Generisches Interface", value: "gen_int" },
-          { label: "Rollenbasiertes Interface", value: "role_int" },
+          { label: "Interface aus der ersten Runde", value: "gen_int" },
+          { label: "Interface aus der zweiten Runde", value: "role_spec_int" },
           { label: "Kein Unterschied", value: "none" },
         ],
       },
@@ -460,8 +460,8 @@ export const questionConfig = {
         text: "Welches Interface würden Sie in der Praxis bevorzugen?",
         responseType: "singleChoice",
         options: [
-          { label: "Generisches Interface", value: "gen_int" },
-          { label: "Rollenbasiertes Interface", value: "role_int" },
+          { label: "Interface aus der ersten Runde", value: "gen_int" },
+          { label: "Interface aus der zweiten Runde", value: "role_spec_int" },
           { label: "Kein Unterschied", value: "none" },
         ],
       },
@@ -472,7 +472,17 @@ export const questionConfig = {
       },
       {
         id: "input_choice_feedback",
-        text: "Würden Sie eher Buttons, Ratings oder Freitext nutzen?",
+        text: "Würden Sie eher Buttons (z.B. “Annehmen/Ablehnen” oder “Variante A/B besser”), Ratings (z.B. “Wie erfolgreich war...?” mit Antwort auf Skala von 1 bis 5) oder Freitext (im Chatfenster) nutzen?",
+        responseType: "singleChoice",
+        options: [
+          { label: "Buttons", value: "buttons" },
+          { label: "Ratings", value: "ratings" },
+          { label: "Freitext", value: "free_text" },
+        ],
+      },
+      {
+        id: "input_choice_reason",
+        text: "Wieso hat Ihnen diese Antwortvariante am besten zugesagt?",
         responseType: "freeTextInput",
       },
     ],

@@ -16,7 +16,6 @@ export function SimulationModule({ simVid }: SimulationModuleProps) {
         className="
                 rounded-xl
                 w-full
-                h-full
                 object-contain
                 shadow-lg
                 "

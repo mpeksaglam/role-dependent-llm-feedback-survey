@@ -108,8 +108,7 @@ Use the following interpretation logic:
 The system interpretation shown to the user should follow this format:
 
 "Das System versteht daraus:
-[short interpretation]
-Ist das korrekt?"
+[short interpretation]"
 
 The user will then respond by either confirming or correcting the interpretation.
 
