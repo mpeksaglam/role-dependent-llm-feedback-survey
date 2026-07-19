@@ -7,6 +7,7 @@ import { QuestionModule } from "@/modules/QuestionModule";
 import { SimulationModule } from "@/modules/SimulationModule";
 import { useSurvey } from "@/survey/engine/helpers/useSurvey";
 import { useEffect, useRef } from "react";
+import { simulationConfig } from "@/config/simulationConfig";
 
 interface ScenarioScreenProps {
   stepId: ScenarioStepId;
@@ -16,10 +17,20 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   // get UserRole for rendering correct role-specific UI
   const { state } = useSurvey();
   const userRole = state.userRole;
-  if (!userRole) throw new Error("userRole missing in ScenarioScreen"); // should not be null at this point
-  // get questions and video URLs
+  // Null checks (should not be null!)
+  if (!userRole) throw new Error("userRole missing in ScenarioScreen");
+  if (!state.conditionOrder)
+    throw new Error("conditionOrder missing in ScenarioScreen");
+  // get questions and videos
   const config = scenarioConfig[stepId];
   const questions = config.questions[userRole];
+  // Different case for training, otherwise get round1 videos or round2 videos
+  const simulation =
+    config.scenarioKey === "training"
+      ? simulationConfig.training
+      : simulationConfig[
+          state.conditionOrder[0] === config.condition ? "round1" : "round2"
+        ][config.scenarioKey];
   // get scenario questions where chat is an option
   // (user deems robot action improvable)
   const rejectQuestionId = config.rejectQuestionIds[userRole];
@@ -55,16 +66,16 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
 
   return (
     <div className="max-w-5xl mx-auto px-10 pt-16 pb-6 space-y-10">
-      {/* Titel */}
+      {/* Title */}
       <h2 className="text-xl font-semibold tracking-tight pb-4 border-b border-gray-100">
         {config.title[userRole]}
       </h2>
 
-      {/* kurze Aufgabenbeschreibung */}
+      {/* Task description */}
       <p className="max-w-3xl">{config.taskDescr[userRole]}</p>
 
       <div className="w-full">
-        <SimulationModule key={stepId} simVid={config.simulation} />
+        <SimulationModule key={stepId} simVid={simulation} />
       </div>
       <div className="pt-4">
         <QuestionModule group={questions} />
