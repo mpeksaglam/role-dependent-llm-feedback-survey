@@ -1,6 +1,6 @@
 export const simulationConfig = {
-  /* Contains the simulation videos and the presentation type (single video or two at once) 
-   Naming describes the name of the videos, not when they are presented (handled in scenarioConfig) */
+  /* Contains the references to simulation videos and the presentation type (single video or two at once) 
+     Naming describes the name of the videos, not when they are presented (handled in scenarioConfig) */
 
   // Condition A videos, first round (scen1, 2, 3)
   sim_vid3: {
