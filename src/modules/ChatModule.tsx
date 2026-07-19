@@ -143,9 +143,10 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       const sysInterpretation =
         parsedResponse.revised_system_interpretation_for_user ??
         parsedResponse.system_interpretation_for_user;
-      const confirmationQuestion =
-        `${parsedResponse.confirmation_question.trim()} ` +
-        "Falls nicht, beschreiben Sie die gewünschte Korrektur in Ihrer Antwort.";
+      const confirmationQuestion = userConfRequired
+        ? `${parsedResponse.confirmation_question?.trim() ?? "Ist das korrekt?"} ` +
+          "Falls nicht, beschreiben Sie die gewünschte Korrektur in Ihrer Antwort."
+        : null;
 
       // in case no user conf required:
       const lastResponse = parsedResponse.confirmation_response;
@@ -156,7 +157,8 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
         role: "assistant",
         content: userConfRequired
           ? `${sysInterpretation}\n\n${confirmationQuestion}`
-          : (lastResponse ?? ""),
+          : (lastResponse ??
+            "Vielen Dank. Die Interpretation wurde bestätigt."),
       };
 
       const newMessages = [...updatedMessages, assistantMessage];
