@@ -9,11 +9,12 @@ export function DsgvoInfo() {
         <p className="mt-2">
           Saskia Hutschenreiter
           <br />
-          [Adresse]
+          Fraunhofer-Institut für Gießerei-, Composite- und Verarbeitungstechnik
+          IGCV
           <br />
-          [E-Mail-Adresse für Datenschutzfragen]
+          Am Technologiezentrum 10, 86159 Augsburg
           <br />
-          [Telefonnummer]
+          saskia.hutschenreiter@igcv.fraunhofer.de
         </p>
       </section>
 

@@ -9,7 +9,7 @@ export function TrainingInfoScreen() {
         </h2>
 
         <p>
-          In den folgenden Szenarien wird ein teil-mobiler Arbeitsplatz für die
+          In den folgenden Szenarien wird ein Arbeitsplatz für die
           Mensch-Roboter-Kollaboration betrachtet. Der Anwendungsfall umfasst
           die Verschraubung eines Stoßfängers an einem Chassis.
         </p>
@@ -34,15 +34,15 @@ export function TrainingInfoScreen() {
           automatischen Schraubenzuführung. Eine Halterung, im Folgenden als
           <em className="italic"> Jig</em> bezeichnet, dient dazu, die Bauteile
           wiederholgenau für den Verschraubungsprozess zu positionieren. Die
-          Interaktion mit dem System erfolgt über einen Freigabetaster
-          beziehungsweise einen Lichttaster.
+          Interaktion mit dem System erfolgt über einen Freigabetaster (siehe
+          Abbildung 1).
         </p>
 
         <p>
           In der Simulation wird ausschließlich ein ausgewählter Arbeitsschritt
           des Roboters dargestellt und bewertet: Der Roboter soll die Position
           des Jigs anfahren, um dort die Verschraubung des Stoßfängers am
-          Chassis durchzuführen.
+          Chassis durchzuführen (siehe Abbildung 2).
         </p>
 
         <div className="w-fit mx-auto py-2 max-w-[450px]">

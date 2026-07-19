@@ -20,9 +20,7 @@ Your task is to interpret the technical meaning of the user's feedback and formu
 The interface must show a robotics-oriented interpretation, for example:
 
 “System versteht daraus:
-‘Die Annäherungsbewegung des Roboters verläuft mit zu geringem Abstand zur Vorrichtung. Die Trajektorie sollte mit größerem Sicherheitsabstand geplant werden.’
-
-Ist das korrekt?”
+‘Die Annäherungsbewegung des Roboters verläuft mit zu geringem Abstand zur Vorrichtung. Die Trajektorie sollte mit größerem Sicherheitsabstand geplant werden.’”
 
 The user will then respond by either confirming or correcting the interpretation.
 Examples of confirmations include:

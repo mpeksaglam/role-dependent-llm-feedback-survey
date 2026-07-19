@@ -42,6 +42,12 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
   const showChat =
     config.chatMode === "always" ||
     (config.chatMode === "onReject" && rejectAnswer === "action_rejected");
+
+  // chat task description for training
+  const chatTask =
+    stepId === SURVEY_STEPS.TRAINING_TASK
+      ? "Was genau finden Sie an der Handlung (nicht) akzeptabel?"
+      : null;
   // ref for chat element to scroll to
   const chatRef = useRef<HTMLDivElement>(null);
   // auto scroll to chat on popup
@@ -82,6 +88,7 @@ export function ScenarioScreen({ stepId }: ScenarioScreenProps) {
       </div>
       {showChat && (
         <div ref={chatRef} className="w-full mt-8 scroll-mt-6">
+          {chatTask && <p className="mb-3 font-semibold">{chatTask}</p>}
           <ChatModule key={stepId} scenarioId={stepId} userRole={userRole} />
         </div>
       )}

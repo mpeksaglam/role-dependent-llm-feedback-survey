@@ -23,9 +23,14 @@ const WELCOME_MESSAGE: ChatMessage = {
 const TRAINING_WELCOME_MESSAGE: ChatMessage = {
   id: "training_welcome", // to prevent hydration error / SSR safe
   role: "assistant",
-  content: "Hallo, in diesem Chatfeld können Sie mit ChatGPT interagieren.",
+  content:
+    "Hallo, in diesem Chatfeld können Sie zusätzliches Feedback zur gezeigten Roboterhandlung eingeben. " +
+    "Im Rahmen der Trainingsaufgabe dient dieser Chat ausschließlich zum Kennenlernen der Funktion.",
 };
-const TRAINING_RESPONSE = "Dies ist eine Testantwort.";
+// turned into ChatMessage later
+const TRAINING_RESPONSE_CONTENT =
+  "Vielen Dank für Ihr Feedback. Im weiteren Verlauf der Studie werden Ihre Eingaben verarbeitet und darauf " +
+  "basierend Antworten erzeugt. Diese Trainingsantwort dient lediglich dazu, Ihnen die Funktionsweise des Chats zu zeigen.";
 
 interface ChatModuleProps {
   userRole: UserRole;
@@ -98,7 +103,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
           {
             id: crypto.randomUUID(),
             role: "assistant",
-            content: TRAINING_RESPONSE,
+            content: TRAINING_RESPONSE_CONTENT,
           },
         ],
         {} as LlmResponse,
@@ -138,7 +143,9 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
       const sysInterpretation =
         parsedResponse.revised_system_interpretation_for_user ??
         parsedResponse.system_interpretation_for_user;
-      const confirmationQuestion = parsedResponse.confirmation_question;
+      const confirmationQuestion =
+        `${parsedResponse.confirmation_question.trim()} ` +
+        "Falls nicht, beschreiben Sie die gewünschte Korrektur in Ihrer Antwort.";
 
       // in case no user conf required:
       const lastResponse = parsedResponse.confirmation_response;
@@ -165,7 +172,7 @@ export function ChatModule({ userRole, scenarioId }: ChatModuleProps) {
             id: crypto.randomUUID(),
             role: "assistant",
             content:
-              "Es ist ein Fehler bei der Anfrage unterlaufen, bitte versuchen Sie es erneut.",
+              "Bei der Verarbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
           },
         ],
         { error: "Fetch or parse failed" } as unknown as LlmResponse,

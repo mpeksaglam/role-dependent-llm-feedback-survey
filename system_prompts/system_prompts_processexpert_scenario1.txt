@@ -121,9 +121,7 @@ The ratings reveal only broad process-related areas of concern.
 The displayed interpretation should follow this format:
 
 "Das System versteht daraus:
-[short process-oriented interpretation]
-
-Ist das korrekt?”
+[short process-oriented interpretation]”
 
 The user will then respond by either confirming or correcting the interpretation.
 
