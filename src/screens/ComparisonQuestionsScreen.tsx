@@ -10,7 +10,7 @@ export function ComparisonQuestionsScreen() {
       </h2>
 
       <p className="font-semibold">
-        Bitte vergleichen Sie die beiden zuvor verwendeten Interfaces.
+        Bitte vergleichen Sie die zuvor verwendeten Interfaces.
       </p>
 
       <QuestionModule group={questionConfig.comparisonQuestions} />

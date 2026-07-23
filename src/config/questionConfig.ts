@@ -427,41 +427,41 @@ export const questionConfig = {
     questions: [
       {
         id: "helpful_int",
-        text: "Welches Interface war insgesamt hilfreicher?",
+        text: "Welche Interfaces waren insgesamt hilfreicher?",
         responseType: "singleChoice",
         options: [
-          { label: "Interface aus der ersten Runde", value: "gen_int" },
-          { label: "Interface aus der zweiten Runde", value: "role_spec_int" },
+          { label: "Interfaces aus der ersten Runde", value: "first_round" },
+          { label: "Interfaces aus der zweiten Runde", value: "second_round" },
           { label: "Kein Unterschied", value: "none" },
         ],
       },
       {
         id: "fast_feedback_int",
-        text: "Mit welchem Interface konnten Sie Feedback schneller geben?",
+        text: "Mit welchen Interfaces konnten Sie Feedback schneller geben?",
         responseType: "singleChoice",
         options: [
-          { label: "Interface aus der ersten Runde", value: "gen_int" },
-          { label: "Interface aus der zweiten Runde", value: "role_spec_int" },
+          { label: "Interfaces aus der ersten Runde", value: "first_round" },
+          { label: "Interfaces aus der zweiten Runde", value: "second_round" },
           { label: "Kein Unterschied", value: "none" },
         ],
       },
       {
         id: "role_fit_int",
-        text: "Welches Interface passte besser zu Ihrer Rolle?",
+        text: "Welche Interfaces passten besser zu Ihrer Rolle?",
         responseType: "singleChoice",
         options: [
-          { label: "Interface aus der ersten Runde", value: "gen_int" },
-          { label: "Interface aus der zweiten Runde", value: "role_spec_int" },
+          { label: "Interfaces aus der ersten Runde", value: "first_round" },
+          { label: "Interfaces aus der zweiten Runde", value: "second_round" },
           { label: "Kein Unterschied", value: "none" },
         ],
       },
       {
         id: "practice_pref_int",
-        text: "Welches Interface würden Sie in der Praxis bevorzugen?",
+        text: "Welche Interfaces würden Sie in der Praxis bevorzugen?",
         responseType: "singleChoice",
         options: [
-          { label: "Interface aus der ersten Runde", value: "gen_int" },
-          { label: "Interface aus der zweiten Runde", value: "role_spec_int" },
+          { label: "Interfaces aus der ersten Runde", value: "first_round" },
+          { label: "Interfaces aus der zweiten Runde", value: "second_round" },
           { label: "Kein Unterschied", value: "none" },
         ],
       },

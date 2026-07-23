@@ -3,7 +3,7 @@ export function DsgvoInfo() {
     <div className="space-y-8 text-sm leading-relaxed text-gray-900">
       <section>
         <h2 className="text-sm font-bold tracking-tight mb-2">
-          1. Informationen zum Verantwortlichen
+          1. Informationen zur Verantwortlichen
         </h2>
         <p>Verantwortlich für die Datenerhebung und -verarbeitung ist:</p>
         <p className="mt-2">
@@ -59,12 +59,12 @@ export function DsgvoInfo() {
             pseudonymisiert.
           </li>
           <li>
-            <strong>Löschung:</strong> Ihre Kontaktdaten werden spätestens [z.
-            B. 6 Monate] nach Studienabschluss gelöscht.
+            <strong>Löschung:</strong> Ihre Kontaktdaten werden spätestens 6
+            Monate nach Studienabschluss gelöscht.
           </li>
           <li>
-            Pseudonymisierte Forschungsdaten werden in der Regel für [z. B. 10
-            Jahre] revisionssicher aufbewahrt und danach vernichtet.
+            Pseudonymisierte Forschungsdaten werden in der Regel für 10 Jahre
+            revisionssicher aufbewahrt und danach vernichtet.
           </li>
         </ul>
       </section>

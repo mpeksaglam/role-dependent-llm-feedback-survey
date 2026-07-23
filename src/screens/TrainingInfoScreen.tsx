@@ -33,16 +33,21 @@ export function TrainingInfoScreen() {
           UR5e-Roboter, einem Schraubwerkzeug als Endeffektor sowie einer
           automatischen Schraubenzuführung. Eine Halterung, im Folgenden als
           <em className="italic"> Jig</em> bezeichnet, dient dazu, die Bauteile
-          wiederholgenau für den Verschraubungsprozess zu positionieren. Die
-          Interaktion mit dem System erfolgt über einen Freigabetaster (siehe
+          wiederholgenau für den Verschraubungsprozess zu positionieren (siehe
           Abbildung 1).
         </p>
 
         <p>
-          In der Simulation wird ausschließlich ein ausgewählter Arbeitsschritt
-          des Roboters dargestellt und bewertet: Der Roboter soll die Position
-          des Jigs anfahren, um dort die Verschraubung des Stoßfängers am
-          Chassis durchzuführen (siehe Abbildung 2).
+          In der Simulation wird ein ausgewählter Arbeitsschritt des Roboters
+          dargestellt und bewertet (siehe Abbildung 2): Der Roboter soll die
+          Position des Jigs anfahren, um dort die Verschraubung des Stoßfängers
+          am Chassis durchzuführen und startet dabei von der Schraubenzuführung.
+          Alternativ startet er in seiner Ausgangsposition und fährt zunächst
+          zur Schraubenzuführung und dann zum Jig oder vom Jig zurück zur
+          Schraubenzuführung, um eine weitere Schraube aufzunehmen. Um welchen
+          exakten Arbeitsschritt es sich handelt wird aus der Simulation
+          ersichtlich. Bewerten Sie lediglich die Roboterbewegung für den
+          gezeigten Arbeitsschritt.
         </p>
 
         <div className="w-fit mx-auto py-2 max-w-[450px]">

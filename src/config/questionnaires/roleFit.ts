@@ -1,10 +1,10 @@
 import { buildQuestionnaire } from "./buildQuestionnaire";
 
 const ROLE_FIT_ITEMS = [
-  "Das Interface passte zu meiner Rolle.",
-  "Die Begriffe im Interface passten zu meiner Arbeitsweise.",
+  "Die Interfaces passten zu meiner Rolle.",
+  "Die Begriffe in den Interfaces passten zu meiner Arbeitsweise.",
   "Ich konnte mein Fachwissen angemessen einbringen.",
-  "Das Interface hat unnötiges Fachwissen vorausgesetzt.",
+  "Die Interfaces haben unnötiges Fachwissen vorausgesetzt.",
   "Die vorgeschlagenen Bewertungskriterien waren für meine Rolle sinnvoll.",
 ] as const;
 
