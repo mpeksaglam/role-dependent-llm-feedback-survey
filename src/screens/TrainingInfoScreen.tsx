@@ -38,16 +38,42 @@ export function TrainingInfoScreen() {
         </p>
 
         <p>
-          In der Simulation wird ein ausgewählter Arbeitsschritt des Roboters
-          dargestellt und bewertet (siehe Abbildung 2): Der Roboter soll die
-          Position des Jigs anfahren, um dort die Verschraubung des Stoßfängers
-          am Chassis durchzuführen und startet dabei von der Schraubenzuführung.
-          Alternativ startet er in seiner Ausgangsposition und fährt zunächst
-          zur Schraubenzuführung und dann zum Jig oder vom Jig zurück zur
-          Schraubenzuführung, um eine weitere Schraube aufzunehmen. Um welchen
-          exakten Arbeitsschritt es sich handelt wird aus der Simulation
-          ersichtlich. Bewerten Sie lediglich die Roboterbewegung für den
-          gezeigten Arbeitsschritt.
+          In der Simulation wird jeweils ein einzelner Arbeitsschritt des
+          Roboters dargestellt (siehe beispielhaft Abbildung 2). Ihre Aufgabe
+          besteht darin, die gezeigte Roboterbewegung für den entsprechenden
+          Arbeitsschritt zu beurteilen.
+        </p>
+
+        <p>
+          Je nach Simulation führt der Roboter eine der folgenden Bewegungen
+          aus:
+        </p>
+
+        <ol className="list-[lower-alpha] pl-6 space-y-2">
+          <li>
+            Der Roboter startet an der Schraubenzuführung und fährt zur Position
+            des Jigs.
+          </li>
+          <li>
+            Der Roboter startet in seiner Ausgangsposition, der sogenannten
+            Home-Position, fährt zunächst zur Schraubenzuführung und
+            anschließend zur Position des Jigs.
+          </li>
+          <li>
+            Der Roboter startet an der Position des Jigs und fährt zurück zur
+            Schraubenzuführung.
+          </li>
+        </ol>
+
+        <p>
+          Welcher Arbeitsschritt im jeweiligen Fall gezeigt wird und wo sich
+          Start- und Zielpunkt befinden, ergibt sich aus der Simulation.
+        </p>
+
+        <p>
+          Bitte bewerten Sie ausschließlich die Bewegung des Roboters im
+          dargestellten Arbeitsschritt. Bewerten Sie nicht die grafische
+          Qualität, Perspektive oder Gestaltung des Videos.
         </p>
 
         <div className="w-fit mx-auto py-2 max-w-[450px]">
@@ -60,16 +86,16 @@ export function TrainingInfoScreen() {
             className=""
           />
           <p className="text-xs text-center text-gray-500 mt-2 pt-2 font-serif">
-            Abbildung 2: Schematische Darstellung des Arbeitsschrittes
+            Abbildung 2: Beispielhafte Darstellung eines Arbeitsschrittes
           </p>
         </div>
 
         <p>
-          Das Chassis und der Stoßfänger selbst sind in der Simulation nicht
-          sichtbar. Dargestellt werden lediglich der Roboter, der Arbeitsplatz,
-          die Position des Jigs sowie die Schraubenzuführung. Bewerten Sie daher
-          nur die in der Simulation gezeigte Roboterbewegung und das Anfahren
-          der vorgesehenen Arbeitsposition.
+          Das Chassis und der Stoßfänger sind in der Simulation nicht sichtbar.
+          Dargestellt werden lediglich der Roboter, der Arbeitsplatz, die
+          Position des Jigs sowie die Schraubenzuführung. Diese vereinfachte
+          Darstellung ist für die Bewertung ausreichend, da ausschließlich die
+          Roboterbewegung betrachtet werden soll.
         </p>
       </section>
 
