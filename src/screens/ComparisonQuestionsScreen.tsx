@@ -9,8 +9,12 @@ export function ComparisonQuestionsScreen() {
         Vergleich der Interfaces
       </h2>
 
-      <p className="font-semibold">
-        Bitte vergleichen Sie die zuvor verwendeten Interfaces.
+      <p>
+        Bitte vergleichen Sie die verwendeten Eingabeformen (z. B. Ratings,
+        Buttons oder Chatfenster), im Folgenden als Interfaces bezeichnet, sowie
+        die dort verwendete Sprache. Im Mittelpunkt steht die Frage, welche
+        Eingabeform sich aus Ihrer Sicht besser eignet, um Rückmeldungen zu
+        einem Roboterablauf abzugeben.
       </p>
 
       <QuestionModule group={questionConfig.comparisonQuestions} />
