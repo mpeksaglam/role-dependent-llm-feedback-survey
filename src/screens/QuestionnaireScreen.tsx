@@ -24,6 +24,14 @@ export function QuestionnaireScreen({ stepId }: QuestionnaireScreenProps) {
         Fragebögen
       </h2>
 
+      <p>
+        Im Mittelpunkt der folgenden Fragen steht nicht die Bewertung des
+        gezeigten Montageablaufs, sondern die Bewertung der zuvor verwendeten
+        Eingabeform/Interfaces (z.B. Ratings, Buttons oder Chatfenster). Bitte
+        beurteilen Sie, wie verständlich, intuitiv und geeignet die jeweilige
+        Eingabeform für die Abgabe Ihrer Rückmeldung war.
+      </p>
+
       <section className="space-y-6">
         <h2 className="text-lg font-semibold tracking-tight">
           System Usability Scale
