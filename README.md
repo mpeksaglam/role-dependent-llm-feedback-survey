@@ -11,12 +11,12 @@ robotic task scenarios, use an AI-based chat assistant, and complete standardize
 
 ## Research Context
 
-The study investigates how user interfaces tailored to a specific user role compare with generic interfaces in the context of cognitive robotic task teaching in assembly.
+The study investigated how user interfaces tailored to specific user roles compare with generic interfaces in the context of cognitive robotic task teaching in assembly.
 
-The survey application supports the data collection process by bringing the study tasks and questionnaires together in a web-based interface. Participants work through
-multiple simulated robot scenarios, interact with an AI-based chat assistant, and provide feedback through standardized questionnaires.
+The survey application brought the study tasks and questionnaires together in a web-based interface. Participants worked through
+multiple simulated robot scenarios, interacted with an AI-based chat assistant, and provided feedback through standardized questionnaires.
 
-The application was deployed using Vercel. A separate PHP backend supports session persistence and logging.
+The frontend was deployed using Vercel. A separate PHP backend hosted on an Apache server supported participant condition assignment, session persistence, and logging.
 
 For the detailed research motivation, experimental design, and findings, please refer to the associated paper.
 
@@ -25,94 +25,76 @@ For the detailed research motivation, experimental design, and findings, please 
 The application uses the following technologies:
 
 - **Next.js** — web application framework (App Router)
-- **React** — user interface
+- **React** — user interface library
 - **TypeScript** — application logic and type safety
+- **Node.js** — JavaScript runtime environment
 - **Tailwind CSS** — styling
-- **OpenAI API** — AI-based chat assistant functionality using GPT-5.4 mini
-- **PHP** — backend functionality for session persistence and logging
-- **Vercel** — deployment platform
+- **OpenAI API** — AI-based chat assistant functionality using the official OpenAI Node.js SDK (GPT-5.4 mini)
+- **Vercel** — frontend deployment platform
+- **PHP** — backend functionality for participant condition assignment, session persistence, and logging
+- **Apache** — backend hosting environment
 
-The PHP backend is maintained separately and is not included in this repository.
+## Project Structure
+
+The repository contains the Next.js frontend in `src/`, the PHP backend in `backend/`, the chat assistant system prompts used by the application in `system_prompts/`, and the simulated assembly tasks evaluated by participants in `public/`.
+
+### PHP Backend
+
+The PHP backend is included to document the implementation used during the study. It was hosted separately from the frontend on an Apache server and used file-based storage rather than a database.
+
+The `api/` directory contains the PHP scripts responsible for participant condition assignment, session loading and saving, and logging. The `data/` directory contains the storage locations for participant condition assignments, session data, and event logs.
 
 ## Getting Started
 
 ### Prerequisites
 
-Before running the application locally, ensure that you have:
-
-- Node.js and npm installed
-- Access to the required API credentials
-- Access to a compatible backend instance for session persistence and logging
+- Node.js and npm
+- PHP backend instance with file system read/write access
+- OpenAI API key (optional, required for the chat assistant)
 
 ### Installation
 
-Clone the repository and navigate to the project directory:
+Clone the repository, navigate to the project directory, and install the dependencies:
 
-```text
-git clone <repository-url>
-cd <repository-directory>
-```
-
-Install the dependencies:
-
-```text
+```bash
 npm install
 ```
 
 ### Configuration
 
-Create a `.env.local` file in the project root and configure the following environment variables:
-<br>
-
-| Variable         | Purpose                                                         |
-| ---------------- | --------------------------------------------------------------- |
-| `OPENAI_API_KEY` | API key for the OpenAI-powered chat assistant                   |
-| `SERVER_API_URL` | URL of the PHP backend used for session persistence and logging |
-
-<br>
-
-Example `.env.local` file:
+Create a `.env.local` file in the project root:
 
 ```dotenv
 OPENAI_API_KEY=your_openai_api_key
 SERVER_API_URL="https://your-backend.example.com"
 ```
 
-Replace the placeholder values with your own configuration. The backend URL must point to a compatible PHP backend instance.
-
-**Security:** Never commit actual API keys, credentials, participant information, or other sensitive data. Keep `.env.local` out of version control.
-
-A working backend connection is required for the original data collection workflow. The availability of the chat assistant also depends on valid API credentials.
+Do not commit actual API keys, credentials, participant information, or other sensitive data. Keep `.env.local` out of version control.
 
 ### Run Locally
 
 Start the development server:
 
-```text
+```bash
 npm run dev
 ```
 
-Open the application in your browser:
-
-```text
-http://localhost:3000
-```
+The application is then available at `http://localhost:3000`.
 
 Local execution also requires configuration of the external backend and API services.
 
 ## Deployment
 
-The survey application was deployed to Vercel. The original project deployment workflow used GitLab CI/CD.
+The frontend was deployed to Vercel, while the PHP backend was hosted separately on an Apache server. The original project deployment workflow used GitLab CI/CD.
 
-Running a local instance does not automatically reproduce the original production environment. A deployment requires the appropriate environment variables, API credentials,
-backend configuration, and hosting setup.
+The original frontend deployment is no longer active. The backend source code is included for documentation purposes.
 
 ## Research and Reproducibility
 
-This repository provides the survey application's source code to support inspection of the software used in the study.
+This repository provides the frontend and backend source code to support inspection of the software used in the study.
 
 The source code alone may not reproduce the complete experimental environment or the original data collection process. This can depend on the availability and configuration
-of external services, the separate PHP backend, and study-specific materials.
+of external services, hosting infrastructure, and study-specific materials.
 
 For details about the study design, methodology, and results, consult the associated paper.
 
