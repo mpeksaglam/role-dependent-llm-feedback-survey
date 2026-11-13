@@ -21,6 +21,7 @@ import { buildParticipantFlow } from "./helpers/buildParticipantFlow";
 import { deriveUserRole } from "./helpers/deriveUserRole";
 import { fetchConditionOrder } from "./helpers/fetchConditionOrder";
 import { initialSurveyState } from "./initialSurveyState";
+import { randomize } from "./helpers/randomize";
 
 interface Props {
   children: ReactNode;
@@ -33,69 +34,27 @@ export function SurveyProvider({ children }: Props) {
 
   // runs on first client mount
   useEffect(() => {
-    async function initializeSurvey() {
-      // Check if participantId exists
-      let participantId = localStorage.getItem("participantId");
-      let savedSession: SurveyState | null = null;
+    // ParticipantID
+    // retrieve if existent
+    let participantId = localStorage.getItem("participantId");
+    // else generate new one
+    if (!participantId) {
+      participantId = crypto.randomUUID();
 
-      // if an id exists, try retrieving previous session from server
-      if (participantId) {
-        savedSession = await loadSession(participantId);
-      }
-      // Case A: success -> restore previous session
-      if (savedSession) {
-        setState(savedSession);
-
-        if (!savedSession.participantId) {
-          throw new Error("Restored previous session without participantId");
-        }
-        // void to not await response
-        // only case where session_restore event can happen
-        // manual calling because of initializeSurvey no state existent yet!
-        void logEvent({
-          participantId: savedSession.participantId,
-          eventType: "session_restored",
-          payload: {},
-        });
-        return; // initialisation complete
-      }
-
-      // Case B: No ID existent OR server did not send savedSession
-      // NEW USER
-      if (!participantId) {
-        participantId = crypto.randomUUID();
-        localStorage.setItem("participantId", participantId);
-      }
-
-      // Get new survey data
-      // Randomization of conditions
-      const conditionOrder = await fetchConditionOrder(participantId);
-      // Build static participant flow for the survey
-      const participantFlow = buildParticipantFlow(conditionOrder);
-
-      // side effects always outside of setState!
-      // only case where survey_started event can occur
-      // manual calling because of initializeSurvey no state existent yet!
-      void logEvent({
-        participantId,
-        eventType: "survey_started",
-        payload: {
-          conditionOrder,
-          participantFlow,
-        },
-      });
-
-      // prev used here since we're in an async function
-      // Add everything to state
-      setState((prev) => ({
-        ...prev,
-        participantId,
-        conditionOrder,
-        participantFlow,
-        isLoading: false,
-      }));
+      localStorage.setItem("participantId", participantId);
     }
-    initializeSurvey();
+
+    // Randomization of conditions
+    const conditionOrder = randomize();
+    const participantFlow = buildParticipantFlow(conditionOrder);
+    // Add everything to state
+    setState((prev) => ({
+      ...prev,
+      participantId,
+      conditionOrder,
+      participantFlow,
+      isLoading: false,
+    }));
   }, []); // runs once at client start / mount
 
   // keep track of answers in current survey state
@@ -111,8 +70,6 @@ export function SurveyProvider({ children }: Props) {
     };
     // set nextState
     setState(nextState);
-    // send state to backend for persistence
-    void saveSession(nextState);
   };
   // navigate to next step
   const goNext = () => {
@@ -126,19 +83,6 @@ export function SurveyProvider({ children }: Props) {
     if (!nextStep) {
       return;
     }
-    // startTimestamp was set before (further down), this happens at end of scenarioScreen before nextStep is set
-    // calculate scenario duration
-    const durationSeconds =
-      isScenarioStep(state.currentStepId) &&
-      state.scenarioStartTimestamp !== null
-        ? Math.round((Date.now() - state.scenarioStartTimestamp) / 1000) // convert from ms to seconds
-        : undefined;
-
-    // log current completed step before moving on (end snapshot)
-    // pre survey excluded because it is handled in Special Case 2
-    if (state.currentStepId !== SURVEY_STEPS.PRE_SURVEY) {
-      void logCurrentStep(state, durationSeconds);
-    }
 
     // Special case 1: User declined consent, go to end
     if (
@@ -150,22 +94,11 @@ export function SurveyProvider({ children }: Props) {
         currentStepId: SURVEY_STEPS.OUTRO,
       };
       setState(nextState);
-      // send to backend for persistence
-      void saveSession(nextState);
-      // log again because end reached, no interaction happening anymore
-      void logCurrentStep(nextState);
       return;
     }
     // Special case 2: assign userRole after presurvey
     else if (state.currentStepId === SURVEY_STEPS.PRE_SURVEY) {
       const userRole = deriveUserRole(state.answers);
-
-      // for logging purposes
-      const stateWithRole = {
-        ...state,
-        userRole,
-      };
-      void logCurrentStep(stateWithRole);
 
       // set next state
       const nextState = {
@@ -174,27 +107,16 @@ export function SurveyProvider({ children }: Props) {
         currentStepId: nextStep,
       };
       setState(nextState);
-      // send to backend for persistence
-      void saveSession(nextState);
       return;
     }
     // Standard case goNext()
     else {
-      // change stepId and start timer if nextStep is a scenario
+      // change stepId
       const nextState = {
         ...state,
         currentStepId: nextStep,
-        scenarioStartTimestamp: isScenarioStep(nextStep) ? Date.now() : null,
       };
       setState(nextState);
-
-      // send to backend for persistence
-      void saveSession(nextState);
-
-      // if last screen is reached, final log for survey completion
-      if (nextStep === SURVEY_STEPS.OUTRO) {
-        void logCurrentStep(nextState);
-      }
       return;
     }
   };
@@ -211,9 +133,6 @@ export function SurveyProvider({ children }: Props) {
       return;
     }
 
-    // log that user went back
-    void logBackNavigation(state);
-
     // calculate the new (previous) Step
     const backStep = {
       ...state,
@@ -222,8 +141,6 @@ export function SurveyProvider({ children }: Props) {
 
     // set previous state
     setState(backStep);
-    // send to backend for persistence
-    void saveSession(backStep);
     return;
   };
 
@@ -257,12 +174,6 @@ export function SurveyProvider({ children }: Props) {
         [scenarioId]: [...(prev.llmResponses[scenarioId] ?? []), response],
       },
     }));
-  // persist the changes of chats (here because of asynchronous setChatData function)
-  useEffect(() => {
-    if (!state.participantId || state.isLoading) return;
-
-    void saveSession(state);
-  }, [state.chatHistory, state.llmResponses, state.participantId]);
 
   const lockNavigation = () => {
     navigationLockRef.current = true;
