@@ -1,4 +1,12 @@
-# Role-Dependent LLM-Based Human Feedback Survey
+# Role-Dependent LLM-Based Human Feedback Survey – Demo
+
+**You are viewing the `demo` branch.**
+
+This branch contains a simplified, locally runnable version of the application, intended for demonstration and exploration purposes only.
+
+Compared to the original implementation in the `main` branch, this version omits the study-specific mechanisms for participant condition assignment (randomization), session persistence, and event logging. The remaining application functionality is intended to stay as close as possible to the original implementation.
+
+---
 
 This repository contains the source code for the web-based survey application used for data collection in the study associated with the following publication:
 
@@ -16,8 +24,6 @@ The study investigated how user interfaces tailored to specific user roles compa
 The survey application brought the study tasks and questionnaires together in a web-based interface. Participants worked through
 multiple simulated robot scenarios, interacted with an AI-based chat assistant, and provided feedback through standardized questionnaires.
 
-The frontend was deployed using Vercel. A separate PHP backend hosted on an Apache server supported participant condition assignment, session persistence, and logging.
-
 For the detailed research motivation, experimental design, and findings, please refer to the associated paper.
 
 ## Technology Stack
@@ -31,7 +37,7 @@ The application uses the following technologies:
 - **Tailwind CSS** — styling
 - **OpenAI API** — AI-based chat assistant functionality using the official OpenAI Node.js SDK (GPT-5.4 mini)
 - **Vercel** — frontend deployment platform
-- **PHP** — backend functionality for participant condition assignment, session persistence, and logging
+- **PHP** — backend functionality for participant condition assignment, session persistence, and event logging
 - **Apache** — backend hosting environment
 
 ## Project Structure
@@ -42,14 +48,15 @@ The repository contains the Next.js frontend in `src/`, the PHP backend in `back
 
 The PHP backend is included to document the implementation used during the study. It was hosted separately from the frontend on an Apache server and used file-based storage rather than a database.
 
-The `api/` directory contains the PHP scripts responsible for participant condition assignment, session loading and saving, and logging. The `data/` directory contains the storage locations for participant condition assignments, session data, and event logs.
+The `api/` directory contains the PHP scripts responsible for participant condition assignment, session loading and saving, and event logging. The `data/` directory contains the storage locations for participant condition assignments, session data, and event logs.
+
+The PHP backend is not required to run the demo version.
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js and npm
-- PHP backend instance with file system read/write access
 - OpenAI API key (optional, required for the chat assistant)
 
 ### Installation
@@ -66,7 +73,6 @@ Create a `.env.local` file in the project root:
 
 ```dotenv
 OPENAI_API_KEY=your_openai_api_key
-SERVER_API_URL="https://your-backend.example.com"
 ```
 
 Do not commit actual API keys, credentials, participant information, or other sensitive data. Keep `.env.local` out of version control.
@@ -81,11 +87,9 @@ npm run dev
 
 The application is then available at `http://localhost:3000`.
 
-Local execution also requires configuration of the external backend and API services.
-
 ## Deployment
 
-The frontend was deployed to Vercel, while the PHP backend was hosted separately on an Apache server. The original project deployment workflow used GitLab CI/CD.
+In the original study implementation, the frontend was deployed to Vercel, while the PHP backend was hosted separately on an Apache server. The original project deployment workflow used GitLab CI/CD.
 
 The original frontend deployment is no longer active. The backend source code is included for documentation purposes.
 
