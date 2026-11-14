@@ -8,7 +8,7 @@ For a simplified, locally runnable version intended for demonstration purposes, 
 
 ---
 
-This repository contains the source code for the web-based survey application used for data collection in the study associated with the following publication:
+This repository contains the source code for the web-based survey application and the supplementary materials associated with the following publication:
 
 Saskia Hutschenreiter, Julia Berger, Maximilian Peksaglam, Rüdiger Daub\
 **Design and Evaluation of a Role-Dependent LLM-Based Human Feedback Subsystem for Cognitive Robotic Task Teaching in Assembly**\
@@ -26,6 +26,22 @@ multiple simulated robot scenarios, interacted with an AI-based chat assistant, 
 
 For the detailed research motivation, experimental design, and findings, please refer to the associated paper.
 
+## Project Structure
+
+The repository contains the Next.js frontend in `src/`, the PHP backend in `backend/`, the chat assistant system prompts used by the application in `system_prompts/`, the simulated assembly tasks evaluated by participants in `public/`, and supplementary study materials in `survey_supplement/`.
+
+### Supplementary Materials
+
+The supplementary materials provide additional documentation related to the study and its statistical evaluation.
+
+For a detailed overview, please refer to the [Supplementary Overview](survey_supplement/Supplement_Overview.md).
+
+### PHP Backend
+
+The PHP backend is included to document the implementation used during the study. It was hosted separately from the frontend on an Apache server and used file-based storage rather than a database.
+
+The `api/` directory contains the PHP scripts responsible for participant condition assignment, session loading and saving, and event logging. The `data/` directory contains the storage locations for participant condition assignments, session data, and event logs.
+
 ## Technology Stack
 
 The application uses the following technologies:
@@ -36,19 +52,7 @@ The application uses the following technologies:
 - **Node.js** — JavaScript runtime environment
 - **Tailwind CSS** — styling
 - **OpenAI API** — AI-based chat assistant functionality using the official OpenAI Node.js SDK (GPT-5.4 mini)
-- **Vercel** — frontend deployment platform
 - **PHP** — backend functionality for participant condition assignment, session persistence, and event logging
-- **Apache** — backend hosting environment
-
-## Project Structure
-
-The repository contains the Next.js frontend in `src/`, the PHP backend in `backend/`, the chat assistant system prompts used by the application in `system_prompts/`, and the simulated assembly tasks evaluated by participants in `public/`.
-
-### PHP Backend
-
-The PHP backend is included to document the implementation used during the study. It was hosted separately from the frontend on an Apache server and used file-based storage rather than a database.
-
-The `api/` directory contains the PHP scripts responsible for participant condition assignment, session loading and saving, and event logging. The `data/` directory contains the storage locations for participant condition assignments, session data, and event logs.
 
 ## Getting Started
 
@@ -63,6 +67,8 @@ The `api/` directory contains the PHP scripts responsible for participant condit
 Clone the repository, navigate to the project directory, and install the dependencies:
 
 ```bash
+git clone https://github.com/mpeksaglam/role-dependent-llm-feedback-survey.git
+cd role-dependent-llm-feedback-survey
 npm install
 ```
 
