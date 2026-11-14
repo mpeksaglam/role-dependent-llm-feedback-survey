@@ -1,0 +1,4 @@
+status,reason,count
+excluded,fewer_than_6_scenario_completions;missing_questionnaire_A;missing_questionnaire_B,9
+excluded,fewer_than_6_scenario_completions;missing_questionnaire_B,1
+included,complete_two_condition_blocks,19

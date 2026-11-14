@@ -1,0 +1,9 @@
+video_id,round_scenario,variant,goal_reached,annotated_efficient,annotation_description
+1,R2.3,A,1,0,Pronounced redundant motion/detours
+2,R2.2,single,1,0,Pronounced redundant motion/detours
+3,R1.1,single,1,1,"Direct, fast, goal-directed motion"
+4,R1.2,single,1,1,"Direct, fast, goal-directed motion"
+4,R2.3,B,1,1,"Direct, fast, goal-directed motion"
+5,R1.3,A,1,1,"Direct, fast, goal-directed motion"
+6,R2.1,single,1,1,"Direct, fast, goal-directed motion"
+7,R1.3,B,1,0,Pronounced redundant motion/detours
